@@ -4,7 +4,7 @@
 <html>
   <head>
     <title>
-	Groups :: Mortar Documentation
+	Bricks :: Mortar Documentation
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -13,7 +13,7 @@
 
 
 
-<title>Groups :: Mortar Documentation</title>
+<title>Bricks :: Mortar Documentation</title>
 
 <link rel="shortcut icon" href='/images/favicon.png' type="image/x-icon" />
 
@@ -50,7 +50,7 @@
     
   </head>
 
-  <body data-url="/fx/groups/"
+  <body data-url="/mortar/bricks/"
 
   class="">
 
@@ -181,7 +181,7 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item parent active
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item
         item_level_$level
         ">
 
@@ -229,7 +229,7 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/mortar/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/mortar/" class="dd-item parent active
         item_level_$level
         ">
 
@@ -279,8 +279,8 @@
 	
   
     <li class="">
-      <a class="text-link" href="/fx/">
-        Uber-FX
+      <a class="text-link" href="/mortar/">
+        Mortar Design
       </a>
     </li>
 	
@@ -288,7 +288,7 @@
   
     <li class="active">
       
-        Groups
+        Bricks
       
     </li>
 
@@ -309,7 +309,7 @@
 		
 
 		
-			<h1>Uber-FX<span>Groups</span></h1>
+			<h1>Mortar Design<span>Bricks</span></h1>
         
 
 			
@@ -320,18 +320,23 @@
 				<nav class="subpages">
 	            		
 	        			
-	            	<li >
-	            		<a title="$pagetitle" href="/fx/dependency/">Dependency Pattern</a>
-	            	</li>
-	            		
-	        			
 	            	<li class="active">
-	            		<a title="$pagetitle" href="/fx/groups/">Groups</a>
+	            		<a title="$pagetitle" href="/mortar/bricks/">Bricks</a>
 	            	</li>
 	            		
 	        			
 	            	<li >
-	            		<a title="$pagetitle" href="/fx/tests/">Tests</a>
+	            		<a title="$pagetitle" href="/mortar/builders/">Builder Pattern</a>
+	            	</li>
+	            		
+	        			
+	            	<li >
+	            		<a title="$pagetitle" href="/mortar/config/">Configuration Map</a>
+	            	</li>
+	            		
+	        			
+	            	<li >
+	            		<a title="$pagetitle" href="/mortar/listeners/">Listeners</a>
 	            	</li>
 	        	</nav> 
 		
@@ -345,15 +350,7 @@
   			Jump to Section
   			<i style=";" class="fas fa-chevron-right"></i>
 		</span>
-		<nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#build-information">Build Information</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+		<nav id="TableOfContents"></nav>
 	</div>
 	
 	
@@ -364,76 +361,63 @@
 
 
 	<div class="content">
-	    <p><code>Uber-FX</code> <a href="https://pkg.go.dev/go.uber.org/fx#hdr-Value_Groups">group</a> is a feature that allows you to consume and produce
-multiple values of the same type. This make it easier to influence/configure different instances.</p>
-<p>Mortar have different <a href="https://github.com/go-masonry/mortar/blob/master/providers/groups/alias.go">groups</a>, but we will focus on one of them here.</p>
+	    <p>When we build software most of us always try to rely on something we or others build before us.
+Since we don&rsquo;t want to reinvent the wheel, <strong>again</strong>.</p>
+<p>Go standard library is an excellent example here.
+There are <code>strings</code>, <code>time</code>, <code>http</code> and many other build-in libraries that we use.
+While this example is great, it doesn&rsquo;t scale to 3rd party libraries.</p>
+<p>Let&rsquo;s look at Logger libraries for example, there are</p>
+<ul>
+<li><a href="https://github.com/sirupsen/logrus">Logrus</a></li>
+<li><a href="https://github.com/apex/log">Apex</a></li>
+<li><a href="https://github.com/uber-go/zap">Zap</a></li>
+<li><a href="https://github.com/rs/zerolog">Zerolog</a></li>
+<li>&hellip;</li>
+</ul>
+<p>You are encouraged to have a look at each library, but I can assure you, all of their API are different from each other.
+Mortar after all is a library, and it&rsquo;s purpose to be used in many projects.
+That is why we defined different <a href="https://github.com/go-masonry/mortar/blob/master/interfaces">Interfaces</a>.</p>
 
 
+<div class="alert info" role="alert">We define Brick as an implementation of an Interface defined in Mortar using external library</div>
 
-<div class="card "><div class="card-header primary">Internal HTTP Handlers</div><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#008000">// InternalHTTPHandlers - Internal Http Handlers group. Mortar comes with several internal handlers, you can add yours.
-</span><span style="color:#008000"></span>InternalHTTPHandlers = partial.FxGroupInternalHTTPHandlers
+<ul>
+<li><a href="https://github.com/go-masonry/mortar/blob/master/interfaces/log/interfaces.go">Mortar Logger</a>
+<ul>
+<li><a href="https://github.com/go-masonry/bzerolog">Implementation using Zerolog</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/go-masonry/mortar/blob/master/interfaces/cfg/interfaces.go">Mortar Config</a>
+<ul>
+<li><a href="https://github.com/go-masonry/bviper">Implementation using Viper</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/go-masonry/mortar/blob/master/interfaces/trace/interfaces.go">Mortar Tracing</a>
 
-<span style="color:#008000">//InternalHTTPHandlerFunctions - Internal Http Handler Functions group. Similar toInternalHttpHandlers but for functions
-</span><span style="color:#008000"></span>InternalHTTPHandlerFunctions = partial.FxGroupInternalHTTPHandlerFunctions
-</code></pre></div></p>
-  </div></div>
 
-<h3 ref="build-information" >Build Information</h3><a class="anchor" id="build-information"></a>
-<p>Similar to everything else in <code>Uber-FX</code>, to register a new instance into a <code>fx.Group</code> you need to create a Constructor.</p>
-<p>We will look at one of the internal handlers: <a href="https://github.com/go-masonry/mortar/blob/master/handlers/self.go#L38">Build Information</a></p>
+<div class="notices primary">
+	<p>This is a special case, since <a href="https://github.com/opentracing/opentracing-go">open tracing</a> is already an abstraction.</p>
+</div>
+
+<ul>
+<li><a href="https://github.com/go-masonry/bjaeger">Implementation using Jaeger</a></li>
+</ul>
+</li>
+<li>&hellip;</li>
+</ul>
+<p>To easily differentiate an actual library from its Brick wrapper, every Brick package starts with a <code>b</code>.</p>
+<ul>
+<li><strong>b</strong>viper</li>
+<li><strong>b</strong>zerolog</li>
+<li>&hellip;</li>
+</ul>
 
 
+<div class="alert warning" role="alert">As a rule every Brick is based on Mortar itself, but not on any other Brick</div>
 
-<div class="card "><div class="card-header primary">Build Information</div><div class="card-body">
-    <p class="card-text"><p>In this example we want to register a new <strong>Internal</strong> [<code>&quot;/&lt;path&gt;/&lt;pattern&gt;&quot;</code> -&gt; <code>http.HandlerFunc</code>] pair.</p>
-<ol>
-<li>
-<p>Let&rsquo;s start by defining a Constructor that will return <code>http.HandlerFunc</code></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> (s *selfHandlerDeps) BuildInfo() http.HandlerFunc {
-  <span style="color:#00f">return</span> <span style="color:#00f">func</span>(w http.ResponseWriter, req *http.Request) {
-  information := mortar.GetBuildInformation(<span style="color:#00f">true</span>) <span style="color:#008000">// using true here will insert a default value if there is none
-</span><span style="color:#008000"></span>  <span style="color:#00f">if</span> err := json.NewEncoder(w).Encode(information); err != <span style="color:#00f">nil</span> {
-    w.WriteHeader(http.StatusInternalServerError)
-    s.Logger.WithError(err).Warn(<span style="color:#00f">nil</span>, <span style="color:#a31515">&#34;failed to serve build info&#34;</span>)
-  }
-  }
-}
-</code></pre></div></li>
-<li>
-<p>Create an <code>HTTPHandlerPatternPair</code>.
-This is the part where you define on what <strong>path</strong> this Handler will be served.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#008000">// SelfHandlers this service information handlers
-</span><span style="color:#008000"></span><span style="color:#00f">func</span> SelfHandlers(deps selfHandlerDeps) []partial.HTTPHandlerPatternPair {
-  <span style="color:#00f">return</span> []partial.HTTPHandlerPatternPair{
-  {Pattern: <span style="color:#a31515">&#34;/self/build&#34;</span>, Handler: deps.BuildInfo()},
-  ...
-  }
-}
-</code></pre></div></li>
-<li>
-<p><a href="https://github.com/go-masonry/mortar/blob/master/providers/handlers.go#L45">Tell</a> <code>Uber-FX</code> that we want this instance of <code>HTTPHandlerPatternPair</code> added to the <code>groups.InternalHTTPHandlerFunctions</code> group.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> InternalSelfHandlersFxOption() fx.Option {
-  <span style="color:#00f">return</span> fx.Provide(
-  fx.Annotated{
-    Group:  groups.InternalHTTPHandlers + <span style="color:#a31515">&#34;,flatten&#34;</span>,
-    Target: handlers.SelfHandlers,
-  })
-}
-</code></pre></div></li>
-<li>
-<p>Lastly in your application you need to provide the above <code>InternalSelfHandlersFxOption()</code> option to <code>Uber-FX</code> graph,
-<a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/main.go#L37">here</a> you can see how it&rsquo;s done in the demo.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">return</span> fx.New(
-  ...
-  InternalSelfHandlersFxOption(),
-  ...
-)
-</code></pre></div></li>
-</ol>
-</p>
-  </div></div>
-
+<p>Meaning you can&rsquo;t import <code>bzerolog</code> from within <code>bjaeger</code> for example.</p>
+<p>Check their <code>go.mod</code> files to make sure.</p>
+<p>This rule is here to ensure that every Brick can be easily swapped.</p>
 
 		</div>
 
@@ -444,10 +428,10 @@ This is the part where you define on what <strong>path</strong> this Handler wil
 
 	 
 	<div class="chevrons">
-		<a class="next" href="/middleware/" title="Middleware" style="margin-right: 0px;">
+		<a class="next" href="/api/" title="APIs" style="margin-right: 0px;">
             <div>
                 <p>Next page</p>
-                <label>Middleware</label>
+                <label>APIs</label>
             </div>
             <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
 	</div>
@@ -471,18 +455,10 @@ This is the part where you define on what <strong>path</strong> this Handler wil
     <label><i class="fas fa-align-right"></i>&nbsp;&nbsp;What&#39;s on this page</label>
     <nav>
         <ul >
-            <li><a href="/fx/groups/">Groups</a></li>
+            <li><a href="/mortar/bricks/">Bricks</a></li>
         </ul>
     </nav>
-    <nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#build-information">Build Information</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
+    <nav id="TableOfContents"></nav>
 </div>
 
 		
@@ -500,7 +476,7 @@ This is the part where you define on what <strong>path</strong> this Handler wil
 			
 		      <li>
 		          <i class='fas fa-calendar'></i>
-		          Last update on 05 December 2020
+		          Last update on 10 December 2020
 		      </li>
 		    
 		    

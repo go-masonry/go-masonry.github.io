@@ -4,7 +4,7 @@
 <html>
   <head>
     <title>
-	Groups :: Mortar Documentation
+	Listeners :: Mortar Documentation
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -13,7 +13,7 @@
 
 
 
-<title>Groups :: Mortar Documentation</title>
+<title>Listeners :: Mortar Documentation</title>
 
 <link rel="shortcut icon" href='/images/favicon.png' type="image/x-icon" />
 
@@ -50,7 +50,7 @@
     
   </head>
 
-  <body data-url="/fx/groups/"
+  <body data-url="/mortar/listeners/"
 
   class="">
 
@@ -181,7 +181,7 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item parent active
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item
         item_level_$level
         ">
 
@@ -229,7 +229,7 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/mortar/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/mortar/" class="dd-item parent active
         item_level_$level
         ">
 
@@ -279,8 +279,8 @@
 	
   
     <li class="">
-      <a class="text-link" href="/fx/">
-        Uber-FX
+      <a class="text-link" href="/mortar/">
+        Mortar Design
       </a>
     </li>
 	
@@ -288,7 +288,7 @@
   
     <li class="active">
       
-        Groups
+        Listeners
       
     </li>
 
@@ -309,7 +309,7 @@
 		
 
 		
-			<h1>Uber-FX<span>Groups</span></h1>
+			<h1>Mortar Design<span>Listeners</span></h1>
         
 
 			
@@ -321,17 +321,22 @@
 	            		
 	        			
 	            	<li >
-	            		<a title="$pagetitle" href="/fx/dependency/">Dependency Pattern</a>
-	            	</li>
-	            		
-	        			
-	            	<li class="active">
-	            		<a title="$pagetitle" href="/fx/groups/">Groups</a>
+	            		<a title="$pagetitle" href="/mortar/bricks/">Bricks</a>
 	            	</li>
 	            		
 	        			
 	            	<li >
-	            		<a title="$pagetitle" href="/fx/tests/">Tests</a>
+	            		<a title="$pagetitle" href="/mortar/builders/">Builder Pattern</a>
+	            	</li>
+	            		
+	        			
+	            	<li >
+	            		<a title="$pagetitle" href="/mortar/config/">Configuration Map</a>
+	            	</li>
+	            		
+	        			
+	            	<li class="active">
+	            		<a title="$pagetitle" href="/mortar/listeners/">Listeners</a>
 	            	</li>
 	        	</nav> 
 		
@@ -347,11 +352,13 @@
 		</span>
 		<nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#mortar">Mortar</a>
       <ul>
-        <li><a href="#build-information">Build Information</a></li>
+        <li><a href="#external-grpc-and-rest">External gRPC and REST</a></li>
+        <li><a href="#internal-rest">Internal REST</a></li>
       </ul>
     </li>
+    <li><a href="#one-listener-one-port">One Listener One Port</a></li>
   </ul>
 </nav>
 	</div>
@@ -364,76 +371,60 @@
 
 
 	<div class="content">
-	    <p><code>Uber-FX</code> <a href="https://pkg.go.dev/go.uber.org/fx#hdr-Value_Groups">group</a> is a feature that allows you to consume and produce
-multiple values of the same type. This make it easier to influence/configure different instances.</p>
-<p>Mortar have different <a href="https://github.com/go-masonry/mortar/blob/master/providers/groups/alias.go">groups</a>, but we will focus on one of them here.</p>
+	    <p>We assume that you, like us, don&rsquo;t expose your services to the world without setting up at least a Load Balancer before it/them.
+Historically when we started building webservices our infrastructure was expecting a single port to forward all the traffic to it from the LoadBalancer.
+When we wanted to use gRPC API as well as REST we still had to expose everything under one port.
+Fortunately we weren&rsquo;t the first, and we used this excellent <a href="https://github.com/soheilhy/cmux">cmux</a> library to solve that problem.</p>
+<p>Now, our services were hosted on AWS using <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html">ELB</a>.
+Back then ELB didn&rsquo;t support HTTP/2. However from Nov 2020 AWS <a href="https://aws.amazon.com/blogs/aws/new-application-load-balancer-support-for-end-to-end-http-2-and-grpc/">have gRPC support</a>&hellip;</p>
+<p>GRPC is based on HTTP/2 and that presented some headache&hellip; Long story short we switch to <a href="https://www.envoyproxy.io/">Envoy</a> and made the following changes:</p>
+<p>Our services now had 3 listeners and 3 ports respectively.</p>
+<ul>
+<li>GRPC</li>
+<li>External REST, which is a reverse-proxy to gRPC using <a href="https://github.com/grpc-ecosystem/grpc-gateway">grpc-gateway</a></li>
+<li><a href="#internal-rest">Internal REST</a> which exposes different useful information about the service.</li>
+</ul>
+<p>While the first 2 were exposed to the Internet, third one (<strong>Internal</strong>) wasn&rsquo;t.</p>
+<h2 ref="mortar" >Mortar</h2><a class="anchor" id="mortar"></a>
+<p>Mortar is designed with that in mind. Essentially you create 3 Web Services with 3 ports they listen on.
+If that setup can&rsquo;t work for you, you can still can do everything with <a href="#one-listener-one-port">1 listener and 1 port</a>.</p>
+<p>Let&rsquo;s look at some benefits this approach have.</p>
+<h3 ref="external-grpc-and-rest" >External gRPC and REST</h3><a class="anchor" id="external-grpc-and-rest"></a>
+<p>Basically you treat GRPC and External REST as one (but with 2 different ports).
+If your Load Balancer doesn&rsquo;t support HTTP/2 it sure does support HTTP/1.
+It also can probably give you some <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#listener-configuration">benefits</a> if you use HTTP listener when routing traffic to External REST port.</p>
+<h3 ref="internal-rest" >Internal REST</h3><a class="anchor" id="internal-rest"></a>
+<p>When your services are deployed in some cloud, you need different ways to &ldquo;look&rdquo; into them.</p>
+<ul>
+<li>What is their version or even better, Git commit.</li>
+<li><a href="https://github.com/go-masonry/mortar/blob/master/handlers/self.go#L48">Configuration and Environment</a> values.
 
 
-
-<div class="card "><div class="card-header primary">Internal HTTP Handlers</div><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#008000">// InternalHTTPHandlers - Internal Http Handlers group. Mortar comes with several internal handlers, you can add yours.
-</span><span style="color:#008000"></span>InternalHTTPHandlers = partial.FxGroupInternalHTTPHandlers
-
-<span style="color:#008000">//InternalHTTPHandlerFunctions - Internal Http Handler Functions group. Similar toInternalHttpHandlers but for functions
-</span><span style="color:#008000"></span>InternalHTTPHandlerFunctions = partial.FxGroupInternalHTTPHandlerFunctions
-</code></pre></div></p>
-  </div></div>
-
-<h3 ref="build-information" >Build Information</h3><a class="anchor" id="build-information"></a>
-<p>Similar to everything else in <code>Uber-FX</code>, to register a new instance into a <code>fx.Group</code> you need to create a Constructor.</p>
-<p>We will look at one of the internal handlers: <a href="https://github.com/go-masonry/mortar/blob/master/handlers/self.go#L38">Build Information</a></p>
-
-
-
-<div class="card "><div class="card-header primary">Build Information</div><div class="card-body">
-    <p class="card-text"><p>In this example we want to register a new <strong>Internal</strong> [<code>&quot;/&lt;path&gt;/&lt;pattern&gt;&quot;</code> -&gt; <code>http.HandlerFunc</code>] pair.</p>
-<ol>
+<div class="notices success">
+	<p>Mortar have a <a href="https://github.com/go-masonry/mortar/blob/master/handlers/self.go#L65">simple</a> way to obfuscate passwords, secret, tokens, etc.</p>
+</div>
+</li>
+<li>Sometimes you even want to <a href="https://golang.org/pkg/net/http/pprof/">Profile</a> your services by using <a href="https://github.com/go-masonry/mortar/blob/master/handlers/profile.go#L15">provided handlers</a>.
+<ul>
 <li>
-<p>Let&rsquo;s start by defining a Constructor that will return <code>http.HandlerFunc</code></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> (s *selfHandlerDeps) BuildInfo() http.HandlerFunc {
-  <span style="color:#00f">return</span> <span style="color:#00f">func</span>(w http.ResponseWriter, req *http.Request) {
-  information := mortar.GetBuildInformation(<span style="color:#00f">true</span>) <span style="color:#008000">// using true here will insert a default value if there is none
-</span><span style="color:#008000"></span>  <span style="color:#00f">if</span> err := json.NewEncoder(w).Encode(information); err != <span style="color:#00f">nil</span> {
-    w.WriteHeader(http.StatusInternalServerError)
-    s.Logger.WithError(err).Warn(<span style="color:#00f">nil</span>, <span style="color:#a31515">&#34;failed to serve build info&#34;</span>)
-  }
-  }
-}
+<p>Runtime Stats (Memory, CPU, &hellip;)</p>
+</li>
+<li>
+<p>Flags provided when your service was started</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">service config &lt;path to file&gt; --answer-to-everythig=42
 </code></pre></div></li>
 <li>
-<p>Create an <code>HTTPHandlerPatternPair</code>.
-This is the part where you define on what <strong>path</strong> this Handler will be served.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#008000">// SelfHandlers this service information handlers
-</span><span style="color:#008000"></span><span style="color:#00f">func</span> SelfHandlers(deps selfHandlerDeps) []partial.HTTPHandlerPatternPair {
-  <span style="color:#00f">return</span> []partial.HTTPHandlerPatternPair{
-  {Pattern: <span style="color:#a31515">&#34;/self/build&#34;</span>, Handler: deps.BuildInfo()},
-  ...
-  }
-}
-</code></pre></div></li>
-<li>
-<p><a href="https://github.com/go-masonry/mortar/blob/master/providers/handlers.go#L45">Tell</a> <code>Uber-FX</code> that we want this instance of <code>HTTPHandlerPatternPair</code> added to the <code>groups.InternalHTTPHandlerFunctions</code> group.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> InternalSelfHandlersFxOption() fx.Option {
-  <span style="color:#00f">return</span> fx.Provide(
-  fx.Annotated{
-    Group:  groups.InternalHTTPHandlers + <span style="color:#a31515">&#34;,flatten&#34;</span>,
-    Target: handlers.SelfHandlers,
-  })
-}
-</code></pre></div></li>
-<li>
-<p>Lastly in your application you need to provide the above <code>InternalSelfHandlersFxOption()</code> option to <code>Uber-FX</code> graph,
-<a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/main.go#L37">here</a> you can see how it&rsquo;s done in the demo.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">return</span> fx.New(
-  ...
-  InternalSelfHandlersFxOption(),
-  ...
-)
-</code></pre></div></li>
-</ol>
-</p>
-  </div></div>
-
+<p>Or <a href="https://github.com/go-masonry/mortar/blob/master/handlers/debug.go#L45">Debug</a> them</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Using Internal Handlers and their dedicated listener and port. You can set up a simple but very effective traffic rule,
+by allowing only office/vpn traffic to have access to it.</p>
+<h2 ref="one-listener-one-port" >One Listener One Port</h2><a class="anchor" id="one-listener-one-port"></a>
+<p>While Multi Listener/Port approach is great (well at least for us) sometimes it&rsquo;s not possible.
+You can still achieve everything using 1 listener and 1 port.
+Look at test example <a href="https://github.com/go-masonry/mortar/blob/master/http/server/oneport_test.go">here</a>.</p>
 
 		</div>
 
@@ -444,10 +435,10 @@ This is the part where you define on what <strong>path</strong> this Handler wil
 
 	 
 	<div class="chevrons">
-		<a class="next" href="/middleware/" title="Middleware" style="margin-right: 0px;">
+		<a class="next" href="/middleware/telemetry/" title="Telemetry" style="margin-right: 0px;">
             <div>
                 <p>Next page</p>
-                <label>Middleware</label>
+                <label>Telemetry</label>
             </div>
             <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
 	</div>
@@ -471,16 +462,18 @@ This is the part where you define on what <strong>path</strong> this Handler wil
     <label><i class="fas fa-align-right"></i>&nbsp;&nbsp;What&#39;s on this page</label>
     <nav>
         <ul >
-            <li><a href="/fx/groups/">Groups</a></li>
+            <li><a href="/mortar/listeners/">Listeners</a></li>
         </ul>
     </nav>
     <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#mortar">Mortar</a>
       <ul>
-        <li><a href="#build-information">Build Information</a></li>
+        <li><a href="#external-grpc-and-rest">External gRPC and REST</a></li>
+        <li><a href="#internal-rest">Internal REST</a></li>
       </ul>
     </li>
+    <li><a href="#one-listener-one-port">One Listener One Port</a></li>
   </ul>
 </nav>
 </div>
@@ -500,7 +493,7 @@ This is the part where you define on what <strong>path</strong> this Handler wil
 			
 		      <li>
 		          <i class='fas fa-calendar'></i>
-		          Last update on 05 December 2020
+		          Last update on 10 December 2020
 		      </li>
 		    
 		    

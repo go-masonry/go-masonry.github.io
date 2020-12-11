@@ -8,6 +8,45 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 10 Dec 2020 13:08:23 +0200</lastBuildDate><atom:link href="https://go-masonry.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Bricks</title>
+      <link>https://go-masonry.github.io/mortar/bricks/</link>
+      <pubDate>Thu, 10 Dec 2020 13:08:23 +0200</pubDate>
+      
+      <guid>https://go-masonry.github.io/mortar/bricks/</guid>
+      <description>When we build software most of us always try to rely on something we or others build before us. Since we don&amp;rsquo;t want to reinvent the wheel, again.
+Go standard library is an excellent example here. There are strings, time, http and many other build-in libraries that we use. While this example is great, it doesn&amp;rsquo;t scale to 3rd party libraries.
+Let&amp;rsquo;s look at Logger libraries for example, there are</description>
+    </item>
+    
+    <item>
+      <title>Builder Pattern</title>
+      <link>https://go-masonry.github.io/mortar/builders/</link>
+      <pubDate>Thu, 10 Dec 2020 13:08:23 +0200</pubDate>
+      
+      <guid>https://go-masonry.github.io/mortar/builders/</guid>
+      <description>You probably used to Functional Options pattern. But we found Builder pattern to be very useful, here we will explain why.
+Motivation  &amp;ldquo;See&amp;rdquo; all the options without searching for them Partial Builders  Override previously set values    Library usage within the organization +---------------------+ +-------------------------------+ +-------------------------+ | Library Developer | +--------&amp;gt; | Platform/Infra/Ops Developer | +-------&amp;gt; | Integration Developer | +---------------------+ +-------------------------------+ +-------------------------+ Develops the library to be used Pre Configure the library specifically Set final values in different scenarios, expose to their organization.</description>
+    </item>
+    
+    <item>
+      <title>Configuration Map</title>
+      <link>https://go-masonry.github.io/mortar/config/</link>
+      <pubDate>Thu, 10 Dec 2020 13:08:23 +0200</pubDate>
+      
+      <guid>https://go-masonry.github.io/mortar/config/</guid>
+      <description>It is good practice to use constants in your code instead of magic numbers and it&amp;rsquo;s even better to set them outside your code either by providing a config file or reading from Environment variable. Mortar have a Config interface that is used everywhere to read external configurations. While Mortar can be configured explicitly and that gives you total control over it. It is much comfortable to use its defaults. To read them Mortar expects a dedicated Configuration key called mortar</description>
+    </item>
+    
+    <item>
+      <title>Listeners</title>
+      <link>https://go-masonry.github.io/mortar/listeners/</link>
+      <pubDate>Thu, 10 Dec 2020 13:08:23 +0200</pubDate>
+      
+      <guid>https://go-masonry.github.io/mortar/listeners/</guid>
+      <description>We assume that you, like us, don&amp;rsquo;t expose your services to the world without setting up at least a Load Balancer before it/them. Historically when we started building webservices our infrastructure was expecting a single port to forward all the traffic to it from the LoadBalancer. When we wanted to use gRPC API as well as REST we still had to expose everything under one port. Fortunately we weren&amp;rsquo;t the first, and we used this excellent cmux library to solve that problem.</description>
+    </item>
+    
+    <item>
       <title>gRPC-Gateway</title>
       <link>https://go-masonry.github.io/api/rest/grpc-gw/</link>
       <pubDate>Wed, 09 Dec 2020 10:41:15 +0200</pubDate>
@@ -61,8 +100,8 @@ One of the goals for Mortar Logger Interface was for it to be flexible, but most
       
       <guid>https://go-masonry.github.io/fx/dependency/</guid>
       <description>We are using this pattern when creating a new Uber-FX dependency, it makes it easy adding new external dependencies later when your application evolves. To explain this better we will do this with a Notifier example.
-Preparation   Define our Notifier Interface.
-type Notifier interface{ Alert(ctx context.Context, msg string) }   Create a dependency &amp;ldquo;container&amp;rdquo; for all future dependencies of the Notifier implementation and embed fx.In into it. This will mark it and will tell Uber-FX to inject all the requested dependencies.</description>
+Preparation   Define our Notifier Interface. type Notifier interface{ Alert(ctx context.Context, msg string) } 
+   Create a dependency &amp;ldquo;container&amp;rdquo; for all future dependencies of the Notifier implementation and embed fx.In into it.</description>
     </item>
     
     <item>

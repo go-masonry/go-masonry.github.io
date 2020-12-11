@@ -3,18 +3,48 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://go-masonry.github.io/api/</loc>
+    <lastmod>2020-12-09T10:41:15+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/fx/</loc>
+    <lastmod>2020-12-06T10:35:11+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/middleware/</loc>
+    <lastmod>2020-12-06T10:35:11+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://go-masonry.github.io/mortar/</loc>
+    <lastmod>2020-12-10T13:08:23+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/mortar/bricks/</loc>
+    <lastmod>2020-12-10T13:08:23+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/mortar/builders/</loc>
+    <lastmod>2020-12-10T13:08:23+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/mortar/config/</loc>
+    <lastmod>2020-12-10T13:08:23+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/mortar/listeners/</loc>
     <lastmod>2020-12-10T13:08:23+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://go-masonry.github.io/</loc>
     <lastmod>2020-12-10T13:08:23+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/api/</loc>
-    <lastmod>2020-12-09T10:41:15+02:00</lastmod>
   </url>
   
   <url>
@@ -39,16 +69,6 @@
   
   <url>
     <loc>https://go-masonry.github.io/middleware/context/</loc>
-    <lastmod>2020-12-06T10:35:11+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/middleware/</loc>
-    <lastmod>2020-12-06T10:35:11+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/fx/</loc>
     <lastmod>2020-12-06T10:35:11+02:00</lastmod>
   </url>
   

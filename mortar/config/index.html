@@ -4,7 +4,7 @@
 <html>
   <head>
     <title>
-	Groups :: Mortar Documentation
+	Configuration Map :: Mortar Documentation
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -13,7 +13,7 @@
 
 
 
-<title>Groups :: Mortar Documentation</title>
+<title>Configuration Map :: Mortar Documentation</title>
 
 <link rel="shortcut icon" href='/images/favicon.png' type="image/x-icon" />
 
@@ -50,7 +50,7 @@
     
   </head>
 
-  <body data-url="/fx/groups/"
+  <body data-url="/mortar/config/"
 
   class="">
 
@@ -181,7 +181,7 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item parent active
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item
         item_level_$level
         ">
 
@@ -229,7 +229,7 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/mortar/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/mortar/" class="dd-item parent active
         item_level_$level
         ">
 
@@ -279,8 +279,8 @@
 	
   
     <li class="">
-      <a class="text-link" href="/fx/">
-        Uber-FX
+      <a class="text-link" href="/mortar/">
+        Mortar Design
       </a>
     </li>
 	
@@ -288,7 +288,7 @@
   
     <li class="active">
       
-        Groups
+        Configuration Map
       
     </li>
 
@@ -309,7 +309,7 @@
 		
 
 		
-			<h1>Uber-FX<span>Groups</span></h1>
+			<h1>Mortar Design<span>Configuration Map</span></h1>
         
 
 			
@@ -321,17 +321,22 @@
 	            		
 	        			
 	            	<li >
-	            		<a title="$pagetitle" href="/fx/dependency/">Dependency Pattern</a>
-	            	</li>
-	            		
-	        			
-	            	<li class="active">
-	            		<a title="$pagetitle" href="/fx/groups/">Groups</a>
+	            		<a title="$pagetitle" href="/mortar/bricks/">Bricks</a>
 	            	</li>
 	            		
 	        			
 	            	<li >
-	            		<a title="$pagetitle" href="/fx/tests/">Tests</a>
+	            		<a title="$pagetitle" href="/mortar/builders/">Builder Pattern</a>
+	            	</li>
+	            		
+	        			
+	            	<li class="active">
+	            		<a title="$pagetitle" href="/mortar/config/">Configuration Map</a>
+	            	</li>
+	            		
+	        			
+	            	<li >
+	            		<a title="$pagetitle" href="/mortar/listeners/">Listeners</a>
 	            	</li>
 	        	</nav> 
 		
@@ -347,11 +352,13 @@
 		</span>
 		<nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#environment-variables">Environment variables</a>
       <ul>
-        <li><a href="#build-information">Build Information</a></li>
+        <li><a href="#matching-environment-variable-names">Matching Environment Variable names</a></li>
       </ul>
     </li>
+    <li><a href="#mortar-keys">Mortar Keys</a></li>
+    <li><a href="#config-format">Config format</a></li>
   </ul>
 </nav>
 	</div>
@@ -364,76 +371,97 @@
 
 
 	<div class="content">
-	    <p><code>Uber-FX</code> <a href="https://pkg.go.dev/go.uber.org/fx#hdr-Value_Groups">group</a> is a feature that allows you to consume and produce
-multiple values of the same type. This make it easier to influence/configure different instances.</p>
-<p>Mortar have different <a href="https://github.com/go-masonry/mortar/blob/master/providers/groups/alias.go">groups</a>, but we will focus on one of them here.</p>
+	    <p>It is good practice to use constants in your code instead of <a href="https://en.wikipedia.org/wiki/Magic_number_(programming)">magic numbers</a>
+and it&rsquo;s even better to set them outside your code either by providing a config file or reading from Environment variable.
+Mortar have a <code>Config</code> interface that is used everywhere to read external configurations.
+While Mortar can be configured explicitly and that gives you total control over it. It is much comfortable to use its defaults.
+To read them Mortar expects a dedicated Configuration key called <strong>mortar</strong></p>
 
 
 
-<div class="card "><div class="card-header primary">Internal HTTP Handlers</div><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#008000">// InternalHTTPHandlers - Internal Http Handlers group. Mortar comes with several internal handlers, you can add yours.
-</span><span style="color:#008000"></span>InternalHTTPHandlers = partial.FxGroupInternalHTTPHandlers
-
-<span style="color:#008000">//InternalHTTPHandlerFunctions - Internal Http Handler Functions group. Similar toInternalHttpHandlers but for functions
-</span><span style="color:#008000"></span>InternalHTTPHandlerFunctions = partial.FxGroupInternalHTTPHandlerFunctions
+<div class="card "><div class="card-body">
+    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-yaml" data-lang="yaml">mortar:
+  name: <span style="color:#a31515">&#34;tutorial&#34;</span>
+  server:
+    grpc:
+      port: 5380
+    rest:
+      external:
+        port: 5381
+      internal:
+        port: 5382
+...
 </code></pre></div></p>
   </div></div>
 
-<h3 ref="build-information" >Build Information</h3><a class="anchor" id="build-information"></a>
-<p>Similar to everything else in <code>Uber-FX</code>, to register a new instance into a <code>fx.Group</code> you need to create a Constructor.</p>
-<p>We will look at one of the internal handlers: <a href="https://github.com/go-masonry/mortar/blob/master/handlers/self.go#L38">Build Information</a></p>
+<p>Every project should have a configuration file, and your is no exception. You can put all your external configuration values
+in it (or them).</p>
+<p>The concept is simple, you use the <code>Get</code> function that accepts a key. A key is actually a path within the configuration map.
+Looking at the above example to access gRPC server port you should use the following key.</p>
+<p><code>mortar.server.grpc.port</code></p>
 
 
+<div class="notices primary">
+	<p>Default delimiter is <code>.</code> but if needed it can be changed, with a proper PR</p>
+</div>
 
-<div class="card "><div class="card-header primary">Build Information</div><div class="card-body">
-    <p class="card-text"><p>In this example we want to register a new <strong>Internal</strong> [<code>&quot;/&lt;path&gt;/&lt;pattern&gt;&quot;</code> -&gt; <code>http.HandlerFunc</code>] pair.</p>
-<ol>
-<li>
-<p>Let&rsquo;s start by defining a Constructor that will return <code>http.HandlerFunc</code></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> (s *selfHandlerDeps) BuildInfo() http.HandlerFunc {
-  <span style="color:#00f">return</span> <span style="color:#00f">func</span>(w http.ResponseWriter, req *http.Request) {
-  information := mortar.GetBuildInformation(<span style="color:#00f">true</span>) <span style="color:#008000">// using true here will insert a default value if there is none
-</span><span style="color:#008000"></span>  <span style="color:#00f">if</span> err := json.NewEncoder(w).Encode(information); err != <span style="color:#00f">nil</span> {
-    w.WriteHeader(http.StatusInternalServerError)
-    s.Logger.WithError(err).Warn(<span style="color:#00f">nil</span>, <span style="color:#a31515">&#34;failed to serve build info&#34;</span>)
-  }
-  }
-}
-</code></pre></div></li>
-<li>
-<p>Create an <code>HTTPHandlerPatternPair</code>.
-This is the part where you define on what <strong>path</strong> this Handler will be served.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#008000">// SelfHandlers this service information handlers
-</span><span style="color:#008000"></span><span style="color:#00f">func</span> SelfHandlers(deps selfHandlerDeps) []partial.HTTPHandlerPatternPair {
-  <span style="color:#00f">return</span> []partial.HTTPHandlerPatternPair{
-  {Pattern: <span style="color:#a31515">&#34;/self/build&#34;</span>, Handler: deps.BuildInfo()},
-  ...
-  }
-}
-</code></pre></div></li>
-<li>
-<p><a href="https://github.com/go-masonry/mortar/blob/master/providers/handlers.go#L45">Tell</a> <code>Uber-FX</code> that we want this instance of <code>HTTPHandlerPatternPair</code> added to the <code>groups.InternalHTTPHandlerFunctions</code> group.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> InternalSelfHandlersFxOption() fx.Option {
-  <span style="color:#00f">return</span> fx.Provide(
-  fx.Annotated{
-    Group:  groups.InternalHTTPHandlers + <span style="color:#a31515">&#34;,flatten&#34;</span>,
-    Target: handlers.SelfHandlers,
-  })
-}
-</code></pre></div></li>
-<li>
-<p>Lastly in your application you need to provide the above <code>InternalSelfHandlersFxOption()</code> option to <code>Uber-FX</code> graph,
-<a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/main.go#L37">here</a> you can see how it&rsquo;s done in the demo.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">return</span> fx.New(
-  ...
-  InternalSelfHandlersFxOption(),
-  ...
-)
-</code></pre></div></li>
-</ol>
-</p>
+<p>Once you <code>Get</code> a value with a provided key you can</p>
+<ul>
+<li>Check if it was set <code>value.IsSet() bool</code></li>
+<li>Cast it to a type
+<ul>
+<li><code>Bool() bool</code></li>
+<li><code>Int() int</code></li>
+<li><code>StringMapStringSlice() map[string][]string</code></li>
+<li>&hellip;</li>
+</ul>
+</li>
+</ul>
+<h2 ref="environment-variables" >Environment variables</h2><a class="anchor" id="environment-variables"></a>
+<p>While it depends on the implementation you should assume that if there is an Environment Variable with a <em>matching</em> name
+its value going to be used first.</p>
+<h3 ref="matching-environment-variable-names" >Matching Environment Variable names</h3><a class="anchor" id="matching-environment-variable-names"></a>
+<p>As mentioned previously default delimiter is <code>.</code> however when naming Environment variables you can&rsquo;t use <code>.</code>.
+It is expected, that chosen Implementation will allow you to configure a delimiter <em>replacer</em>.
+If you choose to use <a href="https://github.com/spf13/viper">viper</a> using <a href="https://github.com/go-masonry/bviper">brick wrapper</a>.
+By default, there is a replacer that will replace <code>_</code> delimiter to <code>.</code> used in our code.</p>
+<p>This is better explained with an example. Look at the map below.</p>
+<p>
+
+
+<div class="card "><div class="card-body">
+    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-yaml" data-lang="yaml">mortar:
+  server:
+    grpc:
+      port: 5380
+</code></pre></div></p>
   </div></div>
 
+Let&rsquo;s say you want to change port value from 5380 to 7777, you can change the file itself. However, you can also override it.
+Viper allows you to override configuration values with a matching Environment Variable. In our case:</p>
+<p>
+
+
+<div class="card "><div class="card-body">
+    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">export MORTAR_SERVER_GRPC_PORT=<span style="color:#a31515">&#34;7777&#34;</span>
+</code></pre></div></p>
+  </div></div>
+
+When you want to read gRPC server port value in your code you should use this as a key.</p>
+<p><code>mortar.server.grpc.port</code></p>
+<p>Viper will look for Environment variable by replacing <code>_</code> with <code>.</code> case-insensitive <strong>first</strong> and return its value if set.</p>
+<h2 ref="mortar-keys" >Mortar Keys</h2><a class="anchor" id="mortar-keys"></a>
+<p>Mortar expects different keys in its configuration map to enable or configure different abilities.</p>
+
+
+<div class="notices warning">
+	<label>Will probably be Refactored</label><p>In <a href="https://github.com/go-masonry/mortar/blob/master/mortar/keys.go">this</a> file we try to show what the configuration map should look like and expose all the keys.</p>
+
+</div>
+
+<h2 ref="config-format" >Config format</h2><a class="anchor" id="config-format"></a>
+<p>While in this example we showed you <code>config.yml</code> in YAML format you can choose what ever works for you as long as the provided <code>Config</code> implementation knows how to read it and will abstract every key to be queried in this form:</p>
+<p><code>root.child.childOfChild</code></p>
 
 		</div>
 
@@ -444,10 +472,10 @@ This is the part where you define on what <strong>path</strong> this Handler wil
 
 	 
 	<div class="chevrons">
-		<a class="next" href="/middleware/" title="Middleware" style="margin-right: 0px;">
+		<a class="next" href="/middleware/telemetry/" title="Telemetry" style="margin-right: 0px;">
             <div>
                 <p>Next page</p>
-                <label>Middleware</label>
+                <label>Telemetry</label>
             </div>
             <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
 	</div>
@@ -471,16 +499,18 @@ This is the part where you define on what <strong>path</strong> this Handler wil
     <label><i class="fas fa-align-right"></i>&nbsp;&nbsp;What&#39;s on this page</label>
     <nav>
         <ul >
-            <li><a href="/fx/groups/">Groups</a></li>
+            <li><a href="/mortar/config/">Configuration Map</a></li>
         </ul>
     </nav>
     <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#environment-variables">Environment variables</a>
       <ul>
-        <li><a href="#build-information">Build Information</a></li>
+        <li><a href="#matching-environment-variable-names">Matching Environment Variable names</a></li>
       </ul>
     </li>
+    <li><a href="#mortar-keys">Mortar Keys</a></li>
+    <li><a href="#config-format">Config format</a></li>
   </ul>
 </nav>
 </div>
@@ -500,7 +530,7 @@ This is the part where you define on what <strong>path</strong> this Handler wil
 			
 		      <li>
 		          <i class='fas fa-calendar'></i>
-		          Last update on 05 December 2020
+		          Last update on 10 December 2020
 		      </li>
 		    
 		    
