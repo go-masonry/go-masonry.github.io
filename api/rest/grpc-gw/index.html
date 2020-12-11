@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-11T11:04:12 IST">
+<meta name="revised" content="2020-12-11T13:47:08 IST">
 <meta name="description" content="">
 
 
@@ -99,6 +99,11 @@
 	  	
 	</div>
     <nav class="shortcuts">
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar-demo"  rel="noopener">
+                  Demo
+                </a>
+            </li>
             <li class="" role="">
                 <a href="https://github.com/go-masonry/mortar"  rel="noopener">
                   Github
@@ -389,7 +394,7 @@ We will show how you should register it&rsquo;s handlers after you generate them
 	<p>Before reading this part get yourself familiar with the gRPC API <a href="/api/grpc">counterpart</a>.</p>
 </div>
 
-<p>If you read the gRPC part, you simply need to add one <a href="https://github.com/go-masonry/mortar-demo/blob/4a178a4540e185341a99388786a26d229422729c/workshop/app/mortar/workshop.go#L49">function</a> to <code>Uber-FX</code> graph.
+<p>If you read the gRPC part, you simply need to add one <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/workshop.go#L49">function</a> to <code>Uber-FX</code> graph.
 This function should return a slice of <a href="https://github.com/go-masonry/mortar/blob/master/interfaces/http/server/interfaces.go#L55">GRPCGatewayGeneratedHandlers</a>.</p>
 <ol>
 <li>
@@ -418,13 +423,13 @@ This function should return a slice of <a href="https://github.com/go-masonry/mo
 
 </li>
 <li>
-<p>Now tell <code>Uber-FX</code> about it and make sure it&rsquo;s added to <a href="https://github.com/go-masonry/mortar-demo/blob/4a178a4540e185341a99388786a26d229422729c/workshop/app/mortar/workshop.go#L34">GRPCGatewayGeneratedHandlers</a> group.</p>
+<p>Now tell <code>Uber-FX</code> about it and make sure it&rsquo;s added to <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/workshop.go#L33">GRPCGatewayGeneratedHandlers</a> group.</p>
 
 
 <div class="notices primary">
 	<p>However, in this case our function doesn&rsquo;t return a single value but an array of them.
 By default <code>Uber-FX</code> will treat it as an Array of Arrays <code>[][]GRPCGatewayGeneratedHandlers</code>.
-Hence we need to <a href="https://github.com/go-masonry/mortar-demo/blob/4a178a4540e185341a99388786a26d229422729c/workshop/app/mortar/workshop.go#L33"><strong>flatten</strong></a> our value.</p>
+Hence we need to <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/workshop.go#L34"><strong>flatten</strong></a> our value.</p>
 
 </div>
 

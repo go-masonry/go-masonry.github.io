@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-11T11:04:12 IST">
+<meta name="revised" content="2020-12-11T13:47:08 IST">
 <meta name="description" content="">
 
 
@@ -99,6 +99,11 @@
 	  	
 	</div>
     <nav class="shortcuts">
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar-demo"  rel="noopener">
+                  Demo
+                </a>
+            </li>
             <li class="" role="">
                 <a href="https://github.com/go-masonry/mortar"  rel="noopener">
                   Github
@@ -407,7 +412,7 @@ You can &ldquo;solve&rdquo; this drawback by</p>
 <li><a href="https://github.com/opentracing/opentracing-go/blob/master/gocontext.go">Tracing</a> uses context to store a <code>traceId</code>, <code>spanId</code> and other information.</li>
 <li><a href="https://github.com/grpc-ecosystem/grpc-gateway">grpc-gateway</a> reverse proxy injects selected <code>http.Request</code> headers into the context.</li>
 </ul>
-<p>In mortar most Interfaces have a way to leverage on <code>context.Context</code> and depending on the package there are different <code>ContextExtractor</code> definitions.</p>
+<p>In Mortar most Interfaces have a way to leverage on <code>context.Context</code> and depending on the package there are different <code>ContextExtractor</code> definitions.</p>
 <p>Let&rsquo;s look at Logging as an example</p>
 <h3 ref="logging-example" >Logging Example</h3><a class="anchor" id="logging-example"></a>
 <p>All Logger methods have a <code>context.Context</code> as it&rsquo;s first argument</p>

@@ -26,7 +26,7 @@ Register grpc-gateway Handlers Before reading this part get yourself familiar wi
       <guid>https://go-masonry.github.io/api/rest/handlers/</guid>
       <description>Although it&amp;rsquo;s very convenient to use gRPC + gRPC-Gateway to serve RESTful API, you sometime want to use prebuilt HTTP Handler/HandlerFunc or similar.
 Mortar provides 2 fx.Group for that. ExternalHTTPHandlers and ExternalHTTPHandlerFunctions, one for http.Handler the other for http.HandlerFunc.
-To better understand mortar groups read here
+To better understand Mortar groups read here
  Registering http.Handler To register a new http.Handler you need to define how it&amp;rsquo;s going to be served == Pattern.
   Create HTTPHandlerPatternPair</description>
     </item>
