@@ -1,1 +1,3 @@
-# go-masonry.github.io
+---
+permalink: /index.html
+---
