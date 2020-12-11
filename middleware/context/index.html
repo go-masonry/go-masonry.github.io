@@ -1,0 +1,543 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+	Context :: Mortar Documentation
+</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="revised" content="2020-12-11T11:04:12 IST">
+<meta name="description" content="">
+
+
+
+<title>Context :: Mortar Documentation</title>
+
+<link rel="shortcut icon" href='/images/favicon.png' type="image/x-icon" />
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
+
+<script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel="stylesheet">
+
+
+
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/layout.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/css/style.main.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/css/style.menu.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/notice.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/tabs.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/panel.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/columns.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/children.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/attachments.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/alert.css'>
+<link rel="stylesheet" type="text/css" href='/css/docport.css'>
+
+<script src='/js/docport.js'></script>
+<script type="text/javascript">
+      var baseurl = "https:\/\/go-masonry.github.io\/";
+</script>
+
+
+
+
+    
+  </head>
+
+  <body data-url="/middleware/context/"
+
+  class="">
+
+<style type="text/css">
+  #debug{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    line-height: 3.5rem;
+    margin-bottom: .35rem;
+    padding: 0 2rem;
+    position: fixed;
+    left: 0;      right: 0;     top: 0;
+   
+    top:0px;
+    
+    min-height: 150px;
+
+    background-color: white;
+    border: 3px solid red;
+    z-index: 10000 ;
+    word-wrap: all;
+    overflow: auto;
+  }
+</style>
+ 
+
+
+    
+    
+    <header style="">
+        <div>
+    
+    <div class="burger ">
+        <a href="javascript:void(0);" style="font-size:15px;" onclick="$('article > aside').toggleClass('responsive')">&#9776;</a>
+    </div>
+    
+
+    <div>
+
+		
+	
+			
+		
+	    	<a class='baselink' href='https://go-masonry.github.io/'>Mortar Documentation</a>
+	  	
+	</div>
+    <nav class="shortcuts">
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar"  rel="noopener">
+                  Github
+                </a>
+            </li>
+    </nav>
+
+</div>
+    </header>
+    
+
+    <article>
+      
+      <aside class="">
+        
+<div class="search">
+	<div class="searchbox">
+	  <input data-search-input id="search-by" type="text" placeholder="Type to search...">
+	</div>
+	<script type="text/javascript" src="/vendor/lunr/lunr.min.js"></script>
+	<script type="text/javascript" src="/vendor/auto-complete/auto-complete.js"></script>
+	<link href="/vendor/auto-complete/auto-complete.css" rel="stylesheet">
+	<script type="text/javascript">
+	  
+	      var baseurl = "https:\/\/go-masonry.github.io\/";
+	  
+	</script>
+	<script type="text/javascript" src="/js/search.js"></script>
+</div>
+
+		
+	
+			
+		
+	    	
+	  	
+	<div id="close_menu">
+  <a href="javascript:void(0);" style="font-size:15px;" onclick="$('article > aside').toggleClass('responsive')">
+      <i class="fa fa-lg fa-times"></i>
+  </a>
+</div>
+
+<ul class="menu">
+
+    <li data-nav-id="https://go-masonry.github.io/mortar/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+        
+      
+          <a href="/mortar/">Mortar Design</a>
+      
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/api/" class="dd-item haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+          <a href="/api/">APIs</a>
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/grpc/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/grpc/">gRPC</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/rest/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/rest/">REST Handlers</a>
+      
+        
+      
+    </li>
+        </ul>
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/" class="dd-item parent active haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <i class="fas fa-chevron-down ddexp"></i>
+        
+      
+          <a href="/middleware/">Middleware</a>
+      
+        <ul>
+              
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/">Telemetry</a>
+      
+        
+      
+    </li>
+        </ul>
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+        
+      
+          <a href="/fx/">Uber-FX</a>
+      
+    </li>
+    
+
+
+
+</ul>
+
+		
+	
+			
+		
+	    	
+	  	
+	
+      </aside>
+      
+
+      <section class="page ">
+      
+	
+    
+    
+    <nav id="ariane" aria-label="breadcrumb">
+      <ol class="ariane">
+        
+  
+  	
+		
+  
+  	
+	<li >
+      <a class="text-link" href="https://go-masonry.github.io/">
+        Home
+      </a>
+    </li>
+	
+  
+    <li class="">
+      <a class="text-link" href="/middleware/">
+        Middleware
+      </a>
+    </li>
+	
+  	
+  
+    <li class="active">
+      
+        Context
+      
+    </li>
+
+      </ol>
+    </nav>
+    
+    
+
+    
+		
+        
+		
+		
+		
+		
+		
+		
+		
+
+		
+			<h1>Middleware<span>Context</span></h1>
+        
+
+			
+			
+		
+
+		
+				<nav class="subpages">
+	            		
+	        			
+	            	<li class="active">
+	            		<a title="$pagetitle" href="/middleware/context/">Context</a>
+	            	</li>
+	        	</nav> 
+		
+	
+
+	
+	
+	<div class="jump-to-section">
+		<span onclick="$h = $(this);$h.next('nav').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('nav').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+  			<span class="fas fa-align-right"></span>
+  			Jump to Section
+  			<i style=";" class="fas fa-chevron-right"></i>
+		</span>
+		<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#storage">Storage</a></li>
+        <li><a href="#logging-example">Logging Example</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+	
+	
+
+
+
+
+
+
+	<div class="content">
+	    <p>If you are not familiar with <code>context.Context</code> please read <a href="https://golang.org/pkg/context/">this</a> and <a href="https://blog.golang.org/context">that</a> first.</p>
+<p>From context documentation package</p>
+
+
+<div class="alert info" role="alert"><!-- raw HTML omitted -->Incoming requests to a server should create a Context, and outgoing calls to servers should accept a Context.<!-- raw HTML omitted --></div>
+
+<p>Since we are building a gRPC Web Service it&rsquo;s part of the design.
+Everything gRPC related already have a <code>context.Context</code> as the first argument.</p>
+
+
+
+<div class="card "><div class="card-header primary">gRPC</div><div class="card-body">
+    <p class="card-text"><ul>
+<li>
+<p><a href="https://github.com/grpc/grpc-go/blob/master/call.go#L29">client</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> (cc *ClientConn) Invoke(ctx context.Context, method <span style="color:#2b91af">string</span>, args, reply <span style="color:#00f">interface</span>{}, opts ...CallOption) <span style="color:#2b91af">error</span>
+</code></pre></div></li>
+<li>
+<p><a href="https://github.com/grpc/grpc-go/blob/master/interceptor.go">interceptors</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">type</span> UnaryClientInterceptor <span style="color:#00f">func</span>(ctx context.Context, method <span style="color:#2b91af">string</span>, req, reply <span style="color:#00f">interface</span>{}, cc *ClientConn, invoker UnaryInvoker, opts ...CallOption) <span style="color:#2b91af">error</span>
+
+<span style="color:#00f">type</span> UnaryServerInterceptor <span style="color:#00f">func</span>(ctx context.Context, req <span style="color:#00f">interface</span>{}, info *UnaryServerInfo, handler UnaryHandler) (resp <span style="color:#00f">interface</span>{}, err <span style="color:#2b91af">error</span>)
+</code></pre></div></li>
+<li>
+<p>Also all the <a href="https://github.com/golang/protobuf/blob/master/protoc-gen-go/grpc/grpc.go">generated</a> server endpoints have <code>context.Context</code> as the first argument.</p>
+</li>
+</ul>
+</p>
+  </div></div>
+
+<h3 ref="storage" >Storage</h3><a class="anchor" id="storage"></a>
+<p>One of the &ldquo;drawbacks&rdquo; in GO is a lack of <a href="https://github.com/golang/go/issues/21355">storage</a> per go routine.
+You can &ldquo;solve&rdquo; this drawback by</p>
+<ul>
+<li><i class="fas fa-bomb" ></i> By having a sync <code>map[goroutine-id]storage</code>, but it&rsquo;s probably not a practical idea.</li>
+<li><i class="fas fa-thumbs-up" ></i> Propagate <code>context.Context</code> as the first parameter for every public function.</li>
+</ul>
+<p>Actually the second option is largely encouraged and became a kind of a standard.</p>
+<ul>
+<li><a href="https://github.com/opentracing/opentracing-go/blob/master/gocontext.go">Tracing</a> uses context to store a <code>traceId</code>, <code>spanId</code> and other information.</li>
+<li><a href="https://github.com/grpc-ecosystem/grpc-gateway">grpc-gateway</a> reverse proxy injects selected <code>http.Request</code> headers into the context.</li>
+</ul>
+<p>In mortar most Interfaces have a way to leverage on <code>context.Context</code> and depending on the package there are different <code>ContextExtractor</code> definitions.</p>
+<p>Let&rsquo;s look at Logging as an example</p>
+<h3 ref="logging-example" >Logging Example</h3><a class="anchor" id="logging-example"></a>
+<p>All Logger methods have a <code>context.Context</code> as it&rsquo;s first argument</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang">Debug(ctx context.Context, format <span style="color:#2b91af">string</span>, args ...<span style="color:#00f">interface</span>{})
+Info(ctx context.Context, format <span style="color:#2b91af">string</span>, args ...<span style="color:#00f">interface</span>{})
+</code></pre></div><p>Meaning that every log entry have a context&hellip;</p>
+<p>Internally just before we send the log to the implementing library we <a href="https://github.com/go-masonry/mortar/blob/master/logger/context_logger.go#L82">iterate</a> on every provided <code>ContextExtractor</code> and add all the extracted key-&gt;value pairs to the log entry.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> (c *contextAwareLogEntry) enrich(ctx context.Context) (logger log.Fields) {
+	<span style="color:#00f">defer</span> <span style="color:#00f">func</span>() {
+		<span style="color:#00f">if</span> r := recover(); r != <span style="color:#00f">nil</span> {
+			c.innerLogger.WithField(<span style="color:#a31515">&#34;__panic__&#34;</span>, r).Error(ctx, <span style="color:#a31515">&#34;one of the context extractors panicked&#34;</span>)
+			logger = c.innerLogger
+		}
+	}()
+	logger = c.innerLogger
+	<span style="color:#00f">for</span> _, extractor := <span style="color:#00f">range</span> c.contextExtractors {
+		<span style="color:#00f">for</span> k, v := <span style="color:#00f">range</span> extractor(ctx) {
+			logger = logger.WithField(k, v)
+		}
+	}
+	<span style="color:#00f">return</span>
+}
+</code></pre></div><p>One of such <code>ContextExtractor</code> is provided by the <a href="https://github.com/go-masonry/bjaeger/blob/master/utils.go#L37">bjaeger</a> wrapper.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> extractFromSpanContext(ctx jaeger.SpanContext) <span style="color:#00f">map</span>[<span style="color:#2b91af">string</span>]<span style="color:#00f">interface</span>{} {
+	<span style="color:#00f">var</span> output = make(<span style="color:#00f">map</span>[<span style="color:#2b91af">string</span>]<span style="color:#00f">interface</span>{}, 4)
+	output[SpanIDKey] = ctx.SpanID().String()
+	output[ParentSpanIDKey] = ctx.ParentID().String()
+	output[SampledKey] = ctx.IsSampled()
+	<span style="color:#00f">if</span> traceID := ctx.TraceID(); traceID.IsValid() {
+		output[TraceIDKey] = traceID.String()
+	}
+	<span style="color:#00f">return</span> output
+}
+</code></pre></div><p>If there is a Trace Span within the Context we will include it&rsquo;s information in the log entry.</p>
+
+		</div>
+
+
+
+
+
+
+	 
+	<div class="chevrons">
+		<a class="next" href="/middleware/telemetry/" title="Telemetry" style="margin-right: 0px;">
+            <div>
+                <p>Next page</p>
+                <label>Telemetry</label>
+            </div>
+            <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
+	</div>
+	
+
+      </section>
+
+      
+      
+      <section class="right-menu ">
+      
+	
+
+		
+	
+			
+		
+	    	
+	  	
+	<div class="TableOfContents">
+    <label><i class="fas fa-align-right"></i>&nbsp;&nbsp;What&#39;s on this page</label>
+    <nav>
+        <ul >
+            <li><a href="/middleware/context/">Context</a></li>
+        </ul>
+    </nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#storage">Storage</a></li>
+        <li><a href="#logging-example">Logging Example</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+		
+	
+			
+		
+	    	
+	  	
+	<div class="Actions">
+	<nav>
+		<ul>
+				
+		    
+		    
+			
+		      <li>
+		          <i class='fas fa-calendar'></i>
+		          Last update on 06 December 2020
+		      </li>
+		    
+		    
+
+    	</ul>
+	</nav>
+    
+</div>
+
+      </section>
+      
+    </article>
+    
+    
+    <footer>
+      
+
+		
+	
+			
+		
+	    	
+	    
+	
+    </footer>
+    
+
+
+
+  </body>
+</html>

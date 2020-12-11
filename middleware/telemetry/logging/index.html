@@ -1,0 +1,598 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+	Logging :: Mortar Documentation
+</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="revised" content="2020-12-11T11:04:12 IST">
+<meta name="description" content="">
+
+
+
+<title>Logging :: Mortar Documentation</title>
+
+<link rel="shortcut icon" href='/images/favicon.png' type="image/x-icon" />
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
+
+<script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel="stylesheet">
+
+
+
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/layout.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/css/style.main.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/css/style.menu.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/notice.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/tabs.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/panel.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/columns.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/children.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/attachments.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/alert.css'>
+<link rel="stylesheet" type="text/css" href='/css/docport.css'>
+
+<script src='/js/docport.js'></script>
+<script type="text/javascript">
+      var baseurl = "https:\/\/go-masonry.github.io\/";
+</script>
+
+
+
+
+    
+  </head>
+
+  <body data-url="/middleware/telemetry/logging/"
+
+  class="">
+
+<style type="text/css">
+  #debug{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    line-height: 3.5rem;
+    margin-bottom: .35rem;
+    padding: 0 2rem;
+    position: fixed;
+    left: 0;      right: 0;     top: 0;
+   
+    top:0px;
+    
+    min-height: 150px;
+
+    background-color: white;
+    border: 3px solid red;
+    z-index: 10000 ;
+    word-wrap: all;
+    overflow: auto;
+  }
+</style>
+ 
+
+
+    
+    
+    <header style="">
+        <div>
+    
+    <div class="burger ">
+        <a href="javascript:void(0);" style="font-size:15px;" onclick="$('article > aside').toggleClass('responsive')">&#9776;</a>
+    </div>
+    
+
+    <div>
+
+		
+	
+			
+		
+	    	<a class='baselink' href='https://go-masonry.github.io/'>Mortar Documentation</a>
+	  	
+	</div>
+    <nav class="shortcuts">
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar"  rel="noopener">
+                  Github
+                </a>
+            </li>
+    </nav>
+
+</div>
+    </header>
+    
+
+    <article>
+      
+      <aside class="">
+        
+<div class="search">
+	<div class="searchbox">
+	  <input data-search-input id="search-by" type="text" placeholder="Type to search...">
+	</div>
+	<script type="text/javascript" src="/vendor/lunr/lunr.min.js"></script>
+	<script type="text/javascript" src="/vendor/auto-complete/auto-complete.js"></script>
+	<link href="/vendor/auto-complete/auto-complete.css" rel="stylesheet">
+	<script type="text/javascript">
+	  
+	      var baseurl = "https:\/\/go-masonry.github.io\/";
+	  
+	</script>
+	<script type="text/javascript" src="/js/search.js"></script>
+</div>
+
+		
+	
+			
+		
+	    	
+	  	
+	<div id="close_menu">
+  <a href="javascript:void(0);" style="font-size:15px;" onclick="$('article > aside').toggleClass('responsive')">
+      <i class="fa fa-lg fa-times"></i>
+  </a>
+</div>
+
+<ul class="menu">
+
+    <li data-nav-id="https://go-masonry.github.io/mortar/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+        
+      
+          <a href="/mortar/">Mortar Design</a>
+      
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/api/" class="dd-item haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+          <a href="/api/">APIs</a>
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/grpc/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/grpc/">gRPC</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/rest/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/rest/">REST Handlers</a>
+      
+        
+      
+    </li>
+        </ul>
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/" class="dd-item parent haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <i class="fas fa-chevron-down ddexp"></i>
+        
+      
+          <a href="/middleware/">Middleware</a>
+      
+        <ul>
+              
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item parent active
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/">Telemetry</a>
+      
+        
+      
+    </li>
+        </ul>
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+        
+      
+          <a href="/fx/">Uber-FX</a>
+      
+    </li>
+    
+
+
+
+</ul>
+
+		
+	
+			
+		
+	    	
+	  	
+	
+      </aside>
+      
+
+      <section class="page ">
+      
+	
+    
+    
+    <nav id="ariane" aria-label="breadcrumb">
+      <ol class="ariane">
+        
+  
+  	
+		
+  
+  	
+		
+  
+  	
+	<li >
+      <a class="text-link" href="https://go-masonry.github.io/">
+        Home
+      </a>
+    </li>
+	
+  
+    <li class="">
+      <a class="text-link" href="/middleware/">
+        Middleware
+      </a>
+    </li>
+	
+  	
+  
+    <li class="">
+      <a class="text-link" href="/middleware/telemetry/">
+        Telemetry
+      </a>
+    </li>
+	
+  	
+  
+    <li class="active">
+      
+        Logging
+      
+    </li>
+
+      </ol>
+    </nav>
+    
+    
+
+    
+		
+        
+		
+		
+		
+		
+		
+		
+		
+
+		
+			<h1>Telemetry<span>Logging</span></h1>
+        
+
+			
+			
+		
+
+		
+				<nav class="subpages">
+	            		
+	        			
+	            	<li class="active">
+	            		<a title="$pagetitle" href="/middleware/telemetry/logging/">Logging</a>
+	            	</li>
+	        	</nav> 
+		
+	
+
+	
+	
+	<div class="jump-to-section">
+		<span onclick="$h = $(this);$h.next('nav').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('nav').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+  			<span class="fas fa-align-right"></span>
+  			Jump to Section
+  			<i style=";" class="fas fa-chevron-right"></i>
+		</span>
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#context">Context</a>
+      <ul>
+        <li><a href="#registering-a-contextextractor">Registering a <code>ContextExtractor</code></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+	
+	
+
+
+
+
+
+
+	<div class="content">
+	    <p>Logging is extremely important, that is why Golang standard library have <a href="https://golang.org/pkg/log/">one</a>.
+However there are better alternatives and it&rsquo;s up to you to choose the one you want.
+You will need to wrap it to implement <em>Mortar Logger Interface</em> and you good to go.
+We <a href="https://github.com/go-masonry/bzerolog">already done</a> that for <a href="https://github.com/rs/zerolog">zerolog</a>.</p>
+<p>One of the goals for <em>Mortar Logger Interface</em> was for it to be flexible, but most importantly it had to include <code>context.Context</code>, you&rsquo;ll see later why.
+Before we go into the details let us start with some usage examples:</p>
+<ul>
+<li>
+<p>Simple logging similar to <code>fmt.Printf</code></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang">logger.Debug(ctx, <span style="color:#a31515">&#34;there were %d different attributes in the request&#34;</span>, 5)
+</code></pre></div></li>
+<li>
+<p>Structured style logging</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#008000">// Add error, if err != nil it will be shown in the log
+</span><span style="color:#008000"></span>logger.WithError(err).Debug(ctx, <span style="color:#a31515">&#34;calculation finished&#34;</span>)
+<span style="color:#008000">// Add Fields, error
+</span><span style="color:#008000"></span>logger.
+  WithError(err).
+  WithField(<span style="color:#a31515">&#34;method&#34;</span>, req.Method).
+  WithField(<span style="color:#a31515">&#34;status&#34;</span>, req.StatusCode).
+  Debug(ctx, <span style="color:#a31515">&#34;request processed&#34;</span>)
+</code></pre></div></li>
+</ul>
+<p>Output depends on the implementation, but most of the libraries will output logs in JSON/Console format.</p>
+<h2 ref="context" >Context</h2><a class="anchor" id="context"></a>
+<p>In our opinion you should always have <code>context.Context</code> as the first parameter for every <strong>Public Function</strong> you define and <strong>Logger</strong> is not an exception.
+You can read all the reasons for that <a href="/middleware/context">here</a>.</p>
+<p>Since every <code>Logger</code> function have a <code>context.Context</code> we can extract different information from it (if configured) and <em>ADD</em> it to the log entry.
+When you setup a <code>Logger</code> instance to be used everywhere in your application, you can provide different <code>ContextExtractor</code>s and they will enrich your log entry.
+So what is this mysterious <code>ContextExtractor</code> ?</p>
+
+
+<div class="notices info">
+	<p><strong>ContextExtractor</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">type</span> ContextExtractor <span style="color:#00f">func</span>(ctx context.Context) <span style="color:#00f">map</span>[<span style="color:#2b91af">string</span>]<span style="color:#00f">interface</span>{}
+</code></pre></div>
+</div>
+
+<p>It&rsquo;s a function that accepts a <code>context.Context</code> (which is map) and outputs a <code>JSON</code> style map.
+Each key in the map will be added to the log entry.</p>
+<p>This opens a lot of different possibilities</p>
+<ul>
+<li>
+<p>Add static fields such as [Host, Application Name/Version, etc]</p>
+</li>
+<li>
+<p>Add <strong>Tracing</strong> information</p>
+<blockquote>
+
+
+<div class="alert info" role="alert">If configured properly through your entire infrastructure, this feature allows you to aggregate <!-- raw HTML omitted -->ALL the logs<!-- raw HTML omitted --> related to a single request across <!-- raw HTML omitted -->ALL services<!-- raw HTML omitted -->.</div>
+
+</blockquote>
+</li>
+<li>
+<p>Add dynamic fields from a request, for example <code>X-Forwarded-For</code></p>
+</li>
+</ul>
+<h3 ref="registering-a-contextextractor" >Registering a <code>ContextExtractor</code></h3><a class="anchor" id="registering-a-contextextractor"></a>
+<p>Since Mortar is build with <code>Uber-FX</code> it uses <code>fx.Group</code> feature to register different <code>ContextExtractor</code>s regardless of where they are defined.
+Here you can see what are Mortar Logger dependencies</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">type</span> loggerDeps <span style="color:#00f">struct</span> {
+	fx.In
+
+	Config            cfg.Config
+	LoggerBuilder     logInt.Builder            <span style="color:#a31515">`optional:&#34;true&#34;`</span>
+	ContextExtractors []logInt.ContextExtractor <span style="color:#a31515">`group:&#34;loggerContextExtractors&#34;`</span>
+}
+</code></pre></div><p>Look at the Group Identifier <code>group:&quot;loggerContextExtractors&quot;</code> which also have a <a href="https://github.com/go-masonry/mortar/blob/master/providers/groups/alias.go#L41">group alias</a> for reference purposes.</p>
+
+
+<div class="notices info">
+	<p><strong>&ldquo;loggerContextExtractors&rdquo;</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#008000">// LoggerContextExtractors -  Default Logger Context extractors group. Add custom extractors to enrich your logs from context.Context
+</span><span style="color:#008000"></span>LoggerContextExtractors = constructors.FxGroupLoggerContextExtractors
+</code></pre></div>
+</div>
+
+<p>Every <code>ContextExtractor</code> known to <code>Uber-FX</code> which is labeled with <code>loggerContextExtractors</code> will find its way there and will be registered.</p>
+
+
+
+<div class="card "><div class="card-header info">Example: showing how an FX Option is defined in external library</div><div class="card-body">
+    <p class="card-text"><ol>
+<li>
+<p>Here is an example from a <a href="https://github.com/go-masonry/bjaeger/blob/master/utils.go#L25">Jaeger package</a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#008000">// TraceInfoContextExtractorFxOption is a preconfigured fx.Option that will allow adding trace info to log entry
+</span><span style="color:#008000"></span><span style="color:#00f">func</span> TraceInfoContextExtractorFxOption() fx.Option {
+    <span style="color:#00f">return</span> fx.Provide(
+        fx.Annotated{
+
+            Group: groups.LoggerContextExtractors, <span style="color:#008000">// &lt;&lt;-- Group Name
+</span><span style="color:#008000"></span>               
+            Target: <span style="color:#00f">func</span>() log.ContextExtractor {
+                <span style="color:#00f">return</span> TraceInfoExtractorFromContext
+            },
+        },
+    )
+}
+</code></pre></div></li>
+<li>
+<p>Demo application shows how it&rsquo;s registered <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/logger.go#L20"><code>app/mortar/logger.go</code></a></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> LoggerFxOption() fx.Option {
+    <span style="color:#00f">return</span> fx.Options(
+        ...
+        bjaeger.TraceInfoContextExtractorFxOption(),
+    )
+}
+</code></pre></div></li>
+<li>
+<p><a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/main.go#L32"><code>main.go</code></a> in Demo application, starting it all.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> createApplication(configFilePath <span style="color:#2b91af">string</span>, additionalFiles []<span style="color:#2b91af">string</span>) *fx.App {
+        ...
+        mortar.LoggerFxOption(),                                  <span style="color:#008000">// Logger
+</span><span style="color:#008000"></span>        mortar.TracerFxOption(),                                  <span style="color:#008000">// Jaeger tracing
+</span><span style="color:#008000"></span>        ...
+    )
+}
+</code></pre></div></li>
+</ol>
+</p>
+  </div></div>
+
+
+		</div>
+
+
+
+
+
+
+	 
+	<div class="chevrons">
+		<a class="next" href="/fx/" title="Uber-FX" style="margin-right: 0px;">
+            <div>
+                <p>Next page</p>
+                <label>Uber-FX</label>
+            </div>
+            <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
+	</div>
+	
+
+      </section>
+
+      
+      
+      <section class="right-menu ">
+      
+	
+
+		
+	
+			
+		
+	    	
+	  	
+	<div class="TableOfContents">
+    <label><i class="fas fa-align-right"></i>&nbsp;&nbsp;What&#39;s on this page</label>
+    <nav>
+        <ul >
+            <li><a href="/middleware/telemetry/logging/">Logging</a></li>
+        </ul>
+    </nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#context">Context</a>
+      <ul>
+        <li><a href="#registering-a-contextextractor">Registering a <code>ContextExtractor</code></a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+		
+	
+			
+		
+	    	
+	  	
+	<div class="Actions">
+	<nav>
+		<ul>
+				
+		    
+		    
+			
+		      <li>
+		          <i class='fas fa-calendar'></i>
+		          Last update on 06 December 2020
+		      </li>
+		    
+		    
+
+    	</ul>
+	</nav>
+    
+</div>
+
+      </section>
+      
+    </article>
+    
+    
+    <footer>
+      
+
+		
+	
+			
+		
+	    	
+	    
+	
+    </footer>
+    
+
+
+
+  </body>
+</html>

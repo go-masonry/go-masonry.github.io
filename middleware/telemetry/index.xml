@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Telemetry on Mortar Documentation</title>
+    <link>https://go-masonry.github.io/middleware/telemetry/</link>
+    <description>Recent content in Telemetry on Mortar Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 06 Dec 2020 09:43:50 +0200</lastBuildDate><atom:link href="https://go-masonry.github.io/middleware/telemetry/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Logging</title>
+      <link>https://go-masonry.github.io/middleware/telemetry/logging/</link>
+      <pubDate>Sun, 06 Dec 2020 09:43:50 +0200</pubDate>
+      
+      <guid>https://go-masonry.github.io/middleware/telemetry/logging/</guid>
+      <description>Logging is extremely important, that is why Golang standard library have one. However there are better alternatives and it&amp;rsquo;s up to you to choose the one you want. You will need to wrap it to implement Mortar Logger Interface and you good to go. We already done that for zerolog.
+One of the goals for Mortar Logger Interface was for it to be flexible, but most importantly it had to include context.</description>
+    </item>
+    
+  </channel>
+</rss>

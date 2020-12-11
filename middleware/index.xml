@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Middleware on Mortar Documentation</title>
+    <link>https://go-masonry.github.io/middleware/</link>
+    <description>Recent content in Middleware on Mortar Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 06 Dec 2020 10:35:11 +0200</lastBuildDate><atom:link href="https://go-masonry.github.io/middleware/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Context</title>
+      <link>https://go-masonry.github.io/middleware/context/</link>
+      <pubDate>Sun, 06 Dec 2020 10:35:11 +0200</pubDate>
+      
+      <guid>https://go-masonry.github.io/middleware/context/</guid>
+      <description>If you are not familiar with context.Context please read this and that first.
+From context documentation package
+Incoming requests to a server should create a Context, and outgoing calls to servers should accept a Context. Since we are building a gRPC Web Service it&amp;rsquo;s part of the design. Everything gRPC related already have a context.Context as the first argument.
+gRPC  client
+func (cc *ClientConn) Invoke(ctx context.Context, method string, args, reply interface{}, opts .</description>
+    </item>
+    
+  </channel>
+</rss>

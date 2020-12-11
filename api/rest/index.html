@@ -1,0 +1,541 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+	REST Handlers :: Mortar Documentation
+</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="revised" content="2020-12-11T11:04:12 IST">
+<meta name="description" content="">
+
+
+
+<title>REST Handlers :: Mortar Documentation</title>
+
+<link rel="shortcut icon" href='/images/favicon.png' type="image/x-icon" />
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
+
+<script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel="stylesheet">
+
+
+
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/layout.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/css/style.main.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/css/style.menu.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/notice.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/tabs.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/panel.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/columns.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/children.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/attachments.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/alert.css'>
+<link rel="stylesheet" type="text/css" href='/css/docport.css'>
+
+<script src='/js/docport.js'></script>
+<script type="text/javascript">
+      var baseurl = "https:\/\/go-masonry.github.io\/";
+</script>
+
+
+
+
+    
+  </head>
+
+  <body data-url="/api/rest/"
+
+  class="">
+
+<style type="text/css">
+  #debug{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    line-height: 3.5rem;
+    margin-bottom: .35rem;
+    padding: 0 2rem;
+    position: fixed;
+    left: 0;      right: 0;     top: 0;
+   
+    top:0px;
+    
+    min-height: 150px;
+
+    background-color: white;
+    border: 3px solid red;
+    z-index: 10000 ;
+    word-wrap: all;
+    overflow: auto;
+  }
+</style>
+ 
+
+
+    
+    
+    <header style="">
+        <div>
+    
+    <div class="burger ">
+        <a href="javascript:void(0);" style="font-size:15px;" onclick="$('article > aside').toggleClass('responsive')">&#9776;</a>
+    </div>
+    
+
+    <div>
+
+		
+	
+			
+		
+	    	<a class='baselink' href='https://go-masonry.github.io/'>Mortar Documentation</a>
+	  	
+	</div>
+    <nav class="shortcuts">
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar"  rel="noopener">
+                  Github
+                </a>
+            </li>
+    </nav>
+
+</div>
+    </header>
+    
+
+    <article>
+      
+      <aside class="">
+        
+<div class="search">
+	<div class="searchbox">
+	  <input data-search-input id="search-by" type="text" placeholder="Type to search...">
+	</div>
+	<script type="text/javascript" src="/vendor/lunr/lunr.min.js"></script>
+	<script type="text/javascript" src="/vendor/auto-complete/auto-complete.js"></script>
+	<link href="/vendor/auto-complete/auto-complete.css" rel="stylesheet">
+	<script type="text/javascript">
+	  
+	      var baseurl = "https:\/\/go-masonry.github.io\/";
+	  
+	</script>
+	<script type="text/javascript" src="/js/search.js"></script>
+</div>
+
+		
+	
+			
+		
+	    	
+	  	
+	<div id="close_menu">
+  <a href="javascript:void(0);" style="font-size:15px;" onclick="$('article > aside').toggleClass('responsive')">
+      <i class="fa fa-lg fa-times"></i>
+  </a>
+</div>
+
+<ul class="menu">
+
+    <li data-nav-id="https://go-masonry.github.io/mortar/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+        
+      
+          <a href="/mortar/">Mortar Design</a>
+      
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/api/" class="dd-item parent haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <i class="fas fa-chevron-down ddexp"></i>
+        
+      
+          <a href="/api/">APIs</a>
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/grpc/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/grpc/">gRPC</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/rest/" class="dd-item parent active
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/rest/">REST Handlers</a>
+      
+        
+      
+    </li>
+        </ul>
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/" class="dd-item haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+          <a href="/middleware/">Middleware</a>
+      
+        <ul>
+              
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/">Telemetry</a>
+      
+        
+      
+    </li>
+        </ul>
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+        
+      
+          <a href="/fx/">Uber-FX</a>
+      
+    </li>
+    
+
+
+
+</ul>
+
+		
+	
+			
+		
+	    	
+	  	
+	
+      </aside>
+      
+
+      <section class="page ">
+      
+	
+	 
+	    
+    
+    
+    <nav id="ariane" aria-label="breadcrumb">
+      <ol class="ariane">
+        
+  
+  	
+		
+  
+  	
+		
+  
+  	
+	<li >
+      <a class="text-link" href="https://go-masonry.github.io/">
+        Home
+      </a>
+    </li>
+	
+  
+    <li class="">
+      <a class="text-link" href="/api/">
+        APIs
+      </a>
+    </li>
+	
+  	
+  
+    <li class="">
+      <a class="text-link" href="/api/rest/">
+        REST Handlers
+      </a>
+    </li>
+	
+  	
+  
+    <li class="active">
+      
+        gRPC-Gateway
+      
+    </li>
+
+      </ol>
+    </nav>
+    
+    
+
+    
+		
+        
+		
+		
+		
+		
+		
+		
+		
+
+		
+			<h1>REST Handlers<span>gRPC-Gateway</span></h1>
+        
+
+			
+			
+		
+
+		
+				<nav class="subpages">
+	            		
+	        			
+	            	<li class="active">
+	            		<a title="$pagetitle" href="/api/rest/grpc-gw/">gRPC-Gateway</a>
+	            	</li>
+	            		
+	        			
+	            	<li >
+	            		<a title="$pagetitle" href="/api/rest/handlers/">HTTP Handlers</a>
+	            	</li>
+	        	</nav> 
+		
+	
+
+	
+	
+	<div class="jump-to-section">
+		<span onclick="$h = $(this);$h.next('nav').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('nav').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+  			<span class="fas fa-align-right"></span>
+  			Jump to Section
+  			<i style=";" class="fas fa-chevron-right"></i>
+		</span>
+		<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#register-grpc-gateway-handlers">Register <code>grpc-gateway</code> Handlers</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+	
+	
+
+
+
+
+
+
+	<div class="content">
+	    <p>Mortar comes with <a href="https://github.com/grpc-ecosystem/grpc-gateway">grpc-gateway</a> which is a reverse-proxy that translates a RESTful HTTP API into gRPC.
+We will show how you should register it&rsquo;s handlers after you generate them from the proto files.</p>
+<h3 ref="register-grpc-gateway-handlers" >Register <code>grpc-gateway</code> Handlers</h3><a class="anchor" id="register-grpc-gateway-handlers"></a>
+
+
+<div class="notices primary">
+	<p>Before reading this part get yourself familiar with the gRPC API <a href="/api/grpc">counterpart</a>.</p>
+</div>
+
+<p>If you read the gRPC part, you simply need to add one <a href="https://github.com/go-masonry/mortar-demo/blob/4a178a4540e185341a99388786a26d229422729c/workshop/app/mortar/workshop.go#L49">function</a> to <code>Uber-FX</code> graph.
+This function should return a slice of <a href="https://github.com/go-masonry/mortar/blob/master/interfaces/http/server/interfaces.go#L55">GRPCGatewayGeneratedHandlers</a>.</p>
+<ol>
+<li>
+<p>Register your <code>grpc-gateway</code> generated Handlers
+
+
+<div class="notices warning">
+	<label>Important</label><p>Each handler function must register itself on the provided <code>runtime.ServeMux</code></p>
+</div>
+</p>
+
+
+
+<div class="card "><div class="card-body">
+    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> workshopGRPCGatewayHandlers() []serverInt.GRPCGatewayGeneratedHandlers {
+    <span style="color:#00f">return</span> []serverInt.GRPCGatewayGeneratedHandlers{
+        <span style="color:#008000">// Register workshop REST API
+</span><span style="color:#008000"></span>        <span style="color:#00f">func</span>(mux *runtime.ServeMux, endpoint <span style="color:#2b91af">string</span>) <span style="color:#2b91af">error</span> {
+            <span style="color:#00f">return</span> workshop.RegisterWorkshopHandlerFromEndpoint(context.Background(), mux, endpoint, []grpc.DialOption{grpc.WithInsecure()})
+        },
+        <span style="color:#008000">// Any additional gRPC gateway registrations should be called here
+</span><span style="color:#008000"></span>    }
+}
+</code></pre></div></p>
+  </div></div>
+
+</li>
+<li>
+<p>Now tell <code>Uber-FX</code> about it and make sure it&rsquo;s added to <a href="https://github.com/go-masonry/mortar-demo/blob/4a178a4540e185341a99388786a26d229422729c/workshop/app/mortar/workshop.go#L34">GRPCGatewayGeneratedHandlers</a> group.</p>
+
+
+<div class="notices primary">
+	<p>However, in this case our function doesn&rsquo;t return a single value but an array of them.
+By default <code>Uber-FX</code> will treat it as an Array of Arrays <code>[][]GRPCGatewayGeneratedHandlers</code>.
+Hence we need to <a href="https://github.com/go-masonry/mortar-demo/blob/4a178a4540e185341a99388786a26d229422729c/workshop/app/mortar/workshop.go#L33"><strong>flatten</strong></a> our value.</p>
+
+</div>
+
+
+
+
+<div class="card "><div class="card-body">
+    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#008000">// GRPC Gateway Generated Handlers registration
+</span><span style="color:#008000"></span>fx.Provide(fx.Annotated{
+ Group:  groups.GRPCGatewayGeneratedHandlers + <span style="color:#a31515">&#34;,flatten&#34;</span>, <span style="color:#008000">// &#34;flatten&#34; does this [][]serverInt.GRPCGatewayGeneratedHandlers -&gt; []serverInt.GRPCGatewayGeneratedHandlers
+</span><span style="color:#008000"></span> Target: workshopGRPCGatewayHandlers,
+})
+</code></pre></div></p>
+  </div></div>
+
+</li>
+<li>
+<p>Finally you need to add the above <code>fx.Option</code> to <code>Uber-FX</code> graph, as shown <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/main.go#L39">here</a></p>
+</li>
+</ol>
+
+		</div>
+
+
+
+
+
+
+	 
+	<div class="chevrons">
+		<a class="next" href="/middleware/" title="Middleware" style="margin-right: 0px;">
+            <div>
+                <p>Next page</p>
+                <label>Middleware</label>
+            </div>
+            <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
+	</div>
+	
+	 
+	
+
+      </section>
+
+      
+      
+      <section class="right-menu ">
+      
+	
+
+		
+	
+			
+		
+	    	
+	  	
+	<div class="TableOfContents">
+    <label><i class="fas fa-align-right"></i>&nbsp;&nbsp;What&#39;s on this page</label>
+    <nav>
+        <ul >
+            <li><a href="/api/rest/">REST Handlers</a></li>
+        </ul>
+    </nav>
+    <nav id="TableOfContents"></nav>
+</div>
+
+		
+	
+			
+		
+	    	
+	  	
+	<div class="Actions">
+	<nav>
+		<ul>
+				
+		    
+		    
+			
+		      <li>
+		          <i class='fas fa-calendar'></i>
+		          Last update on 09 December 2020
+		      </li>
+		    
+		    
+
+    	</ul>
+	</nav>
+    
+</div>
+
+      </section>
+      
+    </article>
+    
+    
+    <footer>
+      
+
+		
+	
+			
+		
+	    	
+	    
+	
+    </footer>
+    
+
+
+
+  </body>
+</html>

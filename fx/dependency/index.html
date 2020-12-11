@@ -1,0 +1,559 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+	Dependency Pattern :: Mortar Documentation
+</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="revised" content="2020-12-11T11:04:12 IST">
+<meta name="description" content="">
+
+
+
+<title>Dependency Pattern :: Mortar Documentation</title>
+
+<link rel="shortcut icon" href='/images/favicon.png' type="image/x-icon" />
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
+
+<script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel="stylesheet">
+
+
+
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/layout.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/css/style.main.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/css/style.menu.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/notice.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/tabs.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/panel.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/columns.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/children.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/attachments.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/alert.css'>
+<link rel="stylesheet" type="text/css" href='/css/docport.css'>
+
+<script src='/js/docport.js'></script>
+<script type="text/javascript">
+      var baseurl = "https:\/\/go-masonry.github.io\/";
+</script>
+
+
+
+
+    
+  </head>
+
+  <body data-url="/fx/dependency/"
+
+  class="">
+
+<style type="text/css">
+  #debug{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    line-height: 3.5rem;
+    margin-bottom: .35rem;
+    padding: 0 2rem;
+    position: fixed;
+    left: 0;      right: 0;     top: 0;
+   
+    top:0px;
+    
+    min-height: 150px;
+
+    background-color: white;
+    border: 3px solid red;
+    z-index: 10000 ;
+    word-wrap: all;
+    overflow: auto;
+  }
+</style>
+ 
+
+
+    
+    
+    <header style="">
+        <div>
+    
+    <div class="burger ">
+        <a href="javascript:void(0);" style="font-size:15px;" onclick="$('article > aside').toggleClass('responsive')">&#9776;</a>
+    </div>
+    
+
+    <div>
+
+		
+	
+			
+		
+	    	<a class='baselink' href='https://go-masonry.github.io/'>Mortar Documentation</a>
+	  	
+	</div>
+    <nav class="shortcuts">
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar"  rel="noopener">
+                  Github
+                </a>
+            </li>
+    </nav>
+
+</div>
+    </header>
+    
+
+    <article>
+      
+      <aside class="">
+        
+<div class="search">
+	<div class="searchbox">
+	  <input data-search-input id="search-by" type="text" placeholder="Type to search...">
+	</div>
+	<script type="text/javascript" src="/vendor/lunr/lunr.min.js"></script>
+	<script type="text/javascript" src="/vendor/auto-complete/auto-complete.js"></script>
+	<link href="/vendor/auto-complete/auto-complete.css" rel="stylesheet">
+	<script type="text/javascript">
+	  
+	      var baseurl = "https:\/\/go-masonry.github.io\/";
+	  
+	</script>
+	<script type="text/javascript" src="/js/search.js"></script>
+</div>
+
+		
+	
+			
+		
+	    	
+	  	
+	<div id="close_menu">
+  <a href="javascript:void(0);" style="font-size:15px;" onclick="$('article > aside').toggleClass('responsive')">
+      <i class="fa fa-lg fa-times"></i>
+  </a>
+</div>
+
+<ul class="menu">
+
+    <li data-nav-id="https://go-masonry.github.io/mortar/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+        
+      
+          <a href="/mortar/">Mortar Design</a>
+      
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/api/" class="dd-item haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+          <a href="/api/">APIs</a>
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/grpc/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/grpc/">gRPC</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/rest/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/rest/">REST Handlers</a>
+      
+        
+      
+    </li>
+        </ul>
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/" class="dd-item haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+          <a href="/middleware/">Middleware</a>
+      
+        <ul>
+              
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/">Telemetry</a>
+      
+        
+      
+    </li>
+        </ul>
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item parent active
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+        
+      
+          <a href="/fx/">Uber-FX</a>
+      
+    </li>
+    
+
+
+
+</ul>
+
+		
+	
+			
+		
+	    	
+	  	
+	
+      </aside>
+      
+
+      <section class="page ">
+      
+	
+    
+    
+    <nav id="ariane" aria-label="breadcrumb">
+      <ol class="ariane">
+        
+  
+  	
+		
+  
+  	
+	<li >
+      <a class="text-link" href="https://go-masonry.github.io/">
+        Home
+      </a>
+    </li>
+	
+  
+    <li class="">
+      <a class="text-link" href="/fx/">
+        Uber-FX
+      </a>
+    </li>
+	
+  	
+  
+    <li class="active">
+      
+        Dependency Pattern
+      
+    </li>
+
+      </ol>
+    </nav>
+    
+    
+
+    
+		
+        
+		
+		
+		
+		
+		
+		
+		
+
+		
+			<h1>Uber-FX<span>Dependency Pattern</span></h1>
+        
+
+			
+			
+		
+
+		
+				<nav class="subpages">
+	            		
+	        			
+	            	<li class="active">
+	            		<a title="$pagetitle" href="/fx/dependency/">Dependency Pattern</a>
+	            	</li>
+	            		
+	        			
+	            	<li >
+	            		<a title="$pagetitle" href="/fx/groups/">Groups</a>
+	            	</li>
+	            		
+	        			
+	            	<li >
+	            		<a title="$pagetitle" href="/fx/tests/">Tests</a>
+	            	</li>
+	        	</nav> 
+		
+	
+
+	
+	
+	<div class="jump-to-section">
+		<span onclick="$h = $(this);$h.next('nav').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('nav').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+  			<span class="fas fa-align-right"></span>
+  			Jump to Section
+  			<i style=";" class="fas fa-chevron-right"></i>
+		</span>
+		<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#preparation">Preparation</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#tests">Tests</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+	
+	
+
+
+
+
+
+
+	<div class="content">
+	    <p>We are using this pattern when creating a new <code>Uber-FX</code> dependency, it makes it easy adding new external dependencies later when your application evolves.
+To explain this better we will do this with a <code>Notifier</code> example.</p>
+<h3 ref="preparation" >Preparation</h3><a class="anchor" id="preparation"></a>
+<ol>
+<li>
+<p>Define our <code>Notifier</code> Interface.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">type</span> Notifier <span style="color:#00f">interface</span>{
+    Alert(ctx context.Context, msg <span style="color:#2b91af">string</span>)
+}
+</code></pre></div></li>
+<li>
+<p>Create a dependency &ldquo;container&rdquo; for all future dependencies of the <code>Notifier</code> implementation and embed <code>fx.In</code> into it.
+This will <em>mark</em> it and will tell <code>Uber-FX</code> to inject all the requested dependencies.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#008000">// It&#39;s not public as you can see
+</span><span style="color:#008000"></span><span style="color:#00f">type</span> notifierDeps <span style="color:#00f">struct</span> {
+    fx.In
+}
+</code></pre></div></li>
+<li>
+<p>Create an implementation struct.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#008000">// Notice again that&#39;s not public
+</span><span style="color:#008000"></span><span style="color:#00f">type</span> notifier <span style="color:#00f">struct</span>{
+    deps notifierDeps
+}
+</code></pre></div></li>
+<li>
+<p>Create a Constructor function that will return <code>Notifier</code> implementation as a type.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> CreateNotifier(deps notifierDeps) (Notifier,<span style="color:#2b91af">error</span>) {
+    <span style="color:#00f">return</span> &amp;notifier(deps:deps), <span style="color:#00f">nil</span>
+}
+</code></pre></div></li>
+<li>
+<p>Finally implement it.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> (n *notifier) Alert(ctx context.Context, msg <span style="color:#2b91af">string</span>) {
+    <span style="color:#008000">// alert someone
+</span><span style="color:#008000"></span>}
+</code></pre></div></li>
+</ol>
+<h3 ref="usage" >Usage</h3><a class="anchor" id="usage"></a>
+<p>Now suppose you want to log every time you alert someone. All you need to do is</p>
+<ol>
+<li>
+<p>Add a <code>log.Logger</code> dependency to <code>notifierDeps</code> struct.</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">type</span> notifierDeps <span style="color:#00f">struct</span> {
+    fx.In
+
+    Logger log.Logger
+}
+</code></pre></div></li>
+<li>
+<p>Use it</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> (n *notifier) Alert(ctx context.Context, msg <span style="color:#2b91af">string</span>) {
+    n.deps.Logger.WithField(<span style="color:#a31515">&#34;msg&#34;</span>, msg).Debug(ctx, <span style="color:#a31515">&#34;alerting&#34;</span>)
+    <span style="color:#008000">// alert someone
+</span><span style="color:#008000"></span>}
+</code></pre></div></li>
+</ol>
+<h3 ref="tests" >Tests</h3><a class="anchor" id="tests"></a>
+<p>You are happily using <code>Notifier</code> in your application, but what about tests ?
+You know, to test a logic that have <code>Notifier</code> as a dependency. <code>Notifier</code> will probably call an external service which is not available during tests.
+One way to do it is to use <a href="https://github.com/golang/mock">gomock</a></p>
+<ol>
+<li>
+<p>You can add a comment above the <code>Notifier</code> interface</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#008000">//go:generate mockgen -source=notifier.go -destination=mock/notifier_mock.go
+</span><span style="color:#008000"></span><span style="color:#00f">type</span> Notifier <span style="color:#00f">interface</span>{
+    Alert(ctx context.Context, msg <span style="color:#2b91af">string</span>)
+}
+</code></pre></div></li>
+<li>
+<p>Execute <code>go generate ./...</code> and it will generate all the mocks in your application.</p>
+</li>
+<li>
+<p>Use the generated mock in your tests.
+
+
+<div class="alert warning" role="alert">Remember not to call a real Notifier Constructor</div>
+</p>
+</li>
+</ol>
+<p>Mortar includes mocks of all of it Interfaces in their respective directories, for example a <a href="https://github.com/go-masonry/mortar/tree/master/interfaces/log/mock">Logger</a> mock.</p>
+<p>You can find several test examples <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/controllers/workshop_test.go">here</a>.</p>
+
+		</div>
+
+
+
+
+
+
+	 
+	<div class="chevrons">
+		<a class="next" href="/mortar/" title="Mortar Design" style="margin-right: 0px;">
+            <div>
+                <p>Next page</p>
+                <label>Mortar Design</label>
+            </div>
+            <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
+	</div>
+	
+
+      </section>
+
+      
+      
+      <section class="right-menu ">
+      
+	
+
+		
+	
+			
+		
+	    	
+	  	
+	<div class="TableOfContents">
+    <label><i class="fas fa-align-right"></i>&nbsp;&nbsp;What&#39;s on this page</label>
+    <nav>
+        <ul >
+            <li><a href="/fx/dependency/">Dependency Pattern</a></li>
+        </ul>
+    </nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#preparation">Preparation</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#tests">Tests</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+		
+	
+			
+		
+	    	
+	  	
+	<div class="Actions">
+	<nav>
+		<ul>
+				
+		    
+		    
+			
+		      <li>
+		          <i class='fas fa-calendar'></i>
+		          Last update on 05 December 2020
+		      </li>
+		    
+		    
+
+    	</ul>
+	</nav>
+    
+</div>
+
+      </section>
+      
+    </article>
+    
+    
+    <footer>
+      
+
+		
+	
+			
+		
+	    	
+	    
+	
+    </footer>
+    
+
+
+
+  </body>
+</html>

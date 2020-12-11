@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>REST Handlers on Mortar Documentation</title>
+    <link>https://go-masonry.github.io/api/rest/</link>
+    <description>Recent content in REST Handlers on Mortar Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 09 Dec 2020 10:41:15 +0200</lastBuildDate><atom:link href="https://go-masonry.github.io/api/rest/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>gRPC-Gateway</title>
+      <link>https://go-masonry.github.io/api/rest/grpc-gw/</link>
+      <pubDate>Wed, 09 Dec 2020 10:41:15 +0200</pubDate>
+      
+      <guid>https://go-masonry.github.io/api/rest/grpc-gw/</guid>
+      <description>Mortar comes with grpc-gateway which is a reverse-proxy that translates a RESTful HTTP API into gRPC. We will show how you should register it&amp;rsquo;s handlers after you generate them from the proto files.
+Register grpc-gateway Handlers Before reading this part get yourself familiar with the gRPC API counterpart.
+ If you read the gRPC part, you simply need to add one function to Uber-FX graph. This function should return a slice of GRPCGatewayGeneratedHandlers.</description>
+    </item>
+    
+    <item>
+      <title>HTTP Handlers</title>
+      <link>https://go-masonry.github.io/api/rest/handlers/</link>
+      <pubDate>Wed, 09 Dec 2020 10:41:15 +0200</pubDate>
+      
+      <guid>https://go-masonry.github.io/api/rest/handlers/</guid>
+      <description>Although it&amp;rsquo;s very convenient to use gRPC + gRPC-Gateway to serve RESTful API, you sometime want to use prebuilt HTTP Handler/HandlerFunc or similar.
+Mortar provides 2 fx.Group for that. ExternalHTTPHandlers and ExternalHTTPHandlerFunctions, one for http.Handler the other for http.HandlerFunc.
+To better understand mortar groups read here
+ Registering http.Handler To register a new http.Handler you need to define how it&amp;rsquo;s going to be served == Pattern.
+  Create HTTPHandlerPatternPair</description>
+    </item>
+    
+  </channel>
+</rss>

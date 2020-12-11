@@ -1,0 +1,511 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+	Middleware :: Mortar Documentation
+</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="revised" content="2020-12-11T11:04:12 IST">
+<meta name="description" content="">
+
+
+
+<title>Middleware :: Mortar Documentation</title>
+
+<link rel="shortcut icon" href='/images/favicon.png' type="image/x-icon" />
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
+
+<script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel="stylesheet">
+
+
+
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/layout.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/css/style.main.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/css/style.menu.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/notice.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/tabs.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/panel.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/columns.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/children.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/attachments.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/alert.css'>
+<link rel="stylesheet" type="text/css" href='/css/docport.css'>
+
+<script src='/js/docport.js'></script>
+<script type="text/javascript">
+      var baseurl = "https:\/\/go-masonry.github.io\/";
+</script>
+
+
+
+
+    
+  </head>
+
+  <body data-url="/middleware/"
+
+  class="">
+
+<style type="text/css">
+  #debug{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    line-height: 3.5rem;
+    margin-bottom: .35rem;
+    padding: 0 2rem;
+    position: fixed;
+    left: 0;      right: 0;     top: 0;
+   
+    top:0px;
+    
+    min-height: 150px;
+
+    background-color: white;
+    border: 3px solid red;
+    z-index: 10000 ;
+    word-wrap: all;
+    overflow: auto;
+  }
+</style>
+ 
+
+
+    
+    
+    <header style="">
+        <div>
+    
+    <div class="burger ">
+        <a href="javascript:void(0);" style="font-size:15px;" onclick="$('article > aside').toggleClass('responsive')">&#9776;</a>
+    </div>
+    
+
+    <div>
+
+		
+	
+			
+		
+	    	<a class='baselink' href='https://go-masonry.github.io/'>Mortar Documentation</a>
+	  	
+	</div>
+    <nav class="shortcuts">
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar"  rel="noopener">
+                  Github
+                </a>
+            </li>
+    </nav>
+
+</div>
+    </header>
+    
+
+    <article>
+      
+      <aside class="">
+        
+<div class="search">
+	<div class="searchbox">
+	  <input data-search-input id="search-by" type="text" placeholder="Type to search...">
+	</div>
+	<script type="text/javascript" src="/vendor/lunr/lunr.min.js"></script>
+	<script type="text/javascript" src="/vendor/auto-complete/auto-complete.js"></script>
+	<link href="/vendor/auto-complete/auto-complete.css" rel="stylesheet">
+	<script type="text/javascript">
+	  
+	      var baseurl = "https:\/\/go-masonry.github.io\/";
+	  
+	</script>
+	<script type="text/javascript" src="/js/search.js"></script>
+</div>
+
+		
+	
+			
+		
+	    	
+	  	
+	<div id="close_menu">
+  <a href="javascript:void(0);" style="font-size:15px;" onclick="$('article > aside').toggleClass('responsive')">
+      <i class="fa fa-lg fa-times"></i>
+  </a>
+</div>
+
+<ul class="menu">
+
+    <li data-nav-id="https://go-masonry.github.io/mortar/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+        
+      
+          <a href="/mortar/">Mortar Design</a>
+      
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/api/" class="dd-item haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+          <a href="/api/">APIs</a>
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/grpc/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/grpc/">gRPC</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/rest/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/rest/">REST Handlers</a>
+      
+        
+      
+    </li>
+        </ul>
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/" class="dd-item parent active haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <i class="fas fa-chevron-down ddexp"></i>
+        
+      
+          <a href="/middleware/">Middleware</a>
+      
+        <ul>
+              
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/">Telemetry</a>
+      
+        
+      
+    </li>
+        </ul>
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+        
+      
+          <a href="/fx/">Uber-FX</a>
+      
+    </li>
+    
+
+
+
+</ul>
+
+		
+	
+			
+		
+	    	
+	  	
+	
+      </aside>
+      
+
+      <section class="page ">
+      
+	
+		
+    
+    
+    <nav id="ariane" aria-label="breadcrumb">
+      <ol class="ariane">
+        
+  
+  	
+	<li >
+      <a class="text-link" href="https://go-masonry.github.io/">
+        Home
+      </a>
+    </li>
+	
+  
+    <li class="active">
+      
+        Middleware
+      
+    </li>
+
+      </ol>
+    </nav>
+    
+    
+
+    
+		
+        
+		
+		
+		
+		
+		
+		
+		
+
+		
+			<h1>Middleware</h1>
+        
+
+			
+			
+		
+
+		
+				<nav class="subpages">
+	            		
+	        			
+	            	<li >
+	            		<a title="$pagetitle" href="/middleware/context/">Context</a>
+	            	</li>
+	        	</nav> 
+		
+	
+
+	
+	
+	<div class="jump-to-section">
+		<span onclick="$h = $(this);$h.next('nav').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('nav').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+  			<span class="fas fa-align-right"></span>
+  			Jump to Section
+  			<i style=";" class="fas fa-chevron-right"></i>
+		</span>
+		<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#other-types-of-middleware">Other types of Middleware</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+	</div>
+	
+	
+
+
+
+
+
+
+	<div class="content">
+	    <p>It&rsquo;s hard to define Middleware, but in Mortar context you can think of it as <strong>Proxy/Interceptors</strong>.
+Some of them are bundled as part of the libraries Mortar uses, others defined by Mortar.</p>
+<ul>
+<li>
+<p>gRPC package already has a way to register different Interceptors
+for <a href="https://github.com/grpc/grpc-go/blob/master/interceptor.go#L43">Client</a>
+and <a href="https://github.com/grpc/grpc-go/blob/master/interceptor.go#L84">Server</a>.
+Mortar adds some more</p>
+<ul>
+<li>Server Interceptors
+<ul>
+<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/server/logger.go#L23">Logger</a> <code>UnaryServerInterceptor</code>, making it easier to log gRPC request and response.</li>
+<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/server/monitor.go#L30">Monitoring</a> <code>UnaryServerInterceptor</code>, this one can create automatic Histogram/Timer metric for each gRPC method.</li>
+<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/trace/server.go#L13">Tracing</a> <code>UnaryServerInterceptor</code>, Injects or Uses tracing information.</li>
+</ul>
+</li>
+<li>Client Interceptors
+<ul>
+<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/trace/client.go#L18">Tracing</a> <code>UnaryClientInterceptor</code>, creates a Client span and passes Tracing Information to the next hop.</li>
+<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/client/headers.go#L23">In-&gt;Out</a> <code>UnaryClientInterceptor</code>, this one can be used to copy specific headers from <code>grpc.Incoming</code> to <code>grpc.Outgoing</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>HTTP interceptors</p>
+<ul>
+<li>Server HTTP Middleware
+
+
+<div class="notices secondary">
+	<p>There are no <code>http.Handler</code> Interceptors bundled with Mortar. It&rsquo;s better to use the gRPC layer for that, but you can always add your own.</p>
+</div>
+</li>
+<li>Client
+
+
+<div class="notices success">
+	<p>Mortar introduces a way to add interceptors to <code>http.Client</code>, <a href="https://github.com/go-masonry/mortar/blob/master/interfaces/http/client/interfaces.go#L21">here</a> you can see how it&rsquo;s defined.</p>
+</div>
+
+<ul>
+<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/trace/client.go#L44">Tracing</a> <code>HTTPClientInterceptor</code>, similar to the gRPC one, but for HTTP.</li>
+<li>In Workshop Demo there is a special <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/controllers/workshop_test.go#L164">TEST</a> Interceptor that returns a custom response.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 ref="other-types-of-middleware" >Other types of Middleware</h3><a class="anchor" id="other-types-of-middleware"></a>
+<p>Network Interceptors are not the only ones you can use in Mortar.
+There are other types of Middleware.
+They rely on <code>context.Context</code> passed to most methods, read <a href="/middleware/context">here</a> about that.</p>
+<ul>
+<li>Jaeger wrapper have a <a href="https://github.com/go-masonry/bjaeger/blob/master/utils.go#L37">Logger Extractor</a> to inject Tracing Information in to the logs.</li>
+</ul>
+
+		</div>
+
+
+
+
+
+
+	 
+	<div class="chevrons">
+		<a class="next" href="/middleware/telemetry/" title="Telemetry" style="margin-right: 0px;">
+            <div>
+                <p>Next page</p>
+                <label>Telemetry</label>
+            </div>
+            <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
+	</div>
+	
+	
+
+      </section>
+
+      
+      
+      <section class="right-menu ">
+      
+	
+
+		
+	
+			
+		
+	    	
+	  	
+	<div class="TableOfContents">
+    <label><i class="fas fa-align-right"></i>&nbsp;&nbsp;What&#39;s on this page</label>
+    <nav>
+        <ul >
+            <li><a href="/middleware/">Middleware</a></li>
+        </ul>
+    </nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#other-types-of-middleware">Other types of Middleware</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+		
+	
+			
+		
+	    	
+	  	
+	<div class="Actions">
+	<nav>
+		<ul>
+				
+		    
+		    
+			
+		      <li>
+		          <i class='fas fa-calendar'></i>
+		          Last update on 06 December 2020
+		      </li>
+		    
+		    
+
+    	</ul>
+	</nav>
+    
+</div>
+
+      </section>
+      
+    </article>
+    
+    
+    <footer>
+      
+
+		
+	
+			
+		
+	    	
+	    
+	
+    </footer>
+    
+
+
+
+  </body>
+</html>
