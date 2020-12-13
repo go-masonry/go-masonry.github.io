@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-11T16:06:21 IST">
+<meta name="revised" content="2020-12-13T20:55:54 IST">
 <meta name="description" content="">
 
 
@@ -52,7 +52,7 @@
 
   <body data-url="/mortar/listeners/"
 
-  class="">
+  class="hidenextpage ">
 
 <style type="text/css">
   #debug{
@@ -109,6 +109,11 @@
                   Github
                 </a>
             </li>
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar/discussions"  rel="noopener">
+                  Discussions
+                </a>
+            </li>
     </nav>
 
 </div>
@@ -119,6 +124,20 @@
       
       <aside class="">
         
+<div class="search">
+	<div class="searchbox">
+	  <input data-search-input id="search-by" type="text" placeholder="Type to search...">
+	</div>
+	<script type="text/javascript" src="/vendor/lunr/lunr.min.js"></script>
+	<script type="text/javascript" src="/vendor/auto-complete/auto-complete.js"></script>
+	<link href="/vendor/auto-complete/auto-complete.css" rel="stylesheet">
+	<script type="text/javascript">
+	  
+	      var baseurl = "https:\/\/go-masonry.github.io\/";
+	  
+	</script>
+	<script type="text/javascript" src="/js/search.js"></script>
+</div>
 
 		
 	
@@ -164,7 +183,7 @@
     </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/api/rest/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/api/grpc-gw/" class="dd-item
         item_level_$level
         ">
 
@@ -172,7 +191,22 @@
       
       
       
-          <a href="/api/rest/">REST Handlers</a>
+          <a href="/api/grpc-gw/">gRPC-Gateway</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/handlers/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/handlers/">HTTP Handler/Func</a>
       
         
       
@@ -181,7 +215,22 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+          <a href="/fx/">Dependency Injection</a>
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/pattern/" class="dd-item
         item_level_$level
         ">
 
@@ -189,10 +238,42 @@
       
       
       
+          <a href="/fx/pattern/">Dependency Pattern</a>
+      
         
       
-          <a href="/fx/">Uber-FX</a>
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/groups/" class="dd-item
+        item_level_$level
+        ">
+
       
+      
+      
+      
+          <a href="/fx/groups/">Groups</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/tests/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/fx/tests/">Tests</a>
+      
+        
+      
+    </li>
+        </ul>
     </li>
     
 
@@ -210,9 +291,23 @@
       
         <ul>
               
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/context/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/context/">Context</a>
+      
+        
+      
+    </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item haschildren
         item_level_$level
         ">
 
@@ -221,9 +316,26 @@
       
       
           <a href="/middleware/telemetry/">Telemetry</a>
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/logging/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/logging/">Logging</a>
       
         
       
+    </li>
+        </ul>
     </li>
         </ul>
     </li>
@@ -411,7 +523,7 @@ It also can probably give you some <a href="https://docs.aws.amazon.com/elasticl
 </li>
 <li>
 <p>Flags provided when your service was started</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">service config &lt;path to file&gt; --answer-to-everythig=42
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">service config &lt;path to file&gt; --answer-to-everythig<span style="color:#666">=</span><span style="color:#40a070">42</span>
 </code></pre></div></li>
 <li>
 <p>Or <a href="https://github.com/go-masonry/mortar/blob/master/handlers/debug.go#L45">Debug</a> them</p>
@@ -433,15 +545,6 @@ Look at test example <a href="https://github.com/go-masonry/mortar/blob/master/h
 
 
 
-	 
-	<div class="chevrons">
-		<a class="next" href="/middleware/telemetry/" title="Telemetry" style="margin-right: 0px;">
-            <div>
-                <p>Next page</p>
-                <label>Telemetry</label>
-            </div>
-            <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
-	</div>
 	
 
       </section>

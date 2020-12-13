@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-11T16:06:21 IST">
+<meta name="revised" content="2020-12-13T20:55:54 IST">
 <meta name="description" content="">
 
 
@@ -52,7 +52,7 @@
 
   <body data-url="/mortar/builders/"
 
-  class="">
+  class="hidenextpage ">
 
 <style type="text/css">
   #debug{
@@ -109,6 +109,11 @@
                   Github
                 </a>
             </li>
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar/discussions"  rel="noopener">
+                  Discussions
+                </a>
+            </li>
     </nav>
 
 </div>
@@ -119,6 +124,20 @@
       
       <aside class="">
         
+<div class="search">
+	<div class="searchbox">
+	  <input data-search-input id="search-by" type="text" placeholder="Type to search...">
+	</div>
+	<script type="text/javascript" src="/vendor/lunr/lunr.min.js"></script>
+	<script type="text/javascript" src="/vendor/auto-complete/auto-complete.js"></script>
+	<link href="/vendor/auto-complete/auto-complete.css" rel="stylesheet">
+	<script type="text/javascript">
+	  
+	      var baseurl = "https:\/\/go-masonry.github.io\/";
+	  
+	</script>
+	<script type="text/javascript" src="/js/search.js"></script>
+</div>
 
 		
 	
@@ -164,7 +183,7 @@
     </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/api/rest/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/api/grpc-gw/" class="dd-item
         item_level_$level
         ">
 
@@ -172,7 +191,22 @@
       
       
       
-          <a href="/api/rest/">REST Handlers</a>
+          <a href="/api/grpc-gw/">gRPC-Gateway</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/handlers/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/handlers/">HTTP Handler/Func</a>
       
         
       
@@ -181,7 +215,22 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+          <a href="/fx/">Dependency Injection</a>
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/pattern/" class="dd-item
         item_level_$level
         ">
 
@@ -189,10 +238,42 @@
       
       
       
+          <a href="/fx/pattern/">Dependency Pattern</a>
+      
         
       
-          <a href="/fx/">Uber-FX</a>
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/groups/" class="dd-item
+        item_level_$level
+        ">
+
       
+      
+      
+      
+          <a href="/fx/groups/">Groups</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/tests/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/fx/tests/">Tests</a>
+      
+        
+      
+    </li>
+        </ul>
     </li>
     
 
@@ -210,9 +291,23 @@
       
         <ul>
               
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/context/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/context/">Context</a>
+      
+        
+      
+    </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item haschildren
         item_level_$level
         ">
 
@@ -221,9 +316,26 @@
       
       
           <a href="/middleware/telemetry/">Telemetry</a>
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/logging/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/logging/">Logging</a>
       
         
       
+    </li>
+        </ul>
     </li>
         </ul>
     </li>
@@ -394,7 +506,7 @@ But we found Builder pattern to be very useful, here we will explain why.</p>
 
 
 <div class="card "><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-fallback" data-lang="fallback">+---------------------+            +-------------------------------+           +-------------------------+
+    <p class="card-text"><pre><code>+---------------------+            +-------------------------------+           +-------------------------+
 |  Library Developer  | +--------&gt; | Platform/Infra/Ops Developer  | +-------&gt; |  Integration Developer  |
 +---------------------+            +-------------------------------+           +-------------------------+
 
@@ -403,7 +515,7 @@ in different scenarios, expose     to their organization.                      a
 different options
 
      Library defaults                  Predefined defaults                       Override defaults
-</code></pre></div></p>
+</code></pre></p>
   </div></div>
 
 <h3 ref="our-library" >Our Library</h3><a class="anchor" id="our-library"></a>
@@ -412,9 +524,9 @@ different options
 
 
 <div class="card "><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> NewLib(options ...Option) Library {}
+    <p class="card-text"><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">NewLib</span>(options <span style="color:#666">...</span>Option) Library {}
 
-<span style="color:#00f">type</span> Option <span style="color:#00f">func</span>(*libConf)
+<span style="color:#007020;font-weight:bold">type</span> Option <span style="color:#007020;font-weight:bold">func</span>(<span style="color:#666">*</span>libConf)
 </code></pre></div></p>
   </div></div>
 
@@ -423,13 +535,13 @@ different options
 
 
 <div class="card "><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">type</span> libConf <span style="color:#00f">struct</span> {
-    address <span style="color:#2b91af">string</span>
-    <span style="color:#008000">// other options omitted for clarity...
-</span><span style="color:#008000"></span>}
+    <p class="card-text"><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">type</span> libConf <span style="color:#007020;font-weight:bold">struct</span> {
+    address <span style="color:#902000">string</span>
+    <span style="color:#60a0b0;font-style:italic">// other options omitted for clarity...
+</span><span style="color:#60a0b0;font-style:italic"></span>}
 
-<span style="color:#00f">func</span> Address(addr <span style="color:#2b91af">string</span>) Option {
-    <span style="color:#00f">return</span> <span style="color:#00f">func</span>(cfg *libConf) {
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">Address</span>(addr <span style="color:#902000">string</span>) Option {
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">func</span>(cfg <span style="color:#666">*</span>libConf) {
         cfg.address = addr
     }
 }
@@ -472,10 +584,10 @@ Because this IP can change with time or there is a local server that is used dur
 
 
 <div class="card "><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">type</span> LibBuilder <span style="color:#00f">interface</span> {
-    Address(addr <span style="color:#2b91af">string</span>) LibBuilder
-    <span style="color:#008000">// ... additional options omitted for clarity
-</span><span style="color:#008000"></span>    Build() Library
+    <p class="card-text"><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">type</span> LibBuilder <span style="color:#007020;font-weight:bold">interface</span> {
+    <span style="color:#06287e">Address</span>(addr <span style="color:#902000">string</span>) LibBuilder
+    <span style="color:#60a0b0;font-style:italic">// ... additional options omitted for clarity
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#06287e">Build</span>() Library
 }
 </code></pre></div></p>
   </div></div>
@@ -487,7 +599,7 @@ Because this IP can change with time or there is a local server that is used dur
 
 
 <div class="card "><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-fallback" data-lang="fallback">                                               +-------------------------------+
+    <p class="card-text"><pre><code>                                               +-------------------------------+
                                                |                               |
                  +----------------------------&gt;+         Configuration         |
                  |                             |                               |
@@ -499,7 +611,7 @@ Because this IP can change with time or there is a local server that is used dur
 +-----&gt;+  Address Option     +--------&gt;+  Max     Option     +--------&gt;+  Min     Option     |
        |                     |         |                     |         |                     |
        +---------------------+         +---------------------+         +---------------------+
-</code></pre></div></p>
+</code></pre></p>
   </div></div>
 </p>
 <p>Each <code>Option</code> is presented as a function on the the builder interface and added a to a list of previous options.
@@ -515,7 +627,7 @@ Because this IP can change with time or there is a local server that is used dur
 
 
 <div class="card "><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-fallback" data-lang="fallback">                                               +-------------------------------+
+    <p class="card-text"><pre><code>                                               +-------------------------------+
                                                |                               |
                  +----------------------------&gt;+         Configuration         |
                  |                             |                               |
@@ -534,7 +646,7 @@ Because this IP can change with time or there is a local server that is used dur
      |                                                                                           |
      +---------------------------------------Predefined defaults---------------------------------+
 
-</code></pre></div></p>
+</code></pre></p>
   </div></div>
 </p>
 <h2 ref="implementation" >Implementation</h2><a class="anchor" id="implementation"></a>
@@ -543,47 +655,47 @@ Because this IP can change with time or there is a local server that is used dur
 
 
 <div class="card "><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">import</span> (
-	<span style="color:#a31515">&#34;fmt&#34;</span>
-	<span style="color:#a31515">&#34;container/list&#34;</span>
+    <p class="card-text"><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">import</span> (
+	<span style="color:#4070a0">&#34;fmt&#34;</span>
+	<span style="color:#4070a0">&#34;container/list&#34;</span>
 )
 
-<span style="color:#00f">type</span> libConf <span style="color:#00f">struct</span> {
-	address <span style="color:#2b91af">string</span>
+<span style="color:#007020;font-weight:bold">type</span> libConf <span style="color:#007020;font-weight:bold">struct</span> {
+	address <span style="color:#902000">string</span>
 }
 
-<span style="color:#00f">type</span> Library <span style="color:#2b91af">string</span>
-<span style="color:#00f">type</span> LibBuilder <span style="color:#00f">interface</span> {
-	Address(addr <span style="color:#2b91af">string</span>) LibBuilder
-	<span style="color:#008000">// ... additional options omitted for clarity
-</span><span style="color:#008000"></span>	Build() Library
+<span style="color:#007020;font-weight:bold">type</span> Library <span style="color:#902000">string</span>
+<span style="color:#007020;font-weight:bold">type</span> LibBuilder <span style="color:#007020;font-weight:bold">interface</span> {
+	<span style="color:#06287e">Address</span>(addr <span style="color:#902000">string</span>) LibBuilder
+	<span style="color:#60a0b0;font-style:italic">// ... additional options omitted for clarity
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#06287e">Build</span>() Library
 }
-<span style="color:#00f">type</span> libBuilder <span style="color:#00f">struct</span> {
-	ll *list.List
+<span style="color:#007020;font-weight:bold">type</span> libBuilder <span style="color:#007020;font-weight:bold">struct</span> {
+	ll <span style="color:#666">*</span>list.List
 }
 
-<span style="color:#00f">func</span> Builder() LibBuilder {
-	<span style="color:#00f">return</span> &amp;libBuilder{
-		ll: list.New(),
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">Builder</span>() LibBuilder {
+	<span style="color:#007020;font-weight:bold">return</span> <span style="color:#666">&amp;</span>libBuilder{
+		ll: list.<span style="color:#06287e">New</span>(),
 	}
 }
-<span style="color:#00f">func</span> (b *libBuilder) Address(addr <span style="color:#2b91af">string</span>) LibBuilder {
-	b.ll.PushBack(<span style="color:#00f">func</span>(cfg *libConf) {
-		fmt.Printf(<span style="color:#a31515">&#34;using %s as an address\n&#34;</span>, addr) <span style="color:#008000">// for debug
-</span><span style="color:#008000"></span>		cfg.address = addr
+<span style="color:#007020;font-weight:bold">func</span> (b <span style="color:#666">*</span>libBuilder) <span style="color:#06287e">Address</span>(addr <span style="color:#902000">string</span>) LibBuilder {
+	b.ll.<span style="color:#06287e">PushBack</span>(<span style="color:#007020;font-weight:bold">func</span>(cfg <span style="color:#666">*</span>libConf) {
+		fmt.<span style="color:#06287e">Printf</span>(<span style="color:#4070a0">&#34;using %s as an address\n&#34;</span>, addr) <span style="color:#60a0b0;font-style:italic">// for debug
+</span><span style="color:#60a0b0;font-style:italic"></span>		cfg.address = addr
 	})
-	<span style="color:#00f">return</span> b
+	<span style="color:#007020;font-weight:bold">return</span> b
 }
-<span style="color:#00f">func</span> (b *libBuilder) Build() Library {
-	<span style="color:#00f">var</span> cfg = new(libConf) <span style="color:#008000">// empty conf
-</span><span style="color:#008000"></span>	<span style="color:#008000">// Iterate on the linked list
-</span><span style="color:#008000"></span>	<span style="color:#00f">for</span> e := b.ll.Front(); e != <span style="color:#00f">nil</span>; e = e.Next() {
-		f := e.Value.(<span style="color:#00f">func</span>(*libConf)) <span style="color:#008000">// extract and cast
-</span><span style="color:#008000"></span>		f(cfg)
+<span style="color:#007020;font-weight:bold">func</span> (b <span style="color:#666">*</span>libBuilder) <span style="color:#06287e">Build</span>() Library {
+	<span style="color:#007020;font-weight:bold">var</span> cfg = <span style="color:#007020">new</span>(libConf) <span style="color:#60a0b0;font-style:italic">// empty conf
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#60a0b0;font-style:italic">// Iterate on the linked list
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">for</span> e <span style="color:#666">:=</span> b.ll.<span style="color:#06287e">Front</span>(); e <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span>; e = e.<span style="color:#06287e">Next</span>() {
+		f <span style="color:#666">:=</span> e.Value.(<span style="color:#007020;font-weight:bold">func</span>(<span style="color:#666">*</span>libConf)) <span style="color:#60a0b0;font-style:italic">// extract and cast
+</span><span style="color:#60a0b0;font-style:italic"></span>		<span style="color:#06287e">f</span>(cfg)
 	}
-	<span style="color:#008000">// at this point cfg will be populated
-</span><span style="color:#008000"></span>	<span style="color:#00f">return</span> Library(fmt.Sprintf(<span style="color:#a31515">&#34;We are going to call [%s] address&#34;</span>, cfg.address)) <span style="color:#008000">// or something similar
-</span><span style="color:#008000"></span>}
+	<span style="color:#60a0b0;font-style:italic">// at this point cfg will be populated
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#007020;font-weight:bold">return</span> <span style="color:#06287e">Library</span>(fmt.<span style="color:#06287e">Sprintf</span>(<span style="color:#4070a0">&#34;We are going to call [%s] address&#34;</span>, cfg.address)) <span style="color:#60a0b0;font-style:italic">// or something similar
+</span><span style="color:#60a0b0;font-style:italic"></span>}
 </code></pre></div></p>
   </div></div>
 </p>
@@ -592,17 +704,17 @@ Because this IP can change with time or there is a local server that is used dur
 
 
 <div class="card "><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> makeLibrary(partialBuilder LibBuilder) Library {
-    <span style="color:#008000">// here we have passed previously defined builder, one that have some defaults already in it
-</span><span style="color:#008000"></span>    <span style="color:#008000">// Now we can either use it as is or override it
-</span><span style="color:#008000"></span>    builder := partialBuilder.Address(<span style="color:#a31515">&#34;5678&#34;</span>)
-    <span style="color:#00f">return</span> builder.Build()
+    <p class="card-text"><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">makeLibrary</span>(partialBuilder LibBuilder) Library {
+    <span style="color:#60a0b0;font-style:italic">// here we have passed previously defined builder, one that have some defaults already in it
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// Now we can either use it as is or override it
+</span><span style="color:#60a0b0;font-style:italic"></span>    builder <span style="color:#666">:=</span> partialBuilder.<span style="color:#06287e">Address</span>(<span style="color:#4070a0">&#34;5678&#34;</span>)
+    <span style="color:#007020;font-weight:bold">return</span> builder.<span style="color:#06287e">Build</span>()
 }
 
-<span style="color:#00f">func</span> main() {
-	<span style="color:#00f">var</span> builder = Builder().Address(<span style="color:#a31515">&#34;1234&#34;</span>) <span style="color:#008000">// predefined builder
-</span><span style="color:#008000"></span>	lib:=makeLibrary(builder)
-	fmt.Println(lib)
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">main</span>() {
+	<span style="color:#007020;font-weight:bold">var</span> builder = <span style="color:#06287e">Builder</span>().<span style="color:#06287e">Address</span>(<span style="color:#4070a0">&#34;1234&#34;</span>) <span style="color:#60a0b0;font-style:italic">// predefined builder
+</span><span style="color:#60a0b0;font-style:italic"></span>	lib<span style="color:#666">:=</span><span style="color:#06287e">makeLibrary</span>(builder)
+	fmt.<span style="color:#06287e">Println</span>(lib)
 }
 </code></pre></div></p>
   </div></div>
@@ -612,10 +724,10 @@ Because this IP can change with time or there is a local server that is used dur
 
 
 <div class="card "><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-fallback" data-lang="fallback">using 1234 as an address
+    <p class="card-text"><pre><code>using 1234 as an address
 using 5678 as an address
 We are going to call [5678] address
-</code></pre></div></p>
+</code></pre></p>
   </div></div>
 </p>
 
@@ -626,15 +738,6 @@ We are going to call [5678] address
 
 
 
-	 
-	<div class="chevrons">
-		<a class="next" href="/api/grpc/" title="gRPC" style="margin-right: 0px;">
-            <div>
-                <p>Next page</p>
-                <label>gRPC</label>
-            </div>
-            <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
-	</div>
 	
 
       </section>

@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-11T16:06:21 IST">
+<meta name="revised" content="2020-12-13T20:55:54 IST">
 <meta name="description" content="">
 
 
@@ -109,6 +109,11 @@
                   Github
                 </a>
             </li>
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar/discussions"  rel="noopener">
+                  Discussions
+                </a>
+            </li>
     </nav>
 
 </div>
@@ -119,6 +124,20 @@
       
       <aside class="">
         
+<div class="search">
+	<div class="searchbox">
+	  <input data-search-input id="search-by" type="text" placeholder="Type to search...">
+	</div>
+	<script type="text/javascript" src="/vendor/lunr/lunr.min.js"></script>
+	<script type="text/javascript" src="/vendor/auto-complete/auto-complete.js"></script>
+	<link href="/vendor/auto-complete/auto-complete.css" rel="stylesheet">
+	<script type="text/javascript">
+	  
+	      var baseurl = "https:\/\/go-masonry.github.io\/";
+	  
+	</script>
+	<script type="text/javascript" src="/js/search.js"></script>
+</div>
 
 		
 	
@@ -164,7 +183,7 @@
     </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/api/rest/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/api/grpc-gw/" class="dd-item
         item_level_$level
         ">
 
@@ -172,7 +191,22 @@
       
       
       
-          <a href="/api/rest/">REST Handlers</a>
+          <a href="/api/grpc-gw/">gRPC-Gateway</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/handlers/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/handlers/">HTTP Handler/Func</a>
       
         
       
@@ -181,7 +215,22 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+          <a href="/fx/">Dependency Injection</a>
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/pattern/" class="dd-item
         item_level_$level
         ">
 
@@ -189,14 +238,46 @@
       
       
       
+          <a href="/fx/pattern/">Dependency Pattern</a>
+      
         
       
-          <a href="/fx/">Uber-FX</a>
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/groups/" class="dd-item
+        item_level_$level
+        ">
+
       
+      
+      
+      
+          <a href="/fx/groups/">Groups</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/tests/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/fx/tests/">Tests</a>
+      
+        
+      
+    </li>
+        </ul>
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/middleware/" class="dd-item parent active haschildren
+    <li data-nav-id="https://go-masonry.github.io/middleware/" class="dd-item parent haschildren
         item_level_$level
         ">
 
@@ -211,9 +292,23 @@
       
         <ul>
               
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/context/" class="dd-item parent active
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/context/">Context</a>
+      
+        
+      
+    </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item haschildren
         item_level_$level
         ">
 
@@ -222,9 +317,26 @@
       
       
           <a href="/middleware/telemetry/">Telemetry</a>
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/logging/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/logging/">Logging</a>
       
         
       
+    </li>
+        </ul>
     </li>
         </ul>
     </li>
@@ -262,6 +374,7 @@
       <section class="page ">
       
 	
+		
     
     
     <nav id="ariane" aria-label="breadcrumb">
@@ -310,21 +423,13 @@
 		
 
 		
-			<h1>Middleware<span>Context</span></h1>
+			<h1>Context</h1>
         
 
-			
-			
+		
+										
 		
 
-		
-				<nav class="subpages">
-	            		
-	        			
-	            	<li class="active">
-	            		<a title="$pagetitle" href="/middleware/context/">Context</a>
-	            	</li>
-	        	</nav> 
 		
 	
 
@@ -371,13 +476,13 @@ Everything gRPC related already have a <code>context.Context</code> as the first
     <p class="card-text"><ul>
 <li>
 <p><a href="https://github.com/grpc/grpc-go/blob/master/call.go#L29">client</a></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> (cc *ClientConn) Invoke(ctx context.Context, method <span style="color:#2b91af">string</span>, args, reply <span style="color:#00f">interface</span>{}, opts ...CallOption) <span style="color:#2b91af">error</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> (cc <span style="color:#666">*</span>ClientConn) <span style="color:#06287e">Invoke</span>(ctx context.Context, method <span style="color:#902000">string</span>, args, reply <span style="color:#007020;font-weight:bold">interface</span>{}, opts <span style="color:#666">...</span>CallOption) <span style="color:#902000">error</span>
 </code></pre></div></li>
 <li>
 <p><a href="https://github.com/grpc/grpc-go/blob/master/interceptor.go">interceptors</a></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">type</span> UnaryClientInterceptor <span style="color:#00f">func</span>(ctx context.Context, method <span style="color:#2b91af">string</span>, req, reply <span style="color:#00f">interface</span>{}, cc *ClientConn, invoker UnaryInvoker, opts ...CallOption) <span style="color:#2b91af">error</span>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">type</span> UnaryClientInterceptor <span style="color:#007020;font-weight:bold">func</span>(ctx context.Context, method <span style="color:#902000">string</span>, req, reply <span style="color:#007020;font-weight:bold">interface</span>{}, cc <span style="color:#666">*</span>ClientConn, invoker UnaryInvoker, opts <span style="color:#666">...</span>CallOption) <span style="color:#902000">error</span>
 
-<span style="color:#00f">type</span> UnaryServerInterceptor <span style="color:#00f">func</span>(ctx context.Context, req <span style="color:#00f">interface</span>{}, info *UnaryServerInfo, handler UnaryHandler) (resp <span style="color:#00f">interface</span>{}, err <span style="color:#2b91af">error</span>)
+<span style="color:#007020;font-weight:bold">type</span> UnaryServerInterceptor <span style="color:#007020;font-weight:bold">func</span>(ctx context.Context, req <span style="color:#007020;font-weight:bold">interface</span>{}, info <span style="color:#666">*</span>UnaryServerInfo, handler UnaryHandler) (resp <span style="color:#007020;font-weight:bold">interface</span>{}, err <span style="color:#902000">error</span>)
 </code></pre></div></li>
 <li>
 <p>Also all the <a href="https://github.com/golang/protobuf/blob/master/protoc-gen-go/grpc/grpc.go">generated</a> server endpoints have <code>context.Context</code> as the first argument.</p>
@@ -402,35 +507,35 @@ You can &ldquo;solve&rdquo; this drawback by</p>
 <p>Let&rsquo;s look at Logging as an example</p>
 <h3 ref="logging-example" >Logging Example</h3><a class="anchor" id="logging-example"></a>
 <p>All Logger methods have a <code>context.Context</code> as it&rsquo;s first argument</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang">Debug(ctx context.Context, format <span style="color:#2b91af">string</span>, args ...<span style="color:#00f">interface</span>{})
-Info(ctx context.Context, format <span style="color:#2b91af">string</span>, args ...<span style="color:#00f">interface</span>{})
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#06287e">Debug</span>(ctx context.Context, format <span style="color:#902000">string</span>, args <span style="color:#666">...</span><span style="color:#007020;font-weight:bold">interface</span>{})
+<span style="color:#06287e">Info</span>(ctx context.Context, format <span style="color:#902000">string</span>, args <span style="color:#666">...</span><span style="color:#007020;font-weight:bold">interface</span>{})
 </code></pre></div><p>Meaning that every log entry have a context&hellip;</p>
 <p>Internally just before we send the log to the implementing library we <a href="https://github.com/go-masonry/mortar/blob/master/logger/context_logger.go#L82">iterate</a> on every provided <code>ContextExtractor</code> and add all the extracted key-&gt;value pairs to the log entry.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> (c *contextAwareLogEntry) enrich(ctx context.Context) (logger log.Fields) {
-	<span style="color:#00f">defer</span> <span style="color:#00f">func</span>() {
-		<span style="color:#00f">if</span> r := recover(); r != <span style="color:#00f">nil</span> {
-			c.innerLogger.WithField(<span style="color:#a31515">&#34;__panic__&#34;</span>, r).Error(ctx, <span style="color:#a31515">&#34;one of the context extractors panicked&#34;</span>)
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> (c <span style="color:#666">*</span>contextAwareLogEntry) <span style="color:#06287e">enrich</span>(ctx context.Context) (logger log.Fields) {
+	<span style="color:#007020;font-weight:bold">defer</span> <span style="color:#007020;font-weight:bold">func</span>() {
+		<span style="color:#007020;font-weight:bold">if</span> r <span style="color:#666">:=</span> <span style="color:#007020">recover</span>(); r <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+			c.innerLogger.<span style="color:#06287e">WithField</span>(<span style="color:#4070a0">&#34;__panic__&#34;</span>, r).<span style="color:#06287e">Error</span>(ctx, <span style="color:#4070a0">&#34;one of the context extractors panicked&#34;</span>)
 			logger = c.innerLogger
 		}
 	}()
 	logger = c.innerLogger
-	<span style="color:#00f">for</span> _, extractor := <span style="color:#00f">range</span> c.contextExtractors {
-		<span style="color:#00f">for</span> k, v := <span style="color:#00f">range</span> extractor(ctx) {
-			logger = logger.WithField(k, v)
+	<span style="color:#007020;font-weight:bold">for</span> _, extractor <span style="color:#666">:=</span> <span style="color:#007020;font-weight:bold">range</span> c.contextExtractors {
+		<span style="color:#007020;font-weight:bold">for</span> k, v <span style="color:#666">:=</span> <span style="color:#007020;font-weight:bold">range</span> <span style="color:#06287e">extractor</span>(ctx) {
+			logger = logger.<span style="color:#06287e">WithField</span>(k, v)
 		}
 	}
-	<span style="color:#00f">return</span>
+	<span style="color:#007020;font-weight:bold">return</span>
 }
 </code></pre></div><p>One of such <code>ContextExtractor</code> is provided by the <a href="https://github.com/go-masonry/bjaeger/blob/master/utils.go#L37">bjaeger</a> wrapper.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> extractFromSpanContext(ctx jaeger.SpanContext) <span style="color:#00f">map</span>[<span style="color:#2b91af">string</span>]<span style="color:#00f">interface</span>{} {
-	<span style="color:#00f">var</span> output = make(<span style="color:#00f">map</span>[<span style="color:#2b91af">string</span>]<span style="color:#00f">interface</span>{}, 4)
-	output[SpanIDKey] = ctx.SpanID().String()
-	output[ParentSpanIDKey] = ctx.ParentID().String()
-	output[SampledKey] = ctx.IsSampled()
-	<span style="color:#00f">if</span> traceID := ctx.TraceID(); traceID.IsValid() {
-		output[TraceIDKey] = traceID.String()
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">extractFromSpanContext</span>(ctx jaeger.SpanContext) <span style="color:#007020;font-weight:bold">map</span>[<span style="color:#902000">string</span>]<span style="color:#007020;font-weight:bold">interface</span>{} {
+	<span style="color:#007020;font-weight:bold">var</span> output = <span style="color:#007020">make</span>(<span style="color:#007020;font-weight:bold">map</span>[<span style="color:#902000">string</span>]<span style="color:#007020;font-weight:bold">interface</span>{}, <span style="color:#40a070">4</span>)
+	output[SpanIDKey] = ctx.<span style="color:#06287e">SpanID</span>().<span style="color:#06287e">String</span>()
+	output[ParentSpanIDKey] = ctx.<span style="color:#06287e">ParentID</span>().<span style="color:#06287e">String</span>()
+	output[SampledKey] = ctx.<span style="color:#06287e">IsSampled</span>()
+	<span style="color:#007020;font-weight:bold">if</span> traceID <span style="color:#666">:=</span> ctx.<span style="color:#06287e">TraceID</span>(); traceID.<span style="color:#06287e">IsValid</span>() {
+		output[TraceIDKey] = traceID.<span style="color:#06287e">String</span>()
 	}
-	<span style="color:#00f">return</span> output
+	<span style="color:#007020;font-weight:bold">return</span> output
 }
 </code></pre></div><p>If there is a Trace Span within the Context we will include it&rsquo;s information in the log entry.</p>
 
@@ -450,6 +555,7 @@ Info(ctx context.Context, format <span style="color:#2b91af">string</span>, args
             </div>
             <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
 	</div>
+	
 	
 
       </section>

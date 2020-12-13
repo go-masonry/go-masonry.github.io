@@ -4,7 +4,7 @@
 <html>
   <head>
     <title>
-	Middleware :: Mortar Documentation
+	Dependency Pattern :: Mortar Documentation
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -13,7 +13,7 @@
 
 
 
-<title>Middleware :: Mortar Documentation</title>
+<title>Dependency Pattern :: Mortar Documentation</title>
 
 <link rel="shortcut icon" href='/images/favicon.png' type="image/x-icon" />
 
@@ -50,7 +50,7 @@
     
   </head>
 
-  <body data-url="/middleware/"
+  <body data-url="/fx/pattern/"
 
   class="">
 
@@ -215,14 +215,15 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item haschildren
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item parent haschildren
         item_level_$level
         ">
 
       
       
       
-      <i class="fas fa-chevron-right ddexp"></i>
+      
+          <i class="fas fa-chevron-down ddexp"></i>
         
       
           <a href="/fx/">Dependency Injection</a>
@@ -230,7 +231,7 @@
         <ul>
               
 
-    <li data-nav-id="https://go-masonry.github.io/fx/pattern/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/fx/pattern/" class="dd-item parent active
         item_level_$level
         ">
 
@@ -277,15 +278,14 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/middleware/" class="dd-item parent active haschildren
+    <li data-nav-id="https://go-masonry.github.io/middleware/" class="dd-item haschildren
         item_level_$level
         ">
 
       
       
       
-      
-          <i class="fas fa-chevron-down ddexp"></i>
+      <i class="fas fa-chevron-right ddexp"></i>
         
       
           <a href="/middleware/">Middleware</a>
@@ -382,6 +382,9 @@
         
   
   	
+		
+  
+  	
 	<li >
       <a class="text-link" href="https://go-masonry.github.io/">
         Home
@@ -389,9 +392,17 @@
     </li>
 	
   
+    <li class="">
+      <a class="text-link" href="/fx/">
+        Dependency Injection
+      </a>
+    </li>
+	
+  	
+  
     <li class="active">
       
-        Middleware
+        Dependency Pattern
       
     </li>
 
@@ -412,7 +423,7 @@
 		
 
 		
-			<h1>Middleware</h1>
+			<h1>Dependency Pattern</h1>
         
 
 		
@@ -434,7 +445,9 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#other-types-of-middleware">Other types of Middleware</a></li>
+        <li><a href="#preparation">Preparation</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#tests">Tests</a></li>
       </ul>
     </li>
   </ul>
@@ -449,59 +462,88 @@
 
 
 	<div class="content">
-	    <p>It&rsquo;s hard to define Middleware, but in Mortar context you can think of it as <strong>Proxy/Interceptors</strong>.
-Some of them are bundled as part of the libraries Mortar uses, others defined by Mortar.</p>
-<ul>
+	    <p>We are using this pattern when creating a new <code>Uber-FX</code> dependency, it makes it easy adding new external dependencies later when your application evolves.
+To explain this better we will do this with a <code>Notifier</code> example.</p>
+<h3 ref="preparation" >Preparation</h3><a class="anchor" id="preparation"></a>
+<ol>
 <li>
-<p>gRPC package already has a way to register different Interceptors
-for <a href="https://github.com/grpc/grpc-go/blob/master/interceptor.go#L43">Client</a>
-and <a href="https://github.com/grpc/grpc-go/blob/master/interceptor.go#L84">Server</a>.
-Mortar already comes with some.</p>
-<ul>
-<li>Server Interceptors
-<ul>
-<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/server/logger.go#L23">Logger</a> <code>UnaryServerInterceptor</code>, making it easier to log gRPC request and response.</li>
-<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/server/monitor.go#L30">Monitoring</a> <code>UnaryServerInterceptor</code>, this one can create automatic Histogram/Timer metric for each gRPC method.</li>
-<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/trace/server.go#L13">Tracing</a> <code>UnaryServerInterceptor</code>, Injects or Uses tracing information.</li>
-</ul>
-</li>
-<li>Client Interceptors
-<ul>
-<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/trace/client.go#L18">Tracing</a> <code>UnaryClientInterceptor</code>, creates a Client span and passes Tracing Information to the next hop.</li>
-<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/client/headers.go#L23">In-&gt;Out</a> <code>UnaryClientInterceptor</code>, this one can be used to copy specific headers from <code>grpc.Incoming</code> to <code>grpc.Outgoing</code></li>
-</ul>
-</li>
-</ul>
+<p>Define our <code>Notifier</code> Interface.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">type</span> Notifier <span style="color:#007020;font-weight:bold">interface</span>{
+    <span style="color:#06287e">Alert</span>(ctx context.Context, msg <span style="color:#902000">string</span>)
+}
+</code></pre></div></li>
+<li>
+<p>Create a dependency &ldquo;container&rdquo; for all future dependencies of the <code>Notifier</code> implementation and embed <code>fx.In</code> into it.
+This will <em>mark</em> it and will tell <code>Uber-FX</code> to inject all the requested dependencies.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// It&#39;s not public as you can see
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> notifierDeps <span style="color:#007020;font-weight:bold">struct</span> {
+    fx.In
+}
+</code></pre></div></li>
+<li>
+<p>Create an implementation struct.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// Notice again that&#39;s not public
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> notifier <span style="color:#007020;font-weight:bold">struct</span>{
+    deps notifierDeps
+}
+</code></pre></div></li>
+<li>
+<p>Create a Constructor function that will return <code>Notifier</code> implementation as a type.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">CreateNotifier</span>(deps notifierDeps) (Notifier,<span style="color:#902000">error</span>) {
+    <span style="color:#007020;font-weight:bold">return</span> <span style="color:#666">&amp;</span><span style="color:#06287e">notifier</span>(deps:deps), <span style="color:#007020;font-weight:bold">nil</span>
+}
+</code></pre></div></li>
+<li>
+<p>Finally implement it.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> (n <span style="color:#666">*</span>notifier) <span style="color:#06287e">Alert</span>(ctx context.Context, msg <span style="color:#902000">string</span>) {
+    <span style="color:#60a0b0;font-style:italic">// alert someone
+</span><span style="color:#60a0b0;font-style:italic"></span>}
+</code></pre></div></li>
+</ol>
+<h3 ref="usage" >Usage</h3><a class="anchor" id="usage"></a>
+<p>Now suppose you want to log every time you alert someone. All you need to do is</p>
+<ol>
+<li>
+<p>Add a <code>log.Logger</code> dependency to <code>notifierDeps</code> struct.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">type</span> notifierDeps <span style="color:#007020;font-weight:bold">struct</span> {
+    fx.In
+
+    Logger log.Logger
+}
+</code></pre></div></li>
+<li>
+<p>Use it</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> (n <span style="color:#666">*</span>notifier) <span style="color:#06287e">Alert</span>(ctx context.Context, msg <span style="color:#902000">string</span>) {
+    n.deps.Logger.<span style="color:#06287e">WithField</span>(<span style="color:#4070a0">&#34;msg&#34;</span>, msg).<span style="color:#06287e">Debug</span>(ctx, <span style="color:#4070a0">&#34;alerting&#34;</span>)
+    <span style="color:#60a0b0;font-style:italic">// alert someone
+</span><span style="color:#60a0b0;font-style:italic"></span>}
+</code></pre></div></li>
+</ol>
+<h3 ref="tests" >Tests</h3><a class="anchor" id="tests"></a>
+<p>You are happily using <code>Notifier</code> in your application, but what about tests ?
+You know, to test a logic that have <code>Notifier</code> as a dependency. <code>Notifier</code> will probably call an external service which is not available during tests.
+One way to do it is to use <a href="https://github.com/golang/mock">gomock</a></p>
+<ol>
+<li>
+<p>You can add a comment above the <code>Notifier</code> interface</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">//go:generate mockgen -source=notifier.go -destination=mock/notifier_mock.go
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> Notifier <span style="color:#007020;font-weight:bold">interface</span>{
+    <span style="color:#06287e">Alert</span>(ctx context.Context, msg <span style="color:#902000">string</span>)
+}
+</code></pre></div></li>
+<li>
+<p>Execute <code>go generate ./...</code> and it will generate all the mocks in your application.</p>
 </li>
 <li>
-<p>HTTP interceptors</p>
-<ul>
-<li>Server HTTP Middleware
+<p>Use the generated mock in your tests.
 
 
-<div class="notices secondary">
-	<p>There are no <code>http.Handler</code> Interceptors bundled with Mortar. It&rsquo;s better to use the gRPC layer for that, but you can always add your own.</p>
-</div>
+<div class="alert warning" role="alert">Remember not to call a real Notifier Constructor</div>
+</p>
 </li>
-<li>Client
-
-
-<div class="notices success">
-	<p>Mortar introduces a way to add interceptors to <code>http.Client</code>, <a href="https://github.com/go-masonry/mortar/blob/master/interfaces/http/client/interfaces.go#L21">here</a> you can see how it&rsquo;s defined.</p>
-</div>
-
-<ul>
-<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/trace/client.go#L44">Tracing</a> <code>HTTPClientInterceptor</code>, similar to the gRPC one, but for HTTP.</li>
-<li>In Workshop Demo there is a special <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/controllers/workshop_test.go#L164">TEST</a> Interceptor that returns a custom response.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h3 ref="other-types-of-middleware" >Other types of Middleware</h3><a class="anchor" id="other-types-of-middleware"></a>
-<p>Network Interceptors are not the only ones you can use in Mortar.
-There are other types of Middleware.</p>
-<p>They rely on <code>context.Context</code> passed to most methods, read <a href="/middleware/context">here</a> about that.</p>
+</ol>
+<p>Mortar includes mocks of all of it Interfaces in their respective directories, for example a <a href="https://github.com/go-masonry/mortar/tree/master/interfaces/log/mock">Logger</a> mock.</p>
+<p>You can find several test examples <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/controllers/workshop_test.go">here</a>.</p>
 
 		</div>
 
@@ -512,10 +554,10 @@ There are other types of Middleware.</p>
 
 	 
 	<div class="chevrons">
-		<a class="next" href="/middleware/context/" title="Context" style="margin-right: 0px;">
+		<a class="next" href="/fx/groups/" title="Groups" style="margin-right: 0px;">
             <div>
                 <p>Next page</p>
-                <label>Context</label>
+                <label>Groups</label>
             </div>
             <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
 	</div>
@@ -540,14 +582,16 @@ There are other types of Middleware.</p>
     <label><i class="fas fa-align-right"></i>&nbsp;&nbsp;What&#39;s on this page</label>
     <nav>
         <ul >
-            <li><a href="/middleware/">Middleware</a></li>
+            <li><a href="/fx/pattern/">Dependency Pattern</a></li>
         </ul>
     </nav>
     <nav id="TableOfContents">
   <ul>
     <li>
       <ul>
-        <li><a href="#other-types-of-middleware">Other types of Middleware</a></li>
+        <li><a href="#preparation">Preparation</a></li>
+        <li><a href="#usage">Usage</a></li>
+        <li><a href="#tests">Tests</a></li>
       </ul>
     </li>
   </ul>
@@ -569,7 +613,7 @@ There are other types of Middleware.</p>
 			
 		      <li>
 		          <i class='fas fa-calendar'></i>
-		          Last update on 06 December 2020
+		          Last update on 05 December 2020
 		      </li>
 		    
 		    

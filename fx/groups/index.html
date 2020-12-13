@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-11T16:06:21 IST">
+<meta name="revised" content="2020-12-13T20:55:54 IST">
 <meta name="description" content="">
 
 
@@ -109,6 +109,11 @@
                   Github
                 </a>
             </li>
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar/discussions"  rel="noopener">
+                  Discussions
+                </a>
+            </li>
     </nav>
 
 </div>
@@ -119,6 +124,20 @@
       
       <aside class="">
         
+<div class="search">
+	<div class="searchbox">
+	  <input data-search-input id="search-by" type="text" placeholder="Type to search...">
+	</div>
+	<script type="text/javascript" src="/vendor/lunr/lunr.min.js"></script>
+	<script type="text/javascript" src="/vendor/auto-complete/auto-complete.js"></script>
+	<link href="/vendor/auto-complete/auto-complete.css" rel="stylesheet">
+	<script type="text/javascript">
+	  
+	      var baseurl = "https:\/\/go-masonry.github.io\/";
+	  
+	</script>
+	<script type="text/javascript" src="/js/search.js"></script>
+</div>
 
 		
 	
@@ -164,7 +183,7 @@
     </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/api/rest/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/api/grpc-gw/" class="dd-item
         item_level_$level
         ">
 
@@ -172,7 +191,22 @@
       
       
       
-          <a href="/api/rest/">REST Handlers</a>
+          <a href="/api/grpc-gw/">gRPC-Gateway</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/handlers/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/handlers/">HTTP Handler/Func</a>
       
         
       
@@ -181,7 +215,7 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item parent active
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item parent haschildren
         item_level_$level
         ">
 
@@ -189,10 +223,58 @@
       
       
       
+          <i class="fas fa-chevron-down ddexp"></i>
         
       
-          <a href="/fx/">Uber-FX</a>
+          <a href="/fx/">Dependency Injection</a>
       
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/pattern/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/fx/pattern/">Dependency Pattern</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/groups/" class="dd-item parent active
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/fx/groups/">Groups</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/tests/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/fx/tests/">Tests</a>
+      
+        
+      
+    </li>
+        </ul>
     </li>
     
 
@@ -210,9 +292,23 @@
       
         <ul>
               
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/context/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/context/">Context</a>
+      
+        
+      
+    </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item haschildren
         item_level_$level
         ">
 
@@ -221,9 +317,26 @@
       
       
           <a href="/middleware/telemetry/">Telemetry</a>
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/logging/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/logging/">Logging</a>
       
         
       
+    </li>
+        </ul>
     </li>
         </ul>
     </li>
@@ -261,6 +374,7 @@
       <section class="page ">
       
 	
+		
     
     
     <nav id="ariane" aria-label="breadcrumb">
@@ -280,7 +394,7 @@
   
     <li class="">
       <a class="text-link" href="/fx/">
-        Uber-FX
+        Dependency Injection
       </a>
     </li>
 	
@@ -309,31 +423,13 @@
 		
 
 		
-			<h1>Uber-FX<span>Groups</span></h1>
+			<h1>Groups</h1>
         
 
-			
-			
+		
+										
 		
 
-		
-				<nav class="subpages">
-	            		
-	        			
-	            	<li >
-	            		<a title="$pagetitle" href="/fx/dependency/">Dependency Pattern</a>
-	            	</li>
-	            		
-	        			
-	            	<li class="active">
-	            		<a title="$pagetitle" href="/fx/groups/">Groups</a>
-	            	</li>
-	            		
-	        			
-	            	<li >
-	            		<a title="$pagetitle" href="/fx/tests/">Tests</a>
-	            	</li>
-	        	</nav> 
 		
 	
 
@@ -371,11 +467,11 @@ multiple values of the same type. This make it easier to influence/configure dif
 
 
 <div class="card "><div class="card-header primary">Internal HTTP Handlers</div><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#008000">// InternalHTTPHandlers - Internal Http Handlers group. Mortar comes with several internal handlers, you can add yours.
-</span><span style="color:#008000"></span>InternalHTTPHandlers = partial.FxGroupInternalHTTPHandlers
+    <p class="card-text"><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// InternalHTTPHandlers - Internal Http Handlers group. Mortar comes with several internal handlers, you can add yours.
+</span><span style="color:#60a0b0;font-style:italic"></span>InternalHTTPHandlers = partial.FxGroupInternalHTTPHandlers
 
-<span style="color:#008000">//InternalHTTPHandlerFunctions - Internal Http Handler Functions group. Similar toInternalHttpHandlers but for functions
-</span><span style="color:#008000"></span>InternalHTTPHandlerFunctions = partial.FxGroupInternalHTTPHandlerFunctions
+<span style="color:#60a0b0;font-style:italic">//InternalHTTPHandlerFunctions - Internal Http Handler Functions group. Similar toInternalHttpHandlers but for functions
+</span><span style="color:#60a0b0;font-style:italic"></span>InternalHTTPHandlerFunctions = partial.FxGroupInternalHTTPHandlerFunctions
 </code></pre></div></p>
   </div></div>
 
@@ -390,12 +486,12 @@ multiple values of the same type. This make it easier to influence/configure dif
 <ol>
 <li>
 <p>Let&rsquo;s start by defining a Constructor that will return <code>http.HandlerFunc</code></p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> (s *selfHandlerDeps) BuildInfo() http.HandlerFunc {
-  <span style="color:#00f">return</span> <span style="color:#00f">func</span>(w http.ResponseWriter, req *http.Request) {
-  information := mortar.GetBuildInformation(<span style="color:#00f">true</span>) <span style="color:#008000">// using true here will insert a default value if there is none
-</span><span style="color:#008000"></span>  <span style="color:#00f">if</span> err := json.NewEncoder(w).Encode(information); err != <span style="color:#00f">nil</span> {
-    w.WriteHeader(http.StatusInternalServerError)
-    s.Logger.WithError(err).Warn(<span style="color:#00f">nil</span>, <span style="color:#a31515">&#34;failed to serve build info&#34;</span>)
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> (s <span style="color:#666">*</span>selfHandlerDeps) <span style="color:#06287e">BuildInfo</span>() http.HandlerFunc {
+  <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">func</span>(w http.ResponseWriter, req <span style="color:#666">*</span>http.Request) {
+  information <span style="color:#666">:=</span> mortar.<span style="color:#06287e">GetBuildInformation</span>(<span style="color:#007020;font-weight:bold">true</span>) <span style="color:#60a0b0;font-style:italic">// using true here will insert a default value if there is none
+</span><span style="color:#60a0b0;font-style:italic"></span>  <span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">:=</span> json.<span style="color:#06287e">NewEncoder</span>(w).<span style="color:#06287e">Encode</span>(information); err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+    w.<span style="color:#06287e">WriteHeader</span>(http.StatusInternalServerError)
+    s.Logger.<span style="color:#06287e">WithError</span>(err).<span style="color:#06287e">Warn</span>(<span style="color:#007020;font-weight:bold">nil</span>, <span style="color:#4070a0">&#34;failed to serve build info&#34;</span>)
   }
   }
 }
@@ -403,20 +499,20 @@ multiple values of the same type. This make it easier to influence/configure dif
 <li>
 <p>Create an <code>HTTPHandlerPatternPair</code>.
 This is the part where you define on what <strong>path</strong> this Handler will be served.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#008000">// SelfHandlers this service information handlers
-</span><span style="color:#008000"></span><span style="color:#00f">func</span> SelfHandlers(deps selfHandlerDeps) []partial.HTTPHandlerPatternPair {
-  <span style="color:#00f">return</span> []partial.HTTPHandlerPatternPair{
-  {Pattern: <span style="color:#a31515">&#34;/self/build&#34;</span>, Handler: deps.BuildInfo()},
-  ...
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// SelfHandlers this service information handlers
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">SelfHandlers</span>(deps selfHandlerDeps) []partial.HTTPHandlerPatternPair {
+  <span style="color:#007020;font-weight:bold">return</span> []partial.HTTPHandlerPatternPair{
+  {Pattern: <span style="color:#4070a0">&#34;/self/build&#34;</span>, Handler: deps.<span style="color:#06287e">BuildInfo</span>()},
+  <span style="color:#666">...</span>
   }
 }
 </code></pre></div></li>
 <li>
 <p><a href="https://github.com/go-masonry/mortar/blob/master/providers/handlers.go#L45">Tell</a> <code>Uber-FX</code> that we want this instance of <code>HTTPHandlerPatternPair</code> added to the <code>groups.InternalHTTPHandlerFunctions</code> group.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">func</span> InternalSelfHandlersFxOption() fx.Option {
-  <span style="color:#00f">return</span> fx.Provide(
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">InternalSelfHandlersFxOption</span>() fx.Option {
+  <span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">Provide</span>(
   fx.Annotated{
-    Group:  groups.InternalHTTPHandlers + <span style="color:#a31515">&#34;,flatten&#34;</span>,
+    Group:  groups.InternalHTTPHandlers <span style="color:#666">+</span> <span style="color:#4070a0">&#34;,flatten&#34;</span>,
     Target: handlers.SelfHandlers,
   })
 }
@@ -424,10 +520,10 @@ This is the part where you define on what <strong>path</strong> this Handler wil
 <li>
 <p>Lastly in your application you need to provide the above <code>InternalSelfHandlersFxOption()</code> option to <code>Uber-FX</code> graph,
 <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/main.go#L37">here</a> you can see how it&rsquo;s done in the demo.</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#00f">return</span> fx.New(
-  ...
-  InternalSelfHandlersFxOption(),
-  ...
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">New</span>(
+  <span style="color:#666">...</span>
+  <span style="color:#06287e">InternalSelfHandlersFxOption</span>(),
+  <span style="color:#666">...</span>
 )
 </code></pre></div></li>
 </ol>
@@ -444,13 +540,14 @@ This is the part where you define on what <strong>path</strong> this Handler wil
 
 	 
 	<div class="chevrons">
-		<a class="next" href="/middleware/" title="Middleware" style="margin-right: 0px;">
+		<a class="next" href="/fx/tests/" title="Tests" style="margin-right: 0px;">
             <div>
                 <p>Next page</p>
-                <label>Middleware</label>
+                <label>Tests</label>
             </div>
             <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
 	</div>
+	
 	
 
       </section>

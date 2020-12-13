@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-11T16:06:21 IST">
+<meta name="revised" content="2020-12-13T20:55:54 IST">
 <meta name="description" content="">
 
 
@@ -52,7 +52,7 @@
 
   <body data-url="/mortar/config/"
 
-  class="">
+  class="hidenextpage ">
 
 <style type="text/css">
   #debug{
@@ -109,6 +109,11 @@
                   Github
                 </a>
             </li>
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar/discussions"  rel="noopener">
+                  Discussions
+                </a>
+            </li>
     </nav>
 
 </div>
@@ -119,6 +124,20 @@
       
       <aside class="">
         
+<div class="search">
+	<div class="searchbox">
+	  <input data-search-input id="search-by" type="text" placeholder="Type to search...">
+	</div>
+	<script type="text/javascript" src="/vendor/lunr/lunr.min.js"></script>
+	<script type="text/javascript" src="/vendor/auto-complete/auto-complete.js"></script>
+	<link href="/vendor/auto-complete/auto-complete.css" rel="stylesheet">
+	<script type="text/javascript">
+	  
+	      var baseurl = "https:\/\/go-masonry.github.io\/";
+	  
+	</script>
+	<script type="text/javascript" src="/js/search.js"></script>
+</div>
 
 		
 	
@@ -164,7 +183,7 @@
     </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/api/rest/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/api/grpc-gw/" class="dd-item
         item_level_$level
         ">
 
@@ -172,7 +191,22 @@
       
       
       
-          <a href="/api/rest/">REST Handlers</a>
+          <a href="/api/grpc-gw/">gRPC-Gateway</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/handlers/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/handlers/">HTTP Handler/Func</a>
       
         
       
@@ -181,7 +215,22 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+          <a href="/fx/">Dependency Injection</a>
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/pattern/" class="dd-item
         item_level_$level
         ">
 
@@ -189,10 +238,42 @@
       
       
       
+          <a href="/fx/pattern/">Dependency Pattern</a>
+      
         
       
-          <a href="/fx/">Uber-FX</a>
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/groups/" class="dd-item
+        item_level_$level
+        ">
+
       
+      
+      
+      
+          <a href="/fx/groups/">Groups</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/tests/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/fx/tests/">Tests</a>
+      
+        
+      
+    </li>
+        </ul>
     </li>
     
 
@@ -210,9 +291,23 @@
       
         <ul>
               
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/context/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/context/">Context</a>
+      
+        
+      
+    </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item haschildren
         item_level_$level
         ">
 
@@ -221,9 +316,26 @@
       
       
           <a href="/middleware/telemetry/">Telemetry</a>
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/logging/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/logging/">Logging</a>
       
         
       
+    </li>
+        </ul>
     </li>
         </ul>
     </li>
@@ -380,18 +492,18 @@ To read them Mortar expects a dedicated Configuration key called <strong>mortar<
 
 
 <div class="card "><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-yaml" data-lang="yaml">mortar:
-  name: <span style="color:#a31515">&#34;tutorial&#34;</span>
-  server:
-    grpc:
-      port: 5380
-    rest:
-      external:
-        port: 5381
-      internal:
-        port: 5382
-...
-</code></pre></div></p>
+    <p class="card-text"><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#062873;font-weight:bold">mortar</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">name</span>:<span style="color:#bbb"> </span><span style="color:#4070a0">&#34;tutorial&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">server</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">grpc</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#40a070">5380</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">rest</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">external</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#062873;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#40a070">5381</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">internal</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#062873;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#40a070">5382</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#0e84b5;font-weight:bold">...</span><span style="color:#bbb">
+</span></code></pre></div></p>
   </div></div>
 
 <p>Every project should have a configuration file, and your is no exception. You can put all your external configuration values
@@ -430,11 +542,11 @@ By default, there is a replacer that will replace <code>_</code> delimiter to <c
 
 
 <div class="card "><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-yaml" data-lang="yaml">mortar:
-  server:
-    grpc:
-      port: 5380
-</code></pre></div></p>
+    <p class="card-text"><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#062873;font-weight:bold">mortar</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">server</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">grpc</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#40a070">5380</span><span style="color:#bbb">
+</span></code></pre></div></p>
   </div></div>
 
 Let&rsquo;s say you want to change port value from 5380 to 7777, you can change the file itself. However, you can also override it.
@@ -443,7 +555,7 @@ Viper allows you to override configuration values with a matching Environment Va
 
 
 <div class="card "><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-shell" data-lang="shell">export MORTAR_SERVER_GRPC_PORT=<span style="color:#a31515">&#34;7777&#34;</span>
+    <p class="card-text"><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#007020">export</span> <span style="color:#bb60d5">MORTAR_SERVER_GRPC_PORT</span><span style="color:#666">=</span><span style="color:#4070a0">&#34;7777&#34;</span>
 </code></pre></div></p>
   </div></div>
 
@@ -470,15 +582,6 @@ When you want to read gRPC server port value in your code you should use this as
 
 
 
-	 
-	<div class="chevrons">
-		<a class="next" href="/middleware/telemetry/" title="Telemetry" style="margin-right: 0px;">
-            <div>
-                <p>Next page</p>
-                <label>Telemetry</label>
-            </div>
-            <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
-	</div>
 	
 
       </section>

@@ -53,17 +53,12 @@
   </url>
   
   <url>
-    <loc>https://go-masonry.github.io/api/rest/grpc-gw/</loc>
+    <loc>https://go-masonry.github.io/api/grpc-gw/</loc>
     <lastmod>2020-12-09T10:41:15+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://go-masonry.github.io/api/rest/handlers/</loc>
-    <lastmod>2020-12-09T10:41:15+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/api/rest/</loc>
+    <loc>https://go-masonry.github.io/api/handlers/</loc>
     <lastmod>2020-12-09T10:41:15+02:00</lastmod>
   </url>
   
@@ -83,7 +78,7 @@
   </url>
   
   <url>
-    <loc>https://go-masonry.github.io/fx/dependency/</loc>
+    <loc>https://go-masonry.github.io/fx/pattern/</loc>
     <lastmod>2020-12-05T13:18:51+02:00</lastmod>
   </url>
   

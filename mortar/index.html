@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-11T16:06:21 IST">
+<meta name="revised" content="2020-12-13T20:55:54 IST">
 <meta name="description" content="">
 
 
@@ -52,7 +52,7 @@
 
   <body data-url="/mortar/"
 
-  class="">
+  class="hidetoc hidenextpage ">
 
 <style type="text/css">
   #debug{
@@ -109,6 +109,11 @@
                   Github
                 </a>
             </li>
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar/discussions"  rel="noopener">
+                  Discussions
+                </a>
+            </li>
     </nav>
 
 </div>
@@ -119,6 +124,20 @@
       
       <aside class="">
         
+<div class="search">
+	<div class="searchbox">
+	  <input data-search-input id="search-by" type="text" placeholder="Type to search...">
+	</div>
+	<script type="text/javascript" src="/vendor/lunr/lunr.min.js"></script>
+	<script type="text/javascript" src="/vendor/auto-complete/auto-complete.js"></script>
+	<link href="/vendor/auto-complete/auto-complete.css" rel="stylesheet">
+	<script type="text/javascript">
+	  
+	      var baseurl = "https:\/\/go-masonry.github.io\/";
+	  
+	</script>
+	<script type="text/javascript" src="/js/search.js"></script>
+</div>
 
 		
 	
@@ -164,7 +183,7 @@
     </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/api/rest/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/api/grpc-gw/" class="dd-item
         item_level_$level
         ">
 
@@ -172,7 +191,22 @@
       
       
       
-          <a href="/api/rest/">REST Handlers</a>
+          <a href="/api/grpc-gw/">gRPC-Gateway</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/handlers/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/handlers/">HTTP Handler/Func</a>
       
         
       
@@ -181,7 +215,22 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+          <a href="/fx/">Dependency Injection</a>
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/pattern/" class="dd-item
         item_level_$level
         ">
 
@@ -189,10 +238,42 @@
       
       
       
+          <a href="/fx/pattern/">Dependency Pattern</a>
+      
         
       
-          <a href="/fx/">Uber-FX</a>
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/groups/" class="dd-item
+        item_level_$level
+        ">
+
       
+      
+      
+      
+          <a href="/fx/groups/">Groups</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/tests/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/fx/tests/">Tests</a>
+      
+        
+      
+    </li>
+        </ul>
     </li>
     
 
@@ -210,9 +291,23 @@
       
         <ul>
               
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/context/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/context/">Context</a>
+      
+        
+      
+    </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item haschildren
         item_level_$level
         ">
 
@@ -221,9 +316,26 @@
       
       
           <a href="/middleware/telemetry/">Telemetry</a>
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/logging/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/logging/">Logging</a>
       
         
       
+    </li>
+        </ul>
     </li>
         </ul>
     </li>
@@ -334,15 +446,6 @@
 
 	
 	
-	<div class="jump-to-section">
-		<span onclick="$h = $(this);$h.next('nav').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('nav').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
-  			<span class="fas fa-align-right"></span>
-  			Jump to Section
-  			<i style=";" class="fas fa-chevron-right"></i>
-		</span>
-		<nav id="TableOfContents"></nav>
-	</div>
-	
 	
 
 
@@ -353,6 +456,33 @@
 	<div class="content">
 	    <p>Mortar comes with different design decisions, some of them good for you and some not. Remember you can always replace everything.</p>
 
+
+
+
+<ul class="children children-card">
+
+<span><card>
+		<a href="/mortar/bricks/" >Bricks</a></card>
+</span>
+
+<span><card>
+		<a href="/mortar/builders/" >Builder Pattern</a></card>
+</span>
+
+<span><card>
+		<a href="/mortar/config/" >Configuration Map</a></card>
+</span>
+
+<span><card>
+		<a href="/mortar/listeners/" >Listeners</a></card>
+</span>
+</ul>
+
+
+
+
+
+
 		</div>
 
 
@@ -360,68 +490,12 @@
 
 
 
-	 
-	<div class="chevrons">
-		<a class="next" href="/api/" title="APIs" style="margin-right: 0px;">
-            <div>
-                <p>Next page</p>
-                <label>APIs</label>
-            </div>
-            <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
-	</div>
 	
 	
 
       </section>
 
       
-      
-      <section class="right-menu ">
-      
-	
-
-		
-	
-			
-		
-	    	
-	  	
-	<div class="TableOfContents">
-    <label><i class="fas fa-align-right"></i>&nbsp;&nbsp;What&#39;s on this page</label>
-    <nav>
-        <ul >
-            <li><a href="/mortar/">Mortar Design</a></li>
-        </ul>
-    </nav>
-    <nav id="TableOfContents"></nav>
-</div>
-
-		
-	
-			
-		
-	    	
-	  	
-	<div class="Actions">
-	<nav>
-		<ul>
-				
-		    
-		    
-			
-		      <li>
-		          <i class='fas fa-calendar'></i>
-		          Last update on 10 December 2020
-		      </li>
-		    
-		    
-
-    	</ul>
-	</nav>
-    
-</div>
-
-      </section>
       
     </article>
     

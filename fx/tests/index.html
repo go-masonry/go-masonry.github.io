@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-11T16:06:21 IST">
+<meta name="revised" content="2020-12-13T20:55:54 IST">
 <meta name="description" content="">
 
 
@@ -109,6 +109,11 @@
                   Github
                 </a>
             </li>
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar/discussions"  rel="noopener">
+                  Discussions
+                </a>
+            </li>
     </nav>
 
 </div>
@@ -119,6 +124,20 @@
       
       <aside class="">
         
+<div class="search">
+	<div class="searchbox">
+	  <input data-search-input id="search-by" type="text" placeholder="Type to search...">
+	</div>
+	<script type="text/javascript" src="/vendor/lunr/lunr.min.js"></script>
+	<script type="text/javascript" src="/vendor/auto-complete/auto-complete.js"></script>
+	<link href="/vendor/auto-complete/auto-complete.css" rel="stylesheet">
+	<script type="text/javascript">
+	  
+	      var baseurl = "https:\/\/go-masonry.github.io\/";
+	  
+	</script>
+	<script type="text/javascript" src="/js/search.js"></script>
+</div>
 
 		
 	
@@ -164,7 +183,7 @@
     </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/api/rest/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/api/grpc-gw/" class="dd-item
         item_level_$level
         ">
 
@@ -172,7 +191,22 @@
       
       
       
-          <a href="/api/rest/">REST Handlers</a>
+          <a href="/api/grpc-gw/">gRPC-Gateway</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/handlers/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/handlers/">HTTP Handler/Func</a>
       
         
       
@@ -181,7 +215,7 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item parent active
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item parent haschildren
         item_level_$level
         ">
 
@@ -189,10 +223,58 @@
       
       
       
+          <i class="fas fa-chevron-down ddexp"></i>
         
       
-          <a href="/fx/">Uber-FX</a>
+          <a href="/fx/">Dependency Injection</a>
       
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/pattern/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/fx/pattern/">Dependency Pattern</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/groups/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/fx/groups/">Groups</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/tests/" class="dd-item parent active
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/fx/tests/">Tests</a>
+      
+        
+      
+    </li>
+        </ul>
     </li>
     
 
@@ -210,9 +292,23 @@
       
         <ul>
               
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/context/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/context/">Context</a>
+      
+        
+      
+    </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item haschildren
         item_level_$level
         ">
 
@@ -221,9 +317,26 @@
       
       
           <a href="/middleware/telemetry/">Telemetry</a>
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/logging/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/logging/">Logging</a>
       
         
       
+    </li>
+        </ul>
     </li>
         </ul>
     </li>
@@ -261,6 +374,7 @@
       <section class="page ">
       
 	
+		
     
     
     <nav id="ariane" aria-label="breadcrumb">
@@ -280,7 +394,7 @@
   
     <li class="">
       <a class="text-link" href="/fx/">
-        Uber-FX
+        Dependency Injection
       </a>
     </li>
 	
@@ -309,31 +423,13 @@
 		
 
 		
-			<h1>Uber-FX<span>Tests</span></h1>
+			<h1>Tests</h1>
         
 
-			
-			
+		
+										
 		
 
-		
-				<nav class="subpages">
-	            		
-	        			
-	            	<li >
-	            		<a title="$pagetitle" href="/fx/dependency/">Dependency Pattern</a>
-	            	</li>
-	            		
-	        			
-	            	<li >
-	            		<a title="$pagetitle" href="/fx/groups/">Groups</a>
-	            	</li>
-	            		
-	        			
-	            	<li class="active">
-	            		<a title="$pagetitle" href="/fx/tests/">Tests</a>
-	            	</li>
-	        	</nav> 
 		
 	
 
@@ -371,16 +467,16 @@
 
 
 <div class="card "><div class="card-header primary">Official Uber-FX documentation</div><div class="card-body">
-    <p class="card-text"><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:2;-o-tab-size:2;tab-size:2"><code class="language-golang" data-lang="golang"><span style="color:#008000">// Functions may also return multiple objects. For example, we could combine
-</span><span style="color:#008000">// NewHandler and NewLogger into a single function:
-</span><span style="color:#008000">//
-</span><span style="color:#008000">//   func NewHandlerAndLogger() (*log.Logger, http.Handler, error)
-</span><span style="color:#008000">//
-</span><span style="color:#008000">// Fx also understands this idiom, and would treat NewHandlerAndLogger as the
-</span><span style="color:#008000">// constructor for both the *log.Logger and http.Handler types. Just like
-</span><span style="color:#008000">// constructors for a single type, NewHandlerAndLogger would be called at most
-</span><span style="color:#008000">// once, and both the handler and the logger would be cached and reused as
-</span><span style="color:#008000">// necessary.
+    <p class="card-text"><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// Functions may also return multiple objects. For example, we could combine
+</span><span style="color:#60a0b0;font-style:italic">// NewHandler and NewLogger into a single function:
+</span><span style="color:#60a0b0;font-style:italic">//
+</span><span style="color:#60a0b0;font-style:italic">//   func NewHandlerAndLogger() (*log.Logger, http.Handler, error)
+</span><span style="color:#60a0b0;font-style:italic">//
+</span><span style="color:#60a0b0;font-style:italic">// Fx also understands this idiom, and would treat NewHandlerAndLogger as the
+</span><span style="color:#60a0b0;font-style:italic">// constructor for both the *log.Logger and http.Handler types. Just like
+</span><span style="color:#60a0b0;font-style:italic">// constructors for a single type, NewHandlerAndLogger would be called at most
+</span><span style="color:#60a0b0;font-style:italic">// once, and both the handler and the logger would be cached and reused as
+</span><span style="color:#60a0b0;font-style:italic">// necessary.
 </span></code></pre></div></p>
   </div></div>
 
@@ -408,6 +504,7 @@ If your Constructor function will return several types, you can&rsquo;t really <
             </div>
             <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
 	</div>
+	
 	
 
       </section>

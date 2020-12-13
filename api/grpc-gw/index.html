@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>
+	gRPC-Gateway :: Mortar Documentation
+</title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="revised" content="2020-12-13T20:55:54 IST">
@@ -11,7 +13,7 @@
 
 
 
-<title>Categories :: Mortar Documentation</title>
+<title>gRPC-Gateway :: Mortar Documentation</title>
 
 <link rel="shortcut icon" href='/images/favicon.png' type="image/x-icon" />
 
@@ -48,7 +50,7 @@
     
   </head>
 
-  <body data-url="/categories/"
+  <body data-url="/api/grpc-gw/"
 
   class="">
 
@@ -87,7 +89,9 @@
     </div>
     
 
-    <div>	
+    <div>
+
+		
 	
 			
 		
@@ -133,7 +137,9 @@
 	  
 	</script>
 	<script type="text/javascript" src="/js/search.js"></script>
-</div>	
+</div>
+
+		
 	
 			
 		
@@ -147,14 +153,15 @@
 
 <ul class="menu">
 
-    <li data-nav-id="https://go-masonry.github.io/api/" class="dd-item haschildren
+    <li data-nav-id="https://go-masonry.github.io/api/" class="dd-item parent haschildren
         item_level_$level
         ">
 
       
       
       
-      <i class="fas fa-chevron-right ddexp"></i>
+      
+          <i class="fas fa-chevron-down ddexp"></i>
         
       
           <a href="/api/">APIs</a>
@@ -177,7 +184,7 @@
     </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/api/grpc-gw/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/api/grpc-gw/" class="dd-item parent active
         item_level_$level
         ">
 
@@ -352,7 +359,9 @@
 
 
 
-</ul>	
+</ul>
+
+		
 	
 			
 		
@@ -364,30 +373,163 @@
 
       <section class="page ">
       
-
-
-
-<div class="extra-pagination inner">
-<nav class="pagination" role="navigation">
 	
-	<span class="page-number">Page 1 of 0</span>
+		
+    
+    
+    <nav id="ariane" aria-label="breadcrumb">
+      <ol class="ariane">
+        
+  
+  	
+		
+  
+  	
+	<li >
+      <a class="text-link" href="https://go-masonry.github.io/">
+        Home
+      </a>
+    </li>
 	
+  
+    <li class="">
+      <a class="text-link" href="/api/">
+        APIs
+      </a>
+    </li>
+	
+  	
+  
+    <li class="active">
+      
+        gRPC-Gateway
+      
+    </li>
+
+      </ol>
+    </nav>
+    
+    
+
+    
+		
+        
+		
+		
+		
+		
+		
+		
+		
+
+		
+			<h1>gRPC-Gateway</h1>
+        
+
+		
+										
+		
+
+		
+	
+
+	
+	
+	<div class="jump-to-section">
+		<span onclick="$h = $(this);$h.next('nav').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('nav').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+  			<span class="fas fa-align-right"></span>
+  			Jump to Section
+  			<i style=";" class="fas fa-chevron-right"></i>
+		</span>
+		<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#register-grpc-gateway-handlers">Register <code>grpc-gateway</code> Handlers</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
+	</div>
+	
+	
+
+
+
+
+
+
+	<div class="content">
+	    <p>Mortar comes with a <a href="https://github.com/grpc-ecosystem/grpc-gateway">gRPC-Gateway</a> which is a reverse-proxy that translates a RESTful HTTP API into gRPC.
+We will show how you should register it&rsquo;s handlers after you generate them from the proto files.</p>
+<h3 ref="register-grpc-gateway-handlers" >Register <code>grpc-gateway</code> Handlers</h3><a class="anchor" id="register-grpc-gateway-handlers"></a>
+
+
+<div class="notices primary">
+	<p>Before reading this part get yourself familiar with the gRPC API <a href="/api/grpc">counterpart</a>.</p>
+</div>
+
+<p>If you read the gRPC part, you simply need to add one <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/workshop.go#L49">function</a> to <code>Uber-FX</code> graph.
+This function should return a slice of <a href="https://github.com/go-masonry/mortar/blob/master/interfaces/http/server/interfaces.go#L55">GRPCGatewayGeneratedHandlers</a>.</p>
+<ol>
+<li>
+<p>Register your <code>grpc-gateway</code> generated Handlers
+
+
+<div class="notices warning">
+	<label>Important</label><p>Each handler function must register itself on the provided <code>runtime.ServeMux</code></p>
+</div>
+</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">workshopGRPCGatewayHandlers</span>() []serverInt.GRPCGatewayGeneratedHandlers {
+    <span style="color:#007020;font-weight:bold">return</span> []serverInt.GRPCGatewayGeneratedHandlers{
+        <span style="color:#60a0b0;font-style:italic">// Register workshop REST API
+</span><span style="color:#60a0b0;font-style:italic"></span>        <span style="color:#007020;font-weight:bold">func</span>(mux <span style="color:#666">*</span>runtime.ServeMux, endpoint <span style="color:#902000">string</span>) <span style="color:#902000">error</span> {
+            <span style="color:#007020;font-weight:bold">return</span> workshop.<span style="color:#06287e">RegisterWorkshopHandlerFromEndpoint</span>(context.<span style="color:#06287e">Background</span>(), mux, endpoint, []grpc.DialOption{grpc.<span style="color:#06287e">WithInsecure</span>()})
+        },
+        <span style="color:#60a0b0;font-style:italic">// Any additional gRPC gateway registrations should be called here
+</span><span style="color:#60a0b0;font-style:italic"></span>    }
+}
+</code></pre></div></li>
+<li>
+<p>Now tell <code>Uber-FX</code> about it and make sure it&rsquo;s added to <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/workshop.go#L33">GRPCGatewayGeneratedHandlers</a> group.</p>
+
+
+<div class="notices primary">
+	<p>However, in this case our function doesn&rsquo;t return a single value but an array of them.
+By default <code>Uber-FX</code> will treat it as an Array of Arrays <code>[][]GRPCGatewayGeneratedHandlers</code>.
+Hence we need to <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/workshop.go#L34"><strong>flatten</strong></a> our value.</p>
 
 </div>
 
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// GRPC Gateway Generated Handlers registration
+</span><span style="color:#60a0b0;font-style:italic"></span>fx.<span style="color:#06287e">Provide</span>(fx.Annotated{
+ Group:  groups.GRPCGatewayGeneratedHandlers <span style="color:#666">+</span> <span style="color:#4070a0">&#34;,flatten&#34;</span>, <span style="color:#60a0b0;font-style:italic">// &#34;flatten&#34; does this [][]serverInt.GRPCGatewayGeneratedHandlers -&gt; []serverInt.GRPCGatewayGeneratedHandlers
+</span><span style="color:#60a0b0;font-style:italic"></span> Target: workshopGRPCGatewayHandlers,
+})
+</code></pre></div></li>
+<li>
+<p>Finally you need to add the above <code>fx.Option</code> to <code>Uber-FX</code> graph, as shown <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/main.go#L39">here</a></p>
+</li>
+</ol>
+
+		</div>
 
 
-<div style="margin-bottom:2rem"></div>
 
-<nav class="pagination" role="navigation">
+
+
+
+	 
+	<div class="chevrons">
+		<a class="next" href="/api/handlers/" title="HTTP Handler/Func" style="margin-right: 0px;">
+            <div>
+                <p>Next page</p>
+                <label>HTTP Handler/Func</label>
+            </div>
+            <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
+	</div>
 	
-	<span class="page-number">Page 1 of 0</span>
 	
-</nav>
-
-
-
 
       </section>
 
@@ -395,14 +537,66 @@
       
       <section class="right-menu ">
       
-      
+	
+
+		
+	
+			
+		
+	    	
+	  	
+	<div class="TableOfContents">
+    <label><i class="fas fa-align-right"></i>&nbsp;&nbsp;What&#39;s on this page</label>
+    <nav>
+        <ul >
+            <li><a href="/api/grpc-gw/">gRPC-Gateway</a></li>
+        </ul>
+    </nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#register-grpc-gateway-handlers">Register <code>grpc-gateway</code> Handlers</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+
+		
+	
+			
+		
+	    	
+	  	
+	<div class="Actions">
+	<nav>
+		<ul>
+				
+		    
+		    
+			
+		      <li>
+		          <i class='fas fa-calendar'></i>
+		          Last update on 09 December 2020
+		      </li>
+		    
+		    
+
+    	</ul>
+	</nav>
+    
+</div>
+
       </section>
       
     </article>
     
     
     <footer>
-      	
+      
+
+		
 	
 			
 		

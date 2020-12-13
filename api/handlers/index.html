@@ -4,7 +4,7 @@
 <html>
   <head>
     <title>
-	gRPC :: Mortar Documentation
+	HTTP Handler/Func :: Mortar Documentation
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -13,7 +13,7 @@
 
 
 
-<title>gRPC :: Mortar Documentation</title>
+<title>HTTP Handler/Func :: Mortar Documentation</title>
 
 <link rel="shortcut icon" href='/images/favicon.png' type="image/x-icon" />
 
@@ -50,7 +50,7 @@
     
   </head>
 
-  <body data-url="/api/grpc/"
+  <body data-url="/api/handlers/"
 
   class="">
 
@@ -169,7 +169,7 @@
         <ul>
               
 
-    <li data-nav-id="https://go-masonry.github.io/api/grpc/" class="dd-item parent active
+    <li data-nav-id="https://go-masonry.github.io/api/grpc/" class="dd-item
         item_level_$level
         ">
 
@@ -199,7 +199,7 @@
     </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/api/handlers/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/api/handlers/" class="dd-item parent active
         item_level_$level
         ">
 
@@ -402,7 +402,7 @@
   
     <li class="active">
       
-        gRPC
+        HTTP Handler/Func
       
     </li>
 
@@ -423,7 +423,7 @@
 		
 
 		
-			<h1>gRPC</h1>
+			<h1>HTTP Handler/Func</h1>
         
 
 		
@@ -445,9 +445,8 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#protobuf">Protobuf</a></li>
-        <li><a href="#implementing">Implementing</a></li>
-        <li><a href="#registering">Registering</a></li>
+        <li><a href="#registering-httphandler">Registering <code>http.Handler</code></a></li>
+        <li><a href="#registering-httphandlerfunc">Registering <code>http.HandlerFunc</code></a></li>
       </ul>
     </li>
   </ul>
@@ -462,95 +461,102 @@
 
 
 	<div class="content">
-	    <p>Mortar is mostly about <strong>gRPC (and REST)</strong> web service. We will explain how you should register multiple gRPC/REST APIs.
-To make it easier we will use <a href="https://github.com/go-masonry/mortar-demo/tree/master/workshop">mortar-demo</a> in our example.</p>
-<h3 ref="protobuf" >Protobuf</h3><a class="anchor" id="protobuf"></a>
-<p>Before you implement any gRPC service related code you first need to define the API by writing <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/api/workshop.proto">proto</a> files.
-Once that done, you will <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/Makefile#L14">call</a> <code>protoc</code> and generate your <code>&lt;name&gt;_grpc.pb.go</code>, <code>&lt;name&gt;.pb.go</code> and <code>&lt;name&gt;.pb.gw.go</code> <a href="https://github.com/go-masonry/mortar-demo/tree/master/workshop/api">files</a>.</p>
-<p>Workshop API example we will be using.</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-proto" data-lang="proto"><span style="color:#007020;font-weight:bold">service</span> Workshop {<span style="">
-</span><span style="display:block;width:100%;background-color:#d8d8d8"><span style=""></span>  <span style="color:#007020;font-weight:bold">rpc</span> AcceptCar(Car) <span style="color:#007020;font-weight:bold">returns</span> (google.protobuf.Empty);<span style="">
-</span></span><span style=""></span>  <span style="color:#007020;font-weight:bold">rpc</span> PaintCar(PaintCarRequest) <span style="color:#007020;font-weight:bold">returns</span> (google.protobuf.Empty);<span style="">
-</span><span style=""></span>  <span style="color:#007020;font-weight:bold">rpc</span> RetrieveCar(RetrieveCarRequest) <span style="color:#007020;font-weight:bold">returns</span> (Car);<span style="">
-</span><span style=""></span>  <span style="color:#007020;font-weight:bold">rpc</span> CarPainted(PaintFinishedRequest) <span style="color:#007020;font-weight:bold">returns</span> (google.protobuf.Empty);<span style="">
-</span><span style=""></span>}</code></pre></div>
-<h3 ref="implementing" >Implementing</h3><a class="anchor" id="implementing"></a>
-<p>Once we have our gRPC Server Interfaces generated, we need to implement them.
-In our case we need to implement <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/api/workshop_grpc.pb.go#L75">this</a> generated Interface.</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#60a0b0;font-style:italic">// WorkshopServer is the server API for Workshop service.
-</span><span style="color:#60a0b0;font-style:italic">// All implementations must embed UnimplementedWorkshopServer
-</span><span style="color:#60a0b0;font-style:italic">// for forward compatibility
-</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> WorkshopServer <span style="color:#007020;font-weight:bold">interface</span> {
-<span style="display:block;width:100%;background-color:#d8d8d8"> <span style="color:#06287e">AcceptCar</span>(context.Context, <span style="color:#666">*</span>Car) (<span style="color:#666">*</span>empty.Empty, <span style="color:#902000">error</span>)
-</span> <span style="color:#06287e">PaintCar</span>(context.Context, <span style="color:#666">*</span>PaintCarRequest) (<span style="color:#666">*</span>empty.Empty, <span style="color:#902000">error</span>)
- <span style="color:#06287e">RetrieveCar</span>(context.Context, <span style="color:#666">*</span>RetrieveCarRequest) (<span style="color:#666">*</span>Car, <span style="color:#902000">error</span>)
- <span style="color:#06287e">CarPainted</span>(context.Context, <span style="color:#666">*</span>PaintFinishedRequest) (<span style="color:#666">*</span>empty.Empty, <span style="color:#902000">error</span>)
- <span style="color:#06287e">mustEmbedUnimplementedWorkshopServer</span>()
-}
-</code></pre></div>
-<p>You can see how it&rsquo;s done in the <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/services/workshop.go">app/services/workshop.go</a>.
-Here is one of the methods</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#666">...</span>
-<span style="color:#007020;font-weight:bold">func</span> (w <span style="color:#666">*</span>workshopImpl) <span style="color:#06287e">AcceptCar</span>(ctx context.Context, car <span style="color:#666">*</span>workshop.Car) (<span style="color:#666">*</span>empty.Empty, <span style="color:#902000">error</span>) {
- <span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">:=</span> w.deps.Validations.<span style="color:#06287e">AcceptCar</span>(ctx, car); err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
-  <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">nil</span>, err
- }
- w.deps.Logger.<span style="color:#06287e">WithField</span>(<span style="color:#4070a0">&#34;car&#34;</span>, car).<span style="color:#06287e">Debug</span>(ctx, <span style="color:#4070a0">&#34;accepting car&#34;</span>)
- <span style="color:#007020;font-weight:bold">return</span> w.deps.Controller.<span style="color:#06287e">AcceptCar</span>(ctx, car)
-}
-<span style="color:#666">...</span>
-</code></pre></div>
-<h3 ref="registering" >Registering</h3><a class="anchor" id="registering"></a>
-<p>Once we have the implementation covered we need to register it. There are several steps you need to cover</p>
-<ol>
-<li>
-<p>Create a function that will return <a href="https://github.com/go-masonry/mortar/blob/master/interfaces/http/server/interfaces.go#L39">GRPCServerAPI</a>.
-
-
-<div class="notices warning">
-	<label>Important</label><p>In this function you must register gRPC Implementation on the provided <code>grpc.Server</code></p>
-</div>
-</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">workshopGRPCServiceAPIs</span>(deps workshopServiceDeps) serverInt.GRPCServerAPI {
-     <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">func</span>(srv <span style="color:#666">*</span>grpc.Server) {
-      workshop.<span style="color:#06287e">RegisterWorkshopServer</span>(srv, deps.Workshop)
-      <span style="color:#60a0b0;font-style:italic">// Any additional gRPC Implementations should be called here
-</span><span style="color:#60a0b0;font-style:italic"></span>     }
-    }
-   
-</code></pre></div>
-<p>You can look <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/workshop.go#L42">here</a> to understand how it&rsquo;s done in our workshop example.</p>
-</li>
-<li>
-<p>Next, add it to the <code>groups.GRPCServerAPIs</code> group as shown <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/workshop.go#L25">here</a>.
+	    <p>Although it&rsquo;s very convenient to use gRPC + gRPC-Gateway to serve RESTful API, you sometime want to use prebuilt HTTP Handler/HandlerFunc or similar.</p>
+<p>Mortar provides 2 <code>fx.Group</code> for that. <a href="https://github.com/go-masonry/mortar/blob/master/providers/groups/alias.go#L26">ExternalHTTPHandlers</a> and <a href="https://github.com/go-masonry/mortar/blob/master/providers/groups/alias.go#L29">ExternalHTTPHandlerFunctions</a>, one for <code>http.Handler</code> the other for <code>http.HandlerFunc</code>.</p>
 
 
 <div class="notices info">
 	<p>To better understand Mortar groups read <a href="/fx/groups">here</a></p>
 </div>
-</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">   <span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">Options</span>(
-    <span style="color:#60a0b0;font-style:italic">// GRPC Service APIs registration
-</span><span style="color:#60a0b0;font-style:italic"></span>    fx.<span style="color:#06287e">Provide</span>(fx.Annotated{
-     Group:  groups.GRPCServerAPIs,
-     Target: workshopGRPCServiceAPIs,
-    }),
-   <span style="color:#666">...</span>
-   
-</code></pre></div>
-<p>This way you can register multiple gRPC API implementations and they all will be registered in <a href="https://github.com/go-masonry/mortar/blob/master/constructors/partial/httpserver.go#L89">one place</a>.</p>
-</li>
+
+<h3 ref="registering-httphandler" >Registering <code>http.Handler</code></h3><a class="anchor" id="registering-httphandler"></a>
+<p>To register a new <code>http.Handler</code> you need to define how it&rsquo;s going to be served == <strong>Pattern</strong>.</p>
+<ol>
 <li>
-<p>Now we need to add this option to the <code>Uber-FX</code> graph, as shown <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/main.go#L39">here</a></p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">   <span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">New</span>(
-    <span style="color:#666">...</span>
-    mortar.<span style="color:#06287e">WorkshopAPIsAndOtherDependenciesFxOption</span>(),
-    <span style="color:#666">...</span>
-   )
-   
-</code></pre></div>
-</li>
+<p>Create <a href="https://github.com/go-masonry/mortar/blob/master/providers/types/http.go#L8">HTTPHandlerPatternPair</a></p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">var</span> customHandler http.Handler <span style="color:#666">...</span>
+
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">createHandlerPair</span>() types.HTTPHandlerPatternPair {
+ <span style="color:#007020;font-weight:bold">return</span> types.HTTPHandlerPatternPair{
+     Pattern:<span style="color:#4070a0">&#34;/your/pattern&#34;</span>,
+     Handler: customHandler,
+ }
+}
+</code></pre></div></li>
+<li>
+<p>Add this pair to the <code>ExternalHTTPHandlers</code> group.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">var</span> customHandlerOption = fx.<span style="color:#06287e">Provide</span>(
+    fx.Annotated{
+        Group: groups.ExternalHTTPHandlers,
+        Target: createHandlerPair, <span style="color:#60a0b0;font-style:italic">// function pointer, will be called by Uber-FX
+</span><span style="color:#60a0b0;font-style:italic"></span>    }
+)
+</code></pre></div></li>
+<li>
+<p>All that&rsquo;s left is to register it into the <code>Uber-FX</code> graph</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">New</span>(
+ <span style="color:#666">...</span>
+ customHandlerOption,
+ <span style="color:#666">...</span>
+)
+</code></pre></div></li>
 </ol>
+<h3 ref="registering-httphandlerfunc" >Registering <code>http.HandlerFunc</code></h3><a class="anchor" id="registering-httphandlerfunc"></a>
+<p>Registering <code>http.HandlerFunc</code> is very much similar to <a href="#registering-httphandler">Registering <code>http.Handler</code></a></p>
+<p>Actually you need to follow the exact same guide and replace <strong>Handler</strong> with <strong>HandlerFunc</strong>:</p>
+
+
+
+
+
+
+<div class="tabs"><input type="radio" name="tabs-1" id="tabs-1-0" checked="checked" />
+  <label for="tabs-1-0">Handler</label>
+  <div class="tab"><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">var</span> customHandler http.Handler <span style="color:#666">...</span>
+
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">createHandlerPair</span>() types.HTTPHandlerPatternPair {
+ <span style="color:#007020;font-weight:bold">return</span> types.HTTPHandlerPatternPair{
+     Pattern:<span style="color:#4070a0">&#34;/your/pattern&#34;</span>,
+     Handler: customHandler,
+ }
+}
+
+<span style="color:#007020;font-weight:bold">var</span> customHandlerOption = fx.<span style="color:#06287e">Provide</span>(
+    fx.Annotated{
+        Group: groups.ExternalHTTPHandlers,
+        Target: createHandlerPair, <span style="color:#60a0b0;font-style:italic">// function pointer, will be called by Uber-FX
+</span><span style="color:#60a0b0;font-style:italic"></span>    }
+) 
+<span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">New</span>(
+ <span style="color:#666">...</span>
+ customHandlerOption,
+ <span style="color:#666">...</span>
+)
+</code></pre></div></div><input type="radio" name="tabs-1" id="tabs-1-1"  />
+  <label for="tabs-1-1">HandlerFunc</label>
+  <div class="tab"><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">var</span> customHandlerFunc http.HandlerFunc <span style="color:#666">...</span>
+
+<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">createHandlerFuncPair</span>() types.HTTPHandlerFuncPatternPair {
+ <span style="color:#007020;font-weight:bold">return</span> types.HTTPHandlerFuncPatternPair{
+     Pattern:<span style="color:#4070a0">&#34;/your/pattern&#34;</span>,
+     Handler: customHandlerFunc,
+ }
+}
+
+<span style="color:#007020;font-weight:bold">var</span> customHandlerFuncOption = fx.<span style="color:#06287e">Provide</span>(
+    fx.Annotated{
+        Group: groups.ExternalHTTPHandlerFunctions,
+        Target: createHandlerFuncPair, <span style="color:#60a0b0;font-style:italic">// function pointer, will be called by Uber-FX
+</span><span style="color:#60a0b0;font-style:italic"></span>    }
+) 
+<span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">New</span>(
+ <span style="color:#666">...</span>
+ customHandlerFuncOption,
+ <span style="color:#666">...</span>
+)
+</code></pre></div></div></div>
+
+
 
 		</div>
 
@@ -561,10 +567,10 @@ Here is one of the methods</p>
 
 	 
 	<div class="chevrons">
-		<a class="next" href="/api/grpc-gw/" title="gRPC-Gateway" style="margin-right: 0px;">
+		<a class="next" href="/fx/" title="Dependency Injection" style="margin-right: 0px;">
             <div>
                 <p>Next page</p>
-                <label>gRPC-Gateway</label>
+                <label>Dependency Injection</label>
             </div>
             <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
 	</div>
@@ -589,16 +595,15 @@ Here is one of the methods</p>
     <label><i class="fas fa-align-right"></i>&nbsp;&nbsp;What&#39;s on this page</label>
     <nav>
         <ul >
-            <li><a href="/api/grpc/">gRPC</a></li>
+            <li><a href="/api/handlers/">HTTP Handler/Func</a></li>
         </ul>
     </nav>
     <nav id="TableOfContents">
   <ul>
     <li>
       <ul>
-        <li><a href="#protobuf">Protobuf</a></li>
-        <li><a href="#implementing">Implementing</a></li>
-        <li><a href="#registering">Registering</a></li>
+        <li><a href="#registering-httphandler">Registering <code>http.Handler</code></a></li>
+        <li><a href="#registering-httphandlerfunc">Registering <code>http.HandlerFunc</code></a></li>
       </ul>
     </li>
   </ul>
