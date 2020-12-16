@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-13T20:55:54 IST">
+<meta name="revised" content="2020-12-16T19:44:09 IST">
 <meta name="description" content="">
 
 
@@ -470,7 +470,7 @@
         <li><a href="#internal-rest">Internal REST</a></li>
       </ul>
     </li>
-    <li><a href="#one-listener-one-port">One Listener One Port</a></li>
+    <li><a href="#one-listener-one-port">One Listener, One Port</a></li>
   </ul>
 </nav>
 	</div>
@@ -484,59 +484,59 @@
 
 	<div class="content">
 	    <p>We assume that you, like us, don&rsquo;t expose your services to the world without setting up at least a Load Balancer before it/them.
-Historically when we started building webservices our infrastructure was expecting a single port to forward all the traffic to it from the LoadBalancer.
-When we wanted to use gRPC API as well as REST we still had to expose everything under one port.
-Fortunately we weren&rsquo;t the first, and we used this excellent <a href="https://github.com/soheilhy/cmux">cmux</a> library to solve that problem.</p>
+Historically, when we started building webservices, our infrastructure was expecting a single port to forward all the traffic to it from the LoadBalancer.
+When we wanted to use gRPC API, as well as REST, we still had to expose everything under one port.
+Fortunately, we weren&rsquo;t the first, and we used this excellent <a href="https://github.com/soheilhy/cmux">cmux</a> library to solve that problem.</p>
 <p>Now, our services were hosted on AWS using <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-listener-config.html">ELB</a>.
-Back then ELB didn&rsquo;t support HTTP/2. However from Nov 2020 AWS <a href="https://aws.amazon.com/blogs/aws/new-application-load-balancer-support-for-end-to-end-http-2-and-grpc/">have gRPC support</a>&hellip;</p>
-<p>GRPC is based on HTTP/2 and that presented some headache&hellip; Long story short we switch to <a href="https://www.envoyproxy.io/">Envoy</a> and made the following changes:</p>
-<p>Our services now had 3 listeners and 3 ports respectively.</p>
+Back then, ELB didn&rsquo;t support HTTP/2. However, from Nov 2020 AWS <a href="https://aws.amazon.com/blogs/aws/new-application-load-balancer-support-for-end-to-end-http-2-and-grpc/">have gRPC support</a>&hellip;</p>
+<p>gRPC is based on HTTP/2 and that presented some headache&hellip; Long story short, we switched to <a href="https://www.envoyproxy.io/">Envoy</a> and made the following changes:</p>
+<p>Our services now have had 3 listeners and 3 ports respectively:</p>
 <ul>
-<li>GRPC</li>
-<li>External REST, which is a reverse-proxy to gRPC using <a href="https://github.com/grpc-ecosystem/grpc-gateway">grpc-gateway</a></li>
+<li>gRPC</li>
+<li>External REST, which is a reverse-proxy to gRPC using <a href="https://github.com/grpc-ecosystem/grpc-gateway">grpc-gateway</a>.</li>
 <li><a href="#internal-rest">Internal REST</a> which exposes different useful information about the service.</li>
 </ul>
-<p>While the first 2 were exposed to the Internet, third one (<strong>Internal</strong>) wasn&rsquo;t.</p>
+<p>While the first 2 were exposed to the Internet, the third one (<strong>Internal</strong>) wasn&rsquo;t.</p>
 <h2 ref="mortar" >Mortar</h2><a class="anchor" id="mortar"></a>
-<p>Mortar is designed with that in mind. Essentially you create 3 Web Services with 3 ports they listen on.
+<p>Mortar is designed with that in mind. Essentially, you create 3 web services with 3 ports they listen on.
 If that setup can&rsquo;t work for you, you can still can do everything with <a href="#one-listener-one-port">1 listener and 1 port</a>.</p>
-<p>Let&rsquo;s look at some benefits this approach have.</p>
+<p>Let&rsquo;s look at some benefits this approach has.</p>
 <h3 ref="external-grpc-and-rest" >External gRPC and REST</h3><a class="anchor" id="external-grpc-and-rest"></a>
-<p>Basically you treat GRPC and External REST as one (but with 2 different ports).
-If your Load Balancer doesn&rsquo;t support HTTP/2 it sure does support HTTP/1.
-It also can probably give you some <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#listener-configuration">benefits</a> if you use HTTP listener when routing traffic to External REST port.</p>
+<p>Basically, you treat gRPC and External REST as one (but with 2 different ports).
+If your Load Balancer doesn&rsquo;t support HTTP/2, it sure does support HTTP/1.
+It also can probably give you some <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#listener-configuration">benefits</a> if you use an HTTP listener when routing traffic to the External REST port.</p>
 <h3 ref="internal-rest" >Internal REST</h3><a class="anchor" id="internal-rest"></a>
-<p>When your services are deployed in some cloud, you need different ways to &ldquo;look&rdquo; into them.</p>
+<p>When your services are deployed in some cloud, you need different ways to &ldquo;look&rdquo; into them:</p>
 <ul>
 <li>What is their version or even better, Git commit.</li>
-<li><a href="https://github.com/go-masonry/mortar/blob/master/handlers/self.go#L48">Configuration and Environment</a> values.
+<li><a href="https://github.com/go-masonry/mortar/blob/master/handlers/self.go#L48">Configuration and environment</a> values.
 
 
 <div class="notices success">
-	<p>Mortar have a <a href="https://github.com/go-masonry/mortar/blob/master/handlers/self.go#L65">simple</a> way to obfuscate passwords, secret, tokens, etc.</p>
+	<p>Mortar has a <a href="https://github.com/go-masonry/mortar/blob/master/handlers/self.go#L65">simple</a> way to obfuscate passwords, secret, tokens, etc.</p>
 </div>
 </li>
-<li>Sometimes you even want to <a href="https://golang.org/pkg/net/http/pprof/">Profile</a> your services by using <a href="https://github.com/go-masonry/mortar/blob/master/handlers/profile.go#L15">provided handlers</a>.
+<li>Sometimes you even want to <a href="https://golang.org/pkg/net/http/pprof/">profile</a> your services by using <a href="https://github.com/go-masonry/mortar/blob/master/handlers/profile.go#L15">provided handlers</a>:
 <ul>
 <li>
-<p>Runtime Stats (Memory, CPU, &hellip;)</p>
+<p>Runtime Stats (Memory, CPU, &hellip;).</p>
 </li>
 <li>
-<p>Flags provided when your service was started</p>
+<p>Flags provided when your service was started:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">service config &lt;path to file&gt; --answer-to-everythig<span style="color:#666">=</span><span style="color:#40a070">42</span>
 </code></pre></div></li>
 <li>
-<p>Or <a href="https://github.com/go-masonry/mortar/blob/master/handlers/debug.go#L45">Debug</a> them</p>
+<p>Or <a href="https://github.com/go-masonry/mortar/blob/master/handlers/debug.go#L45">Debug</a> them.</p>
 </li>
 </ul>
 </li>
 </ul>
-<p>Using Internal Handlers and their dedicated listener and port. You can set up a simple but very effective traffic rule,
+<p>Using Internal Handlers and their dedicated listener and port, you can set up a simple but very effective traffic rule,
 by allowing only office/vpn traffic to have access to it.</p>
-<h2 ref="one-listener-one-port" >One Listener One Port</h2><a class="anchor" id="one-listener-one-port"></a>
-<p>While Multi Listener/Port approach is great (well at least for us) sometimes it&rsquo;s not possible.
+<h2 ref="one-listener-one-port" >One Listener, One Port</h2><a class="anchor" id="one-listener-one-port"></a>
+<p>While multi-listener/port approach is great (well, at least for us), sometimes it&rsquo;s not possible.
 You can still achieve everything using 1 listener and 1 port.
-Look at test example <a href="https://github.com/go-masonry/mortar/blob/master/http/server/oneport_test.go">here</a>.</p>
+Look at the test example <a href="https://github.com/go-masonry/mortar/blob/master/http/server/oneport_test.go">here</a>.</p>
 
 		</div>
 
@@ -576,7 +576,7 @@ Look at test example <a href="https://github.com/go-masonry/mortar/blob/master/h
         <li><a href="#internal-rest">Internal REST</a></li>
       </ul>
     </li>
-    <li><a href="#one-listener-one-port">One Listener One Port</a></li>
+    <li><a href="#one-listener-one-port">One Listener, One Port</a></li>
   </ul>
 </nav>
 </div>

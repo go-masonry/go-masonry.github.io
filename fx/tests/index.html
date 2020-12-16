@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-13T20:55:54 IST">
+<meta name="revised" content="2020-12-16T19:44:09 IST">
 <meta name="description" content="">
 
 
@@ -462,7 +462,7 @@
 	<div class="content">
 	    <p>Testing with <code>Uber-FX</code> makes it possible to test different logic while mocking parts of the DI graph.</p>
 <h3 ref="constructor-per-type" >Constructor per Type</h3><a class="anchor" id="constructor-per-type"></a>
-<p>While it&rsquo;s <a href="https://pkg.go.dev/go.uber.org/fx?readme=expanded#example-package">possible</a> to register several instances using one Constructor function, If possible <strong>avoid this</strong>.</p>
+<p>While it&rsquo;s <a href="https://pkg.go.dev/go.uber.org/fx?readme=expanded#example-package">possible</a> to register several instances using one constructor function, If possible <strong>avoid this</strong>.</p>
 
 
 
@@ -482,11 +482,11 @@
 
 
 
-<div class="alert danger" role="alert">Make sure Constructor function return only ONE Parameter and an optional Error.</div>
+<div class="alert danger" role="alert">Make sure the constructor function returns only ONE Parameter and an optional Error.</div>
 
-<p>Let&rsquo;s explain the reason behind that. During tests sometimes you will want to <strong>swap</strong> a real dependency with a fake/mocked one.
-Currently the real practical way to do it is <strong>NOT Calling</strong> the real Constructor function that creates this dependency but call a different one that returns the same type.
-If your Constructor function will return several types, you can&rsquo;t really <strong>swap only one</strong> of them. You will need to swap <strong>all of them</strong> since you can&rsquo;t call the real Constructor.</p>
+<p>Let&rsquo;s explain the reason behind that. During tests, sometimes you will want to <strong>swap</strong> a real dependency with a fake/mocked one.
+Currently, the real practical way to do it is <strong>NOT calling</strong> the real constructor function that creates this dependency, but call a different one that returns the same type.
+If your constructor function will return several types, you can&rsquo;t really <strong>swap only one</strong> of them. You will need to swap <strong>all of them</strong> since you can&rsquo;t call the real constructor.</p>
 
 		</div>
 

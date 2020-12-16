@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-13T20:55:54 IST">
+<meta name="revised" content="2020-12-16T19:44:09 IST">
 <meta name="description" content="">
 
 
@@ -461,8 +461,8 @@
 
 	<div class="content">
 	    <p><code>Uber-FX</code> <a href="https://pkg.go.dev/go.uber.org/fx#hdr-Value_Groups">group</a> is a feature that allows you to consume and produce
-multiple values of the same type. This make it easier to influence/configure different instances.</p>
-<p>Mortar have different <a href="https://github.com/go-masonry/mortar/blob/master/providers/groups/alias.go">groups</a>, but we will focus on one of them here.</p>
+multiple values of the same type. This makes it easier to influence/configure different instances.</p>
+<p>Mortar has different <a href="https://github.com/go-masonry/mortar/blob/master/providers/groups/alias.go">groups</a>, but we will focus on one of them here.</p>
 
 
 
@@ -477,15 +477,15 @@ multiple values of the same type. This make it easier to influence/configure dif
 
 <h3 ref="build-information" >Build Information</h3><a class="anchor" id="build-information"></a>
 <p>Similar to everything else in <code>Uber-FX</code>, to register a new instance into a <code>fx.Group</code> you need to create a Constructor.</p>
-<p>We will look at one of the internal handlers: <a href="https://github.com/go-masonry/mortar/blob/master/handlers/self.go#L38">Build Information</a></p>
+<p>We will look at one of the internal handlers: <a href="https://github.com/go-masonry/mortar/blob/master/handlers/self.go#L38">Build Information</a>.</p>
 
 
 
 <div class="card "><div class="card-header primary">Build Information</div><div class="card-body">
-    <p class="card-text"><p>In this example we want to register a new <strong>Internal</strong> [<code>&quot;/&lt;path&gt;/&lt;pattern&gt;&quot;</code> -&gt; <code>http.HandlerFunc</code>] pair.</p>
+    <p class="card-text"><p>In this example we want to register a new <strong>internal</strong> [<code>&quot;/&lt;path&gt;/&lt;pattern&gt;&quot;</code> -&gt; <code>http.HandlerFunc</code>] pair.</p>
 <ol>
 <li>
-<p>Let&rsquo;s start by defining a Constructor that will return <code>http.HandlerFunc</code></p>
+<p>Let&rsquo;s start by defining a constructor that will return <code>http.HandlerFunc</code>:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> (s <span style="color:#666">*</span>selfHandlerDeps) <span style="color:#06287e">BuildInfo</span>() http.HandlerFunc {
   <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">func</span>(w http.ResponseWriter, req <span style="color:#666">*</span>http.Request) {
   information <span style="color:#666">:=</span> mortar.<span style="color:#06287e">GetBuildInformation</span>(<span style="color:#007020;font-weight:bold">true</span>) <span style="color:#60a0b0;font-style:italic">// using true here will insert a default value if there is none
@@ -498,7 +498,7 @@ multiple values of the same type. This make it easier to influence/configure dif
 </code></pre></div></li>
 <li>
 <p>Create an <code>HTTPHandlerPatternPair</code>.
-This is the part where you define on what <strong>path</strong> this Handler will be served.</p>
+This is the part where you define on what <strong>path</strong> this handler will be served:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// SelfHandlers this service information handlers
 </span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">SelfHandlers</span>(deps selfHandlerDeps) []partial.HTTPHandlerPatternPair {
   <span style="color:#007020;font-weight:bold">return</span> []partial.HTTPHandlerPatternPair{
@@ -518,7 +518,7 @@ This is the part where you define on what <strong>path</strong> this Handler wil
 }
 </code></pre></div></li>
 <li>
-<p>Lastly in your application you need to provide the above <code>InternalSelfHandlersFxOption()</code> option to <code>Uber-FX</code> graph,
+<p>Lastly, in your application you need to provide the above <code>InternalSelfHandlersFxOption()</code> option to <code>Uber-FX</code> graph,
 <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/main.go#L37">here</a> you can see how it&rsquo;s done in the demo.</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">New</span>(
   <span style="color:#666">...</span>

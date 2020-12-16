@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-13T20:55:54 IST">
+<meta name="revised" content="2020-12-16T19:44:09 IST">
 <meta name="description" content="">
 
 
@@ -466,7 +466,7 @@
   <ul>
     <li><a href="#environment-variables">Environment variables</a>
       <ul>
-        <li><a href="#matching-environment-variable-names">Matching Environment Variable names</a></li>
+        <li><a href="#matching-environment-variable-names">Matching environment variable names</a></li>
       </ul>
     </li>
     <li><a href="#mortar-keys">Mortar Keys</a></li>
@@ -483,11 +483,11 @@
 
 
 	<div class="content">
-	    <p>It is good practice to use constants in your code instead of <a href="https://en.wikipedia.org/wiki/Magic_number_(programming)">magic numbers</a>
-and it&rsquo;s even better to set them outside your code either by providing a config file or reading from Environment variable.
-Mortar have a <code>Config</code> interface that is used everywhere to read external configurations.
-While Mortar can be configured explicitly and that gives you total control over it. It is much comfortable to use its defaults.
-To read them Mortar expects a dedicated Configuration key called <strong>mortar</strong></p>
+	    <p>It is good practice to use constants in your code instead of <a href="https://en.wikipedia.org/wiki/Magic_number_(programming)">magic numbers</a>,
+and it&rsquo;s even better to set them outside your code, either by providing a config file or reading from an environment variable.
+Mortar has a <code>Config</code> interface that is used everywhere to read external configurations.
+While Mortar can be configured explicitly, and that gives you total control over it, it is much comfortable to use its defaults.
+To read them, Mortar expects a dedicated configuration key called <strong>mortar</strong>:</p>
 
 
 
@@ -506,21 +506,21 @@ To read them Mortar expects a dedicated Configuration key called <strong>mortar<
 </span></code></pre></div></p>
   </div></div>
 
-<p>Every project should have a configuration file, and your is no exception. You can put all your external configuration values
+<p>Every project should have a configuration file, and yours is no exception. You can put all your external configuration values
 in it (or them).</p>
 <p>The concept is simple, you use the <code>Get</code> function that accepts a key. A key is actually a path within the configuration map.
-Looking at the above example to access gRPC server port you should use the following key.</p>
+Looking at the above example, to access the gRPC server port, you should use the following key:</p>
 <p><code>mortar.server.grpc.port</code></p>
 
 
 <div class="notices primary">
-	<p>Default delimiter is <code>.</code> but if needed it can be changed, with a proper PR</p>
+	<p>The default delimiter is <code>.</code> but if needed it can be changed, with a proper PR</p>
 </div>
 
-<p>Once you <code>Get</code> a value with a provided key you can</p>
+<p>Once you <code>Get</code> a value with a provided key you can:</p>
 <ul>
-<li>Check if it was set <code>value.IsSet() bool</code></li>
-<li>Cast it to a type
+<li>Check if it was set <code>value.IsSet() bool</code>.</li>
+<li>Cast it to a type:
 <ul>
 <li><code>Bool() bool</code></li>
 <li><code>Int() int</code></li>
@@ -530,14 +530,14 @@ Looking at the above example to access gRPC server port you should use the follo
 </li>
 </ul>
 <h2 ref="environment-variables" >Environment variables</h2><a class="anchor" id="environment-variables"></a>
-<p>While it depends on the implementation you should assume that if there is an Environment Variable with a <em>matching</em> name
-its value going to be used first.</p>
-<h3 ref="matching-environment-variable-names" >Matching Environment Variable names</h3><a class="anchor" id="matching-environment-variable-names"></a>
-<p>As mentioned previously default delimiter is <code>.</code> however when naming Environment variables you can&rsquo;t use <code>.</code>.
-It is expected, that chosen Implementation will allow you to configure a delimiter <em>replacer</em>.
-If you choose to use <a href="https://github.com/spf13/viper">viper</a> using <a href="https://github.com/go-masonry/bviper">brick wrapper</a>.
-By default, there is a replacer that will replace <code>_</code> delimiter to <code>.</code> used in our code.</p>
-<p>This is better explained with an example. Look at the map below.</p>
+<p>While it depends on the implementation, you should assume that if there is an environment variable with a <em>matching</em> name,
+its value is going to be used first.</p>
+<h3 ref="matching-environment-variable-names" >Matching environment variable names</h3><a class="anchor" id="matching-environment-variable-names"></a>
+<p>As mentioned previously, the default delimiter is <code>.</code>. However, when naming environment variables you can&rsquo;t use <code>.</code>.
+It is expected the that chosen implementation will allow you to configure a delimiter <em>replacer</em>.
+If you choose to use <a href="https://github.com/spf13/viper">viper</a> using <a href="https://github.com/go-masonry/bviper">brick wrapper</a>,
+by default there is a replacer that will replace the <code>_</code> delimiter to <code>.</code> used in our code.</p>
+<p>This is better explained with an example. Look at the map below:</p>
 <p>
 
 
@@ -549,8 +549,8 @@ By default, there is a replacer that will replace <code>_</code> delimiter to <c
 </span></code></pre></div></p>
   </div></div>
 
-Let&rsquo;s say you want to change port value from 5380 to 7777, you can change the file itself. However, you can also override it.
-Viper allows you to override configuration values with a matching Environment Variable. In our case:</p>
+Let&rsquo;s say you want to change port value from 5380 to 7777. You can change the file itself. However, you can also override it.
+Viper allows you to override configuration values with a matching environment variable. In our case:</p>
 <p>
 
 
@@ -559,9 +559,9 @@ Viper allows you to override configuration values with a matching Environment Va
 </code></pre></div></p>
   </div></div>
 
-When you want to read gRPC server port value in your code you should use this as a key.</p>
+When you want to read the gRPC server port value in your code, you should use this as a key:</p>
 <p><code>mortar.server.grpc.port</code></p>
-<p>Viper will look for Environment variable by replacing <code>_</code> with <code>.</code> case-insensitive <strong>first</strong> and return its value if set.</p>
+<p>Viper will look for an environment variable by replacing <code>_</code> with <code>.</code> case-insensitive <strong>first</strong> and return its value if set.</p>
 <h2 ref="mortar-keys" >Mortar Keys</h2><a class="anchor" id="mortar-keys"></a>
 <p>Mortar expects different keys in its configuration map to enable or configure different abilities.</p>
 
@@ -572,7 +572,7 @@ When you want to read gRPC server port value in your code you should use this as
 </div>
 
 <h2 ref="config-format" >Config format</h2><a class="anchor" id="config-format"></a>
-<p>While in this example we showed you <code>config.yml</code> in YAML format you can choose what ever works for you as long as the provided <code>Config</code> implementation knows how to read it and will abstract every key to be queried in this form:</p>
+<p>While in this example we showed you <code>config.yml</code> in YAML format, you can choose whatever works for you, as long as the provided <code>Config</code> implementation knows how to read it and will abstract every key to be queried in this form:</p>
 <p><code>root.child.childOfChild</code></p>
 
 		</div>
@@ -609,7 +609,7 @@ When you want to read gRPC server port value in your code you should use this as
   <ul>
     <li><a href="#environment-variables">Environment variables</a>
       <ul>
-        <li><a href="#matching-environment-variable-names">Matching Environment Variable names</a></li>
+        <li><a href="#matching-environment-variable-names">Matching environment variable names</a></li>
       </ul>
     </li>
     <li><a href="#mortar-keys">Mortar Keys</a></li>

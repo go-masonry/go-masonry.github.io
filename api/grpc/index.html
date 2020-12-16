@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-13T20:55:54 IST">
+<meta name="revised" content="2020-12-16T19:44:09 IST">
 <meta name="description" content="">
 
 
@@ -462,12 +462,12 @@
 
 
 	<div class="content">
-	    <p>Mortar is mostly about <strong>gRPC (and REST)</strong> web service. We will explain how you should register multiple gRPC/REST APIs.
-To make it easier we will use <a href="https://github.com/go-masonry/mortar-demo/tree/master/workshop">mortar-demo</a> in our example.</p>
+	    <p>Mortar is mostly about <strong>gRPC (and REST)</strong> web services. We will explain how you should register multiple gRPC/REST APIs.
+To make it easier, we will use <a href="https://github.com/go-masonry/mortar-demo/tree/master/workshop">mortar-demo</a> in our example.</p>
 <h3 ref="protobuf" >Protobuf</h3><a class="anchor" id="protobuf"></a>
-<p>Before you implement any gRPC service related code you first need to define the API by writing <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/api/workshop.proto">proto</a> files.
-Once that done, you will <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/Makefile#L14">call</a> <code>protoc</code> and generate your <code>&lt;name&gt;_grpc.pb.go</code>, <code>&lt;name&gt;.pb.go</code> and <code>&lt;name&gt;.pb.gw.go</code> <a href="https://github.com/go-masonry/mortar-demo/tree/master/workshop/api">files</a>.</p>
-<p>Workshop API example we will be using.</p>
+<p>Before you implement any gRPC service related code, you first need to define the API by writing <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/api/workshop.proto">proto</a> files.
+Once that&rsquo;s done, you will <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/Makefile#L14">call</a> <code>protoc</code> and generate your <code>&lt;name&gt;_grpc.pb.go</code>, <code>&lt;name&gt;.pb.go</code> and <code>&lt;name&gt;.pb.gw.go</code> <a href="https://github.com/go-masonry/mortar-demo/tree/master/workshop/api">files</a>.</p>
+<p>We will be using the Workshop API example.</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-proto" data-lang="proto"><span style="color:#007020;font-weight:bold">service</span> Workshop {<span style="">
 </span><span style="display:block;width:100%;background-color:#d8d8d8"><span style=""></span>  <span style="color:#007020;font-weight:bold">rpc</span> AcceptCar(Car) <span style="color:#007020;font-weight:bold">returns</span> (google.protobuf.Empty);<span style="">
 </span></span><span style=""></span>  <span style="color:#007020;font-weight:bold">rpc</span> PaintCar(PaintCarRequest) <span style="color:#007020;font-weight:bold">returns</span> (google.protobuf.Empty);<span style="">
@@ -475,8 +475,8 @@ Once that done, you will <a href="https://github.com/go-masonry/mortar-demo/blob
 </span><span style=""></span>  <span style="color:#007020;font-weight:bold">rpc</span> CarPainted(PaintFinishedRequest) <span style="color:#007020;font-weight:bold">returns</span> (google.protobuf.Empty);<span style="">
 </span><span style=""></span>}</code></pre></div>
 <h3 ref="implementing" >Implementing</h3><a class="anchor" id="implementing"></a>
-<p>Once we have our gRPC Server Interfaces generated, we need to implement them.
-In our case we need to implement <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/api/workshop_grpc.pb.go#L75">this</a> generated Interface.</p>
+<p>Once we have our gRPC server interfaces generated, we need to implement them.
+In our case, we need to implement <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/api/workshop_grpc.pb.go#L75">this</a> generated interface.</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#60a0b0;font-style:italic">// WorkshopServer is the server API for Workshop service.
 </span><span style="color:#60a0b0;font-style:italic">// All implementations must embed UnimplementedWorkshopServer
 </span><span style="color:#60a0b0;font-style:italic">// for forward compatibility
@@ -488,8 +488,8 @@ In our case we need to implement <a href="https://github.com/go-masonry/mortar-d
  <span style="color:#06287e">mustEmbedUnimplementedWorkshopServer</span>()
 }
 </code></pre></div>
-<p>You can see how it&rsquo;s done in the <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/services/workshop.go">app/services/workshop.go</a>.
-Here is one of the methods</p>
+<p>You can see how it&rsquo;s done in <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/services/workshop.go">app/services/workshop.go</a>.
+Here is one of the methods:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#666">...</span>
 <span style="color:#007020;font-weight:bold">func</span> (w <span style="color:#666">*</span>workshopImpl) <span style="color:#06287e">AcceptCar</span>(ctx context.Context, car <span style="color:#666">*</span>workshop.Car) (<span style="color:#666">*</span>empty.Empty, <span style="color:#902000">error</span>) {
  <span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">:=</span> w.deps.Validations.<span style="color:#06287e">AcceptCar</span>(ctx, car); err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
@@ -501,14 +501,14 @@ Here is one of the methods</p>
 <span style="color:#666">...</span>
 </code></pre></div>
 <h3 ref="registering" >Registering</h3><a class="anchor" id="registering"></a>
-<p>Once we have the implementation covered we need to register it. There are several steps you need to cover</p>
+<p>Once we have the implementation covered, we need to register it. There are several steps you need to cover:</p>
 <ol>
 <li>
-<p>Create a function that will return <a href="https://github.com/go-masonry/mortar/blob/master/interfaces/http/server/interfaces.go#L39">GRPCServerAPI</a>.
+<p>Create a function that will return <a href="https://pkg.go.dev/github.com/go-masonry/mortar/interfaces/http/server#GRPCServerAPI">GRPCServerAPI</a>.
 
 
 <div class="notices warning">
-	<label>Important</label><p>In this function you must register gRPC Implementation on the provided <code>grpc.Server</code></p>
+	<label>Important</label><p>In this function you must register the gRPC API implementation on the provided <code>grpc.Server</code></p>
 </div>
 </p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">    <span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">workshopGRPCServiceAPIs</span>(deps workshopServiceDeps) serverInt.GRPCServerAPI {
@@ -522,7 +522,7 @@ Here is one of the methods</p>
 <p>You can look <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/workshop.go#L42">here</a> to understand how it&rsquo;s done in our workshop example.</p>
 </li>
 <li>
-<p>Next, add it to the <code>groups.GRPCServerAPIs</code> group as shown <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/workshop.go#L25">here</a>.
+<p>Next, add it to the <code>groups.GRPCServerAPIs</code> group as shown <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/workshop.go#L25">here</a>:
 
 
 <div class="notices info">
@@ -538,10 +538,10 @@ Here is one of the methods</p>
    <span style="color:#666">...</span>
    
 </code></pre></div>
-<p>This way you can register multiple gRPC API implementations and they all will be registered in <a href="https://github.com/go-masonry/mortar/blob/master/constructors/partial/httpserver.go#L89">one place</a>.</p>
+<p>This way you can register multiple gRPC API implementations, and they will all be registered in <a href="https://github.com/go-masonry/mortar/blob/master/constructors/partial/httpserver.go#L89">one place</a>.</p>
 </li>
 <li>
-<p>Now we need to add this option to the <code>Uber-FX</code> graph, as shown <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/main.go#L39">here</a></p>
+<p>Now we need to add this option to the <code>Uber-FX</code> graph, as shown <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/main.go#L39">here</a>:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go">   <span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">New</span>(
     <span style="color:#666">...</span>
     mortar.<span style="color:#06287e">WorkshopAPIsAndOtherDependenciesFxOption</span>(),

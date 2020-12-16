@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-13T20:55:54 IST">
+<meta name="revised" content="2020-12-16T19:44:09 IST">
 <meta name="description" content="">
 
 
@@ -473,12 +473,12 @@
 
 
 	<div class="content">
-	    <p>When we build software most of us always try to rely on something we or others build before us.
+	    <p>When we build software, most of us always try to rely on something we or others have built before us.
 Since we don&rsquo;t want to reinvent the wheel, <strong>again</strong>.</p>
-<p>Go standard library is an excellent example here.
+<p>Go&rsquo;s standard library is an excellent example here.
 There are <code>strings</code>, <code>time</code>, <code>http</code> and many other build-in libraries that we use.
 While this example is great, it doesn&rsquo;t scale to 3rd party libraries.</p>
-<p>Let&rsquo;s look at Logger libraries for example, there are</p>
+<p>Let&rsquo;s look at Logger libraries for example, there are:</p>
 <ul>
 <li><a href="https://github.com/sirupsen/logrus">Logrus</a></li>
 <li><a href="https://github.com/apex/log">Apex</a></li>
@@ -486,12 +486,12 @@ While this example is great, it doesn&rsquo;t scale to 3rd party libraries.</p>
 <li><a href="https://github.com/rs/zerolog">Zerolog</a></li>
 <li>&hellip;</li>
 </ul>
-<p>You are encouraged to have a look at each library, but I can assure you, all of their API are different from each other.
-Mortar after all is a library, and it&rsquo;s purpose to be used in many projects.
-That is why we defined different <a href="https://github.com/go-masonry/mortar/blob/master/interfaces">Interfaces</a>.</p>
+<p>You are encouraged to have a look at each library, but I can assure you, all of their APIs are different from each other.
+Mortar after all is a library, and its purpose to be used in many projects.
+That is why we defined different <a href="https://pkg.go.dev/github.com/go-masonry/mortar/interfaces">interfaces</a>.</p>
 
 
-<div class="alert info" role="alert">We define Brick as an implementation of an Interface defined in Mortar using external library</div>
+<div class="alert info" role="alert">We define a Brick as an implementation of an interface defined in Mortar using ann external library</div>
 
 <ul>
 <li><a href="https://github.com/go-masonry/mortar/blob/master/interfaces/log/interfaces.go">Mortar Logger</a>
@@ -525,9 +525,9 @@ That is why we defined different <a href="https://github.com/go-masonry/mortar/b
 </ul>
 
 
-<div class="alert warning" role="alert">As a rule every Brick is based on Mortar itself, but not on any other Brick</div>
+<div class="alert warning" role="alert">As a rule, every Brick is based on Mortar itself, but not on any other Brick</div>
 
-<p>Meaning you can&rsquo;t import <code>bzerolog</code> from within <code>bjaeger</code> for example.</p>
+<p>Meaning you can&rsquo;t import <code>bzerolog</code> from within <code>bjaeger</code>, for example.</p>
 <p>Check their <code>go.mod</code> files to make sure.</p>
 <p>This rule is here to ensure that every Brick can be easily swapped.</p>
 

@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-13T20:55:54 IST">
+<meta name="revised" content="2020-12-16T19:44:09 IST">
 <meta name="description" content="">
 
 
@@ -460,20 +460,20 @@
 
 
 	<div class="content">
-	    <p>Mortar comes with a <a href="https://github.com/grpc-ecosystem/grpc-gateway">gRPC-Gateway</a> which is a reverse-proxy that translates a RESTful HTTP API into gRPC.
-We will show how you should register it&rsquo;s handlers after you generate them from the proto files.</p>
+	    <p>Mortar comes with a <a href="https://github.com/grpc-ecosystem/grpc-gateway">gRPC-Gateway</a>, which is a reverse-proxy that translates a RESTful HTTP API into gRPC.
+We will show how you should register its handlers, after you generate them from the proto files.</p>
 <h3 ref="register-grpc-gateway-handlers" >Register <code>grpc-gateway</code> Handlers</h3><a class="anchor" id="register-grpc-gateway-handlers"></a>
 
 
 <div class="notices primary">
-	<p>Before reading this part get yourself familiar with the gRPC API <a href="/api/grpc">counterpart</a>.</p>
+	<p>Before reading this part, get yourself familiar with the gRPC API <a href="/api/grpc">counterpart</a>.</p>
 </div>
 
-<p>If you read the gRPC part, you simply need to add one <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/workshop.go#L49">function</a> to <code>Uber-FX</code> graph.
-This function should return a slice of <a href="https://github.com/go-masonry/mortar/blob/master/interfaces/http/server/interfaces.go#L55">GRPCGatewayGeneratedHandlers</a>.</p>
+<p>If you&rsquo;ve read the gRPC part, you simply need to add one <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/workshop.go#L49">function</a> to <code>Uber-FX</code> graph.
+This function should return a slice of <a href="https://pkg.go.dev/github.com/go-masonry/mortar/interfaces/http/server#GRPCGatewayGeneratedHandlers">GRPCGatewayGeneratedHandlers</a>.</p>
 <ol>
 <li>
-<p>Register your <code>grpc-gateway</code> generated Handlers
+<p>Register your <code>grpc-gateway</code> generated Handlers:
 
 
 <div class="notices warning">
@@ -491,11 +491,11 @@ This function should return a slice of <a href="https://github.com/go-masonry/mo
 }
 </code></pre></div></li>
 <li>
-<p>Now tell <code>Uber-FX</code> about it and make sure it&rsquo;s added to <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/workshop.go#L33">GRPCGatewayGeneratedHandlers</a> group.</p>
+<p>Now tell <code>Uber-FX</code> about it and make sure it&rsquo;s added to the <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/workshop.go#L33">GRPCGatewayGeneratedHandlers</a> group.</p>
 
 
 <div class="notices primary">
-	<p>However, in this case our function doesn&rsquo;t return a single value but an array of them.
+	<p>However, in this case our function doesn&rsquo;t return a single value, but an array of them.
 By default <code>Uber-FX</code> will treat it as an Array of Arrays <code>[][]GRPCGatewayGeneratedHandlers</code>.
 Hence we need to <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/workshop.go#L34"><strong>flatten</strong></a> our value.</p>
 
@@ -508,7 +508,7 @@ Hence we need to <a href="https://github.com/go-masonry/mortar-demo/blob/master/
 })
 </code></pre></div></li>
 <li>
-<p>Finally you need to add the above <code>fx.Option</code> to <code>Uber-FX</code> graph, as shown <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/main.go#L39">here</a></p>
+<p>Finally, you need to add the above <code>fx.Option</code> to <code>Uber-FX</code> graph, as shown <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/main.go#L39">here</a>.</p>
 </li>
 </ol>
 

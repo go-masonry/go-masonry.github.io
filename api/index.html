@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-13T20:55:54 IST">
+<meta name="revised" content="2020-12-16T19:44:09 IST">
 <meta name="description" content="">
 
 
@@ -432,14 +432,14 @@
 
 
 	<div class="content">
-	    <p>Mortar goal is to let you easily create gRPC and REST web services.</p>
-<p>Mortar supports</p>
+	    <p>Mortar&rsquo;s goal is to let you easily create gRPC and REST web services.</p>
+<p>Mortar supports:</p>
 <ul>
-<li><strong>gRPC API</strong>: you need to define proto files and compile them, read more <a href="/api/grpc">here</a></li>
-<li><strong>RESTful API</strong>: can be implemented in several ways
+<li><strong>gRPC API</strong>: you need to define proto files and compile them, read more <a href="/api/grpc">here</a>.</li>
+<li><strong>RESTful API</strong>: can be implemented in several ways:
 <ul>
 <li>
-<p>Using gRPC-Gateway, read more <a href="/api/grpc-gw">here</a></p>
+<p>Using gRPC-Gateway, read more <a href="/api/grpc-gw">here</a>.</p>
 <ul>
 <li>Generate reverse-proxy from <a href="https://github.com/grpc-ecosystem/grpc-gateway#usage">protos</a> or via <a href="https://grpc-ecosystem.github.io/grpc-gateway/docs/mapping/grpc_api_configuration/#grpc-api-configuration">yaml</a>.</li>
 <li><i class="fas fa-bug"></i> You can also add <a href="https://grpc-ecosystem.github.io/grpc-gateway/docs/operations/inject_router/#adding-custom-routes-to-the-mux">custom</a> routes to it.
@@ -447,15 +447,15 @@
 
 <div class="notices info">
 	<label>Custom route using grpc-gateway ServeMux</label><p>You can&rsquo;t access <code>runtime.ServeMux</code> unless you create it yourself.</p>
-<p>Once you do, pass it during HTTP sever build, using a dedicated <a href="https://github.com/go-masonry/mortar/blob/master/interfaces/http/server/interfaces.go#L64">SetCustomGRPCGatewayMux</a> builder option.</p>
-<p>You will also need to use your own builder instead of a <a href="https://github.com/go-masonry/mortar/blob/master/constructors/partial/httpserver.go#L73">default</a> one.</p>
+<p>Once you do, pass it during HTTP server build, using a dedicated <a href="https://pkg.go.dev/github.com/go-masonry/mortar/interfaces/http/server#RESTBuilder">SetCustomGRPCGatewayMux</a> builder option.</p>
+<p>You will also need to use your own builder instead of a <a href="https://pkg.go.dev/github.com/go-masonry/mortar/constructors/partial#HTTPServerBuilder">default</a> one.</p>
 
 </div>
 </li>
 </ul>
 </li>
 <li>
-<p>Register custom HTTP Handler/HandlerFunc using a <a href="/api/handlers">dedicated group</a>.</p>
+<p>Register custom HTTP Handler/HandlerFunc(s) using a <a href="/api/handlers">dedicated group</a>.</p>
 </li>
 </ul>
 </li>

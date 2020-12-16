@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-13T20:55:54 IST">
+<meta name="revised" content="2020-12-16T19:44:09 IST">
 <meta name="description" content="">
 
 
@@ -461,56 +461,56 @@
 
 
 	<div class="content">
-	    <p>If you are not familiar with <code>context.Context</code> please read <a href="https://golang.org/pkg/context/">this</a> and <a href="https://blog.golang.org/context">that</a> first.</p>
-<p>From context documentation package</p>
+	    <p>If you are not familiar with <code>context.Context</code>, please read <a href="https://golang.org/pkg/context/">this</a> and <a href="https://blog.golang.org/context">that</a> first.</p>
+<p>From the context documentation package:</p>
 
 
 <div class="alert info" role="alert"><!-- raw HTML omitted -->Incoming requests to a server should create a Context, and outgoing calls to servers should accept a Context.<!-- raw HTML omitted --></div>
 
-<p>Since we are building a gRPC Web Service it&rsquo;s part of the design.
-Everything gRPC related already have a <code>context.Context</code> as the first argument.</p>
+<p>Since we are building a gRPC web service, it&rsquo;s part of the design.
+Everything gRPC related already has a <code>context.Context</code> as the first argument.</p>
 
 
 
 <div class="card "><div class="card-header primary">gRPC</div><div class="card-body">
     <p class="card-text"><ul>
 <li>
-<p><a href="https://github.com/grpc/grpc-go/blob/master/call.go#L29">client</a></p>
+<p><a href="https://github.com/grpc/grpc-go/blob/master/call.go#L29">Client</a>:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> (cc <span style="color:#666">*</span>ClientConn) <span style="color:#06287e">Invoke</span>(ctx context.Context, method <span style="color:#902000">string</span>, args, reply <span style="color:#007020;font-weight:bold">interface</span>{}, opts <span style="color:#666">...</span>CallOption) <span style="color:#902000">error</span>
 </code></pre></div></li>
 <li>
-<p><a href="https://github.com/grpc/grpc-go/blob/master/interceptor.go">interceptors</a></p>
+<p><a href="https://github.com/grpc/grpc-go/blob/master/interceptor.go">Interceptors</a>:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">type</span> UnaryClientInterceptor <span style="color:#007020;font-weight:bold">func</span>(ctx context.Context, method <span style="color:#902000">string</span>, req, reply <span style="color:#007020;font-weight:bold">interface</span>{}, cc <span style="color:#666">*</span>ClientConn, invoker UnaryInvoker, opts <span style="color:#666">...</span>CallOption) <span style="color:#902000">error</span>
 
 <span style="color:#007020;font-weight:bold">type</span> UnaryServerInterceptor <span style="color:#007020;font-weight:bold">func</span>(ctx context.Context, req <span style="color:#007020;font-weight:bold">interface</span>{}, info <span style="color:#666">*</span>UnaryServerInfo, handler UnaryHandler) (resp <span style="color:#007020;font-weight:bold">interface</span>{}, err <span style="color:#902000">error</span>)
 </code></pre></div></li>
 <li>
-<p>Also all the <a href="https://github.com/golang/protobuf/blob/master/protoc-gen-go/grpc/grpc.go">generated</a> server endpoints have <code>context.Context</code> as the first argument.</p>
+<p>Also, all the <a href="https://github.com/golang/protobuf/blob/master/protoc-gen-go/grpc/grpc.go">generated</a> server endpoints have <code>context.Context</code> as the first argument.</p>
 </li>
 </ul>
 </p>
   </div></div>
 
 <h3 ref="storage" >Storage</h3><a class="anchor" id="storage"></a>
-<p>One of the &ldquo;drawbacks&rdquo; in GO is a lack of <a href="https://github.com/golang/go/issues/21355">storage</a> per go routine.
-You can &ldquo;solve&rdquo; this drawback by</p>
+<p>One of the &ldquo;drawbacks&rdquo; in Go is a lack of <a href="https://github.com/golang/go/issues/21355">storage</a> per go routine.
+You can &ldquo;solve&rdquo; this drawback by:</p>
 <ul>
-<li><i class="fas fa-bomb" ></i> By having a sync <code>map[goroutine-id]storage</code>, but it&rsquo;s probably not a practical idea.</li>
+<li><i class="fas fa-bomb" ></i> Having a sync <code>map[goroutine-id]storage</code>, but it&rsquo;s probably not a practical idea.</li>
 <li><i class="fas fa-thumbs-up" ></i> Propagate <code>context.Context</code> as the first parameter for every public function.</li>
 </ul>
-<p>Actually the second option is largely encouraged and became a kind of a standard.</p>
+<p>Actually, the second option is largely encouraged and has become a kind of a standard.</p>
 <ul>
 <li><a href="https://github.com/opentracing/opentracing-go/blob/master/gocontext.go">Tracing</a> uses context to store a <code>traceId</code>, <code>spanId</code> and other information.</li>
 <li><a href="https://github.com/grpc-ecosystem/grpc-gateway">grpc-gateway</a> reverse proxy injects selected <code>http.Request</code> headers into the context.</li>
 </ul>
-<p>In Mortar most Interfaces have a way to leverage on <code>context.Context</code> and depending on the package there are different <code>ContextExtractor</code> definitions.</p>
-<p>Let&rsquo;s look at Logging as an example</p>
+<p>In Mortar, most interfaces have a way to leverage on <code>context.Context</code>, and depending on the package there are different <code>ContextExtractor</code> definitions.</p>
+<p>Let&rsquo;s look at Logging as an example.</p>
 <h3 ref="logging-example" >Logging Example</h3><a class="anchor" id="logging-example"></a>
-<p>All Logger methods have a <code>context.Context</code> as it&rsquo;s first argument</p>
+<p>All Logger methods have a <code>context.Context</code> as their first argument:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#06287e">Debug</span>(ctx context.Context, format <span style="color:#902000">string</span>, args <span style="color:#666">...</span><span style="color:#007020;font-weight:bold">interface</span>{})
 <span style="color:#06287e">Info</span>(ctx context.Context, format <span style="color:#902000">string</span>, args <span style="color:#666">...</span><span style="color:#007020;font-weight:bold">interface</span>{})
-</code></pre></div><p>Meaning that every log entry have a context&hellip;</p>
-<p>Internally just before we send the log to the implementing library we <a href="https://github.com/go-masonry/mortar/blob/master/logger/context_logger.go#L82">iterate</a> on every provided <code>ContextExtractor</code> and add all the extracted key-&gt;value pairs to the log entry.</p>
+</code></pre></div><p>Meaning that every log entry has a context&hellip;</p>
+<p>Internally, just before we send the log to the implementing library, we <a href="https://github.com/go-masonry/mortar/blob/master/logger/context_logger.go#L82">iterate</a> on every provided <code>ContextExtractor</code> and add all the extracted key-&gt;value pairs to the log entry.</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> (c <span style="color:#666">*</span>contextAwareLogEntry) <span style="color:#06287e">enrich</span>(ctx context.Context) (logger log.Fields) {
 	<span style="color:#007020;font-weight:bold">defer</span> <span style="color:#007020;font-weight:bold">func</span>() {
 		<span style="color:#007020;font-weight:bold">if</span> r <span style="color:#666">:=</span> <span style="color:#007020">recover</span>(); r <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
@@ -537,7 +537,7 @@ You can &ldquo;solve&rdquo; this drawback by</p>
 	}
 	<span style="color:#007020;font-weight:bold">return</span> output
 }
-</code></pre></div><p>If there is a Trace Span within the Context we will include it&rsquo;s information in the log entry.</p>
+</code></pre></div><p>If there is a Trace Span within the Context, we will include its information in the log entry.</p>
 
 		</div>
 

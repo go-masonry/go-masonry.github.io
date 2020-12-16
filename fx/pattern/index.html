@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-13T20:55:54 IST">
+<meta name="revised" content="2020-12-16T19:44:09 IST">
 <meta name="description" content="">
 
 
@@ -463,48 +463,48 @@
 
 	<div class="content">
 	    <p>We are using this pattern when creating a new <code>Uber-FX</code> dependency, it makes it easy adding new external dependencies later when your application evolves.
-To explain this better we will do this with a <code>Notifier</code> example.</p>
+To explain this better, we will do this with a <code>Notifier</code> example.</p>
 <h3 ref="preparation" >Preparation</h3><a class="anchor" id="preparation"></a>
 <ol>
 <li>
-<p>Define our <code>Notifier</code> Interface.</p>
+<p>Define our <code>Notifier</code> interface:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">type</span> Notifier <span style="color:#007020;font-weight:bold">interface</span>{
     <span style="color:#06287e">Alert</span>(ctx context.Context, msg <span style="color:#902000">string</span>)
 }
 </code></pre></div></li>
 <li>
 <p>Create a dependency &ldquo;container&rdquo; for all future dependencies of the <code>Notifier</code> implementation and embed <code>fx.In</code> into it.
-This will <em>mark</em> it and will tell <code>Uber-FX</code> to inject all the requested dependencies.</p>
+This will <em>mark</em> it and will tell <code>Uber-FX</code> to inject all the requested dependencies:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// It&#39;s not public as you can see
 </span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> notifierDeps <span style="color:#007020;font-weight:bold">struct</span> {
     fx.In
 }
 </code></pre></div></li>
 <li>
-<p>Create an implementation struct.</p>
+<p>Create an implementation struct:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// Notice again that&#39;s not public
 </span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> notifier <span style="color:#007020;font-weight:bold">struct</span>{
     deps notifierDeps
 }
 </code></pre></div></li>
 <li>
-<p>Create a Constructor function that will return <code>Notifier</code> implementation as a type.</p>
+<p>Create a Constructor function that will return a <code>Notifier</code> implementation as a type:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">CreateNotifier</span>(deps notifierDeps) (Notifier,<span style="color:#902000">error</span>) {
     <span style="color:#007020;font-weight:bold">return</span> <span style="color:#666">&amp;</span><span style="color:#06287e">notifier</span>(deps:deps), <span style="color:#007020;font-weight:bold">nil</span>
 }
 </code></pre></div></li>
 <li>
-<p>Finally implement it.</p>
+<p>Finally, implement it:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> (n <span style="color:#666">*</span>notifier) <span style="color:#06287e">Alert</span>(ctx context.Context, msg <span style="color:#902000">string</span>) {
     <span style="color:#60a0b0;font-style:italic">// alert someone
 </span><span style="color:#60a0b0;font-style:italic"></span>}
 </code></pre></div></li>
 </ol>
 <h3 ref="usage" >Usage</h3><a class="anchor" id="usage"></a>
-<p>Now suppose you want to log every time you alert someone. All you need to do is</p>
+<p>Now, suppose you want to log every time you alert someone. All you need to do is:</p>
 <ol>
 <li>
-<p>Add a <code>log.Logger</code> dependency to <code>notifierDeps</code> struct.</p>
+<p>Add a <code>log.Logger</code> dependency to the <code>notifierDeps</code> struct:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">type</span> notifierDeps <span style="color:#007020;font-weight:bold">struct</span> {
     fx.In
 
@@ -512,7 +512,7 @@ This will <em>mark</em> it and will tell <code>Uber-FX</code> to inject all the 
 }
 </code></pre></div></li>
 <li>
-<p>Use it</p>
+<p>Use it:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> (n <span style="color:#666">*</span>notifier) <span style="color:#06287e">Alert</span>(ctx context.Context, msg <span style="color:#902000">string</span>) {
     n.deps.Logger.<span style="color:#06287e">WithField</span>(<span style="color:#4070a0">&#34;msg&#34;</span>, msg).<span style="color:#06287e">Debug</span>(ctx, <span style="color:#4070a0">&#34;alerting&#34;</span>)
     <span style="color:#60a0b0;font-style:italic">// alert someone
@@ -520,12 +520,12 @@ This will <em>mark</em> it and will tell <code>Uber-FX</code> to inject all the 
 </code></pre></div></li>
 </ol>
 <h3 ref="tests" >Tests</h3><a class="anchor" id="tests"></a>
-<p>You are happily using <code>Notifier</code> in your application, but what about tests ?
-You know, to test a logic that have <code>Notifier</code> as a dependency. <code>Notifier</code> will probably call an external service which is not available during tests.
-One way to do it is to use <a href="https://github.com/golang/mock">gomock</a></p>
+<p>You are happily using <code>Notifier</code> in your application, but what about tests?
+You know, to test logic that has <code>Notifier</code> as a dependency. <code>Notifier</code> will probably call an external service, which is not available during tests.
+One way to do it, is to use <a href="https://github.com/golang/mock">gomock</a>.</p>
 <ol>
 <li>
-<p>You can add a comment above the <code>Notifier</code> interface</p>
+<p>You can add a comment above the <code>Notifier</code> interface:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">//go:generate mockgen -source=notifier.go -destination=mock/notifier_mock.go
 </span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> Notifier <span style="color:#007020;font-weight:bold">interface</span>{
     <span style="color:#06287e">Alert</span>(ctx context.Context, msg <span style="color:#902000">string</span>)
@@ -542,7 +542,7 @@ One way to do it is to use <a href="https://github.com/golang/mock">gomock</a></
 </p>
 </li>
 </ol>
-<p>Mortar includes mocks of all of it Interfaces in their respective directories, for example a <a href="https://github.com/go-masonry/mortar/tree/master/interfaces/log/mock">Logger</a> mock.</p>
+<p>Mortar includes mocks of all of its interfaces in their respective directories, for example a <a href="https://github.com/go-masonry/mortar/tree/master/interfaces/log/mock">Logger</a> mock.</p>
 <p>You can find several test examples <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/controllers/workshop_test.go">here</a>.</p>
 
 		</div>

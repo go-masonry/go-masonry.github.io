@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-13T20:55:54 IST">
+<meta name="revised" content="2020-12-16T19:44:09 IST">
 <meta name="description" content="">
 
 
@@ -461,19 +461,19 @@
 
 
 	<div class="content">
-	    <p>Although it&rsquo;s very convenient to use gRPC + gRPC-Gateway to serve RESTful API, you sometime want to use prebuilt HTTP Handler/HandlerFunc or similar.</p>
-<p>Mortar provides 2 <code>fx.Group</code> for that. <a href="https://github.com/go-masonry/mortar/blob/master/providers/groups/alias.go#L26">ExternalHTTPHandlers</a> and <a href="https://github.com/go-masonry/mortar/blob/master/providers/groups/alias.go#L29">ExternalHTTPHandlerFunctions</a>, one for <code>http.Handler</code> the other for <code>http.HandlerFunc</code>.</p>
+	    <p>Although it&rsquo;s very convenient to use gRPC + gRPC-Gateway to serve RESTful APIs, you sometime want to use prebuilt HTTP Handler/HandlerFunc(s) or similar.</p>
+<p>Mortar provides 2 <code>fx.Group</code>(s) for that: <a href="https://github.com/go-masonry/mortar/blob/master/providers/groups/alias.go#L26">ExternalHTTPHandlers</a> and <a href="https://github.com/go-masonry/mortar/blob/master/providers/groups/alias.go#L29">ExternalHTTPHandlerFunctions</a>, one for <code>http.Handler</code> and the other for <code>http.HandlerFunc</code>.</p>
 
 
 <div class="notices info">
-	<p>To better understand Mortar groups read <a href="/fx/groups">here</a></p>
+	<p>To better understand Mortar groups, read <a href="/fx/groups">here</a></p>
 </div>
 
 <h3 ref="registering-httphandler" >Registering <code>http.Handler</code></h3><a class="anchor" id="registering-httphandler"></a>
-<p>To register a new <code>http.Handler</code> you need to define how it&rsquo;s going to be served == <strong>Pattern</strong>.</p>
+<p>To register a new <code>http.Handler</code>, you need to define how it&rsquo;s going to be served == <strong>Pattern</strong>:</p>
 <ol>
 <li>
-<p>Create <a href="https://github.com/go-masonry/mortar/blob/master/providers/types/http.go#L8">HTTPHandlerPatternPair</a></p>
+<p>Create a <a href="https://pkg.go.dev/github.com/go-masonry/mortar/providers/types#HTTPHandlerPatternPair">HTTPHandlerPatternPair</a>:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">var</span> customHandler http.Handler <span style="color:#666">...</span>
 
 <span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">createHandlerPair</span>() types.HTTPHandlerPatternPair {
@@ -484,7 +484,7 @@
 }
 </code></pre></div></li>
 <li>
-<p>Add this pair to the <code>ExternalHTTPHandlers</code> group.</p>
+<p>Add this pair to the <code>ExternalHTTPHandlers</code> group:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">var</span> customHandlerOption = fx.<span style="color:#06287e">Provide</span>(
     fx.Annotated{
         Group: groups.ExternalHTTPHandlers,
@@ -493,7 +493,7 @@
 )
 </code></pre></div></li>
 <li>
-<p>All that&rsquo;s left is to register it into the <code>Uber-FX</code> graph</p>
+<p>All that&rsquo;s left is to register it into the <code>Uber-FX</code> graph:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">New</span>(
  <span style="color:#666">...</span>
  customHandlerOption,
@@ -502,8 +502,8 @@
 </code></pre></div></li>
 </ol>
 <h3 ref="registering-httphandlerfunc" >Registering <code>http.HandlerFunc</code></h3><a class="anchor" id="registering-httphandlerfunc"></a>
-<p>Registering <code>http.HandlerFunc</code> is very much similar to <a href="#registering-httphandler">Registering <code>http.Handler</code></a></p>
-<p>Actually you need to follow the exact same guide and replace <strong>Handler</strong> with <strong>HandlerFunc</strong>:</p>
+<p>Registering <code>http.HandlerFunc</code> is very much similar to <a href="#registering-httphandler">registering <code>http.Handler</code></a>.</p>
+<p>Actually, you need to follow the exact same guide and replace <strong>Handler</strong> with <strong>HandlerFunc</strong>:</p>
 
 
 

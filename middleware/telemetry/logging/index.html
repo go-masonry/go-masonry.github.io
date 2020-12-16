@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-13T20:55:54 IST">
+<meta name="revised" content="2020-12-16T19:44:09 IST">
 <meta name="description" content="">
 
 
@@ -472,19 +472,19 @@
 
 
 	<div class="content">
-	    <p>Logging is extremely important, that is why Golang standard library have <a href="https://golang.org/pkg/log/">one</a>.
-However there are better alternatives and it&rsquo;s up to you to choose the one you want.
-You will need to wrap it to implement <em>Mortar Logger Interface</em> and you good to go.
-We <a href="https://github.com/go-masonry/bzerolog">already done</a> that for <a href="https://github.com/rs/zerolog">zerolog</a>.</p>
+	    <p>Logging is extremely important, that is why the Go standard library has <a href="https://golang.org/pkg/log/">one</a>.
+However, there are better alternatives, and it&rsquo;s up to you to choose the one you want.
+You will need to wrap it to implement <em>Mortar Logger Interface</em> and you&rsquo;re good to go.
+We&rsquo;ve <a href="https://github.com/go-masonry/bzerolog">already done</a> that for <a href="https://github.com/rs/zerolog">zerolog</a>.</p>
 <p>One of the goals for <em>Mortar Logger Interface</em> was for it to be flexible, but most importantly it had to include <code>context.Context</code>, you&rsquo;ll see later why.
 Before we go into the details let us start with some usage examples:</p>
 <ul>
 <li>
-<p>Simple logging similar to <code>fmt.Printf</code></p>
+<p>Simple logging similar to <code>fmt.Printf</code>:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang">logger.<span style="color:#06287e">Debug</span>(ctx, <span style="color:#4070a0">&#34;there were %d different attributes in the request&#34;</span>, <span style="color:#40a070">5</span>)
 </code></pre></div></li>
 <li>
-<p>Structured style logging</p>
+<p>Structured style logging:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// Add error, if err != nil it will be shown in the log
 </span><span style="color:#60a0b0;font-style:italic"></span>logger.<span style="color:#06287e">WithError</span>(err).<span style="color:#06287e">Debug</span>(ctx, <span style="color:#4070a0">&#34;calculation finished&#34;</span>)
 <span style="color:#60a0b0;font-style:italic">// Add Fields, error
@@ -497,11 +497,11 @@ Before we go into the details let us start with some usage examples:</p>
 </ul>
 <p>Output depends on the implementation, but most of the libraries will output logs in JSON/Console format.</p>
 <h2 ref="context" >Context</h2><a class="anchor" id="context"></a>
-<p>In our opinion you should always have <code>context.Context</code> as the first parameter for every <strong>Public Function</strong> you define and <strong>Logger</strong> is not an exception.
+<p>In our opinion you should always have <code>context.Context</code> as the first parameter for every <strong>public function</strong> you define and <strong>Logger</strong> is not an exception.
 You can read all the reasons for that <a href="/middleware/context">here</a>.</p>
-<p>Since every <code>Logger</code> function have a <code>context.Context</code> we can extract different information from it (if configured) and <em>ADD</em> it to the log entry.
+<p>Since every <code>Logger</code> function has a <code>context.Context</code>, we can extract different information from it (if configured) and <em>ADD</em> it to the log entry.
 When you setup a <code>Logger</code> instance to be used everywhere in your application, you can provide different <code>ContextExtractor</code>s and they will enrich your log entry.
-So what is this mysterious <code>ContextExtractor</code> ?</p>
+So what is this mysterious <code>ContextExtractor</code>?</p>
 
 
 <div class="notices info">
@@ -510,15 +510,15 @@ So what is this mysterious <code>ContextExtractor</code> ?</p>
 </code></pre></div>
 </div>
 
-<p>It&rsquo;s a function that accepts a <code>context.Context</code> (which is map) and outputs a <code>JSON</code> style map.
+<p>It&rsquo;s a function that accepts a <code>context.Context</code> (which is a map) and outputs a <code>JSON</code> style map.
 Each key in the map will be added to the log entry.</p>
-<p>This opens a lot of different possibilities</p>
+<p>This opens a lot of different possibilities:</p>
 <ul>
 <li>
-<p>Add static fields such as [Host, Application Name/Version, etc]</p>
+<p>Add static fields such as [Host, Application Name/Version, etc].</p>
 </li>
 <li>
-<p>Add <strong>Tracing</strong> information</p>
+<p>Add <strong>Tracing</strong> information.</p>
 <blockquote>
 
 
@@ -531,8 +531,8 @@ Each key in the map will be added to the log entry.</p>
 </li>
 </ul>
 <h3 ref="registering-a-contextextractor" >Registering a <code>ContextExtractor</code></h3><a class="anchor" id="registering-a-contextextractor"></a>
-<p>Since Mortar is build with <code>Uber-FX</code> it uses <code>fx.Group</code> feature to register different <code>ContextExtractor</code>s regardless of where they are defined.
-Here you can see what are Mortar Logger dependencies</p>
+<p>Since Mortar is built with <code>Uber-FX</code>, it uses the <code>fx.Group</code> feature to register different <code>ContextExtractor</code>s regardless of where they are defined.
+Here you can see what are Mortar Logger&rsquo;s dependencies:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">type</span> loggerDeps <span style="color:#007020;font-weight:bold">struct</span> {
 	fx.In
 
@@ -540,7 +540,7 @@ Here you can see what are Mortar Logger dependencies</p>
 	LoggerBuilder     logInt.Builder            <span style="color:#4070a0">`optional:&#34;true&#34;`</span>
 	ContextExtractors []logInt.ContextExtractor <span style="color:#4070a0">`group:&#34;loggerContextExtractors&#34;`</span>
 }
-</code></pre></div><p>Look at the Group Identifier <code>group:&quot;loggerContextExtractors&quot;</code> which also have a <a href="https://github.com/go-masonry/mortar/blob/master/providers/groups/alias.go#L41">group alias</a> for reference purposes.</p>
+</code></pre></div><p>Look at the Group Identifier <code>group:&quot;loggerContextExtractors&quot;</code> which also has a <a href="https://github.com/go-masonry/mortar/blob/master/providers/groups/alias.go#L41">group alias</a> for reference purposes.</p>
 
 
 <div class="notices info">
@@ -557,7 +557,7 @@ Here you can see what are Mortar Logger dependencies</p>
 <div class="card "><div class="card-header info">Example: showing how an FX Option is defined in external library</div><div class="card-body">
     <p class="card-text"><ol>
 <li>
-<p>Here is an example from a <a href="https://github.com/go-masonry/bjaeger/blob/master/utils.go#L25">Jaeger package</a></p>
+<p>Here is an example from a <a href="https://github.com/go-masonry/bjaeger/blob/master/utils.go#L25">Jaeger package</a>:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// TraceInfoContextExtractorFxOption is a preconfigured fx.Option that will allow adding trace info to log entry
 </span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">TraceInfoContextExtractorFxOption</span>() fx.Option {
     <span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">Provide</span>(
@@ -573,7 +573,7 @@ Here you can see what are Mortar Logger dependencies</p>
 }
 </code></pre></div></li>
 <li>
-<p>Demo application shows how it&rsquo;s registered <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/logger.go#L20"><code>app/mortar/logger.go</code></a></p>
+<p>Demo application shows how it&rsquo;s registered <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/logger.go#L20"><code>app/mortar/logger.go</code></a>:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">LoggerFxOption</span>() fx.Option {
     <span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">Options</span>(
         <span style="color:#666">...</span>
@@ -582,7 +582,7 @@ Here you can see what are Mortar Logger dependencies</p>
 }
 </code></pre></div></li>
 <li>
-<p><a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/main.go#L32"><code>main.go</code></a> in Demo application, starting it all.</p>
+<p><a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/main.go#L32"><code>main.go</code></a> in Demo application, starting it all:</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">createApplication</span>(configFilePath <span style="color:#902000">string</span>, additionalFiles []<span style="color:#902000">string</span>) <span style="color:#666">*</span>fx.App {
         <span style="color:#666">...</span>
         mortar.<span style="color:#06287e">LoggerFxOption</span>(),                                  <span style="color:#60a0b0;font-style:italic">// Logger

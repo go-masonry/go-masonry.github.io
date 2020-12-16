@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-13T20:55:54 IST">
+<meta name="revised" content="2020-12-16T19:44:09 IST">
 <meta name="description" content="">
 
 
@@ -434,7 +434,7 @@
   <ul>
     <li>
       <ul>
-        <li><a href="#other-types-of-middleware">Other types of Middleware</a></li>
+        <li><a href="#other-types-of-middleware">Other types of middleware</a></li>
       </ul>
     </li>
   </ul>
@@ -449,41 +449,41 @@
 
 
 	<div class="content">
-	    <p>It&rsquo;s hard to define Middleware, but in Mortar context you can think of it as <strong>Proxy/Interceptors</strong>.
+	    <p>It&rsquo;s hard to define middleware, but in Mortar&rsquo;s context you can think of it as <strong>proxy/interceptors</strong>.
 Some of them are bundled as part of the libraries Mortar uses, others defined by Mortar.</p>
 <ul>
 <li>
-<p>gRPC package already has a way to register different Interceptors
-for <a href="https://github.com/grpc/grpc-go/blob/master/interceptor.go#L43">Client</a>
-and <a href="https://github.com/grpc/grpc-go/blob/master/interceptor.go#L84">Server</a>.
-Mortar already comes with some.</p>
+<p>The gRPC package already has a way to register different interceptors
+for <a href="https://pkg.go.dev/google.golang.org/grpc#UnaryClientInterceptor">client</a>
+and <a href="https://pkg.go.dev/google.golang.org/grpc#UnaryServerInterceptor">server</a>.
+Mortar already comes with some:</p>
 <ul>
-<li>Server Interceptors
+<li>Server interceptors:
 <ul>
 <li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/server/logger.go#L23">Logger</a> <code>UnaryServerInterceptor</code>, making it easier to log gRPC request and response.</li>
 <li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/server/monitor.go#L30">Monitoring</a> <code>UnaryServerInterceptor</code>, this one can create automatic Histogram/Timer metric for each gRPC method.</li>
-<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/trace/server.go#L13">Tracing</a> <code>UnaryServerInterceptor</code>, Injects or Uses tracing information.</li>
+<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/trace/server.go#L13">Tracing</a> <code>UnaryServerInterceptor</code>, injects or uses tracing information.</li>
 </ul>
 </li>
-<li>Client Interceptors
+<li>Client interceptors:
 <ul>
-<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/trace/client.go#L18">Tracing</a> <code>UnaryClientInterceptor</code>, creates a Client span and passes Tracing Information to the next hop.</li>
-<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/client/headers.go#L23">In-&gt;Out</a> <code>UnaryClientInterceptor</code>, this one can be used to copy specific headers from <code>grpc.Incoming</code> to <code>grpc.Outgoing</code></li>
+<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/trace/client.go#L18">Tracing</a> <code>UnaryClientInterceptor</code>, creates a client span and passes tracing information to the next hop.</li>
+<li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/client/headers.go#L23">In-&gt;Out</a> <code>UnaryClientInterceptor</code>, this one can be used to copy specific headers from <code>grpc.Incoming</code> to <code>grpc.Outgoing</code>.</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>
-<p>HTTP interceptors</p>
+<p>HTTP interceptors:</p>
 <ul>
-<li>Server HTTP Middleware
+<li>Server HTTP middleware.
 
 
 <div class="notices secondary">
-	<p>There are no <code>http.Handler</code> Interceptors bundled with Mortar. It&rsquo;s better to use the gRPC layer for that, but you can always add your own.</p>
+	<p>There are no <code>http.Handler</code> interceptors bundled with Mortar. It&rsquo;s better to use the gRPC layer for that, but you can always add your own.</p>
 </div>
 </li>
-<li>Client
+<li>Client.
 
 
 <div class="notices success">
@@ -498,9 +498,9 @@ Mortar already comes with some.</p>
 </ul>
 </li>
 </ul>
-<h3 ref="other-types-of-middleware" >Other types of Middleware</h3><a class="anchor" id="other-types-of-middleware"></a>
-<p>Network Interceptors are not the only ones you can use in Mortar.
-There are other types of Middleware.</p>
+<h3 ref="other-types-of-middleware" >Other types of middleware</h3><a class="anchor" id="other-types-of-middleware"></a>
+<p>Network interceptors are not the only ones you can use in Mortar.
+There are other types of middleware.</p>
 <p>They rely on <code>context.Context</code> passed to most methods, read <a href="/middleware/context">here</a> about that.</p>
 
 		</div>
@@ -547,7 +547,7 @@ There are other types of Middleware.</p>
   <ul>
     <li>
       <ul>
-        <li><a href="#other-types-of-middleware">Other types of Middleware</a></li>
+        <li><a href="#other-types-of-middleware">Other types of middleware</a></li>
       </ul>
     </li>
   </ul>

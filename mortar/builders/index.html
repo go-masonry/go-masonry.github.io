@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-13T20:55:54 IST">
+<meta name="revised" content="2020-12-16T19:44:09 IST">
 <meta name="description" content="">
 
 
@@ -490,12 +490,12 @@
 
 
 	<div class="content">
-	    <p>You probably used to <a href="https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis">Functional Options</a> pattern.
-But we found Builder pattern to be very useful, here we will explain why.</p>
+	    <p>You&rsquo;re probably used to <a href="https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis">functional options</a> pattern.
+However, we found Builder pattern to be very useful, here we will explain why.</p>
 <h2 ref="motivation" >Motivation</h2><a class="anchor" id="motivation"></a>
 <ul>
-<li>&ldquo;See&rdquo; all the options without searching for them</li>
-<li>Partial Builders
+<li>&ldquo;See&rdquo; all the options without searching for them.</li>
+<li>Partial Builders:
 <ul>
 <li>Override previously set values</li>
 </ul>
@@ -510,16 +510,16 @@ But we found Builder pattern to be very useful, here we will explain why.</p>
 |  Library Developer  | +--------&gt; | Platform/Infra/Ops Developer  | +-------&gt; |  Integration Developer  |
 +---------------------+            +-------------------------------+           +-------------------------+
 
-Develops the library to be used    Pre Configure the library specifically      Set final values
-in different scenarios, expose     to their organization.                      according to specific use case
-different options
+Develops the library to be used    Pre-configure the library specifically      Set final values
+in different scenarios, expose     to their organization.                      according to specific use case.
+different options.
 
      Library defaults                  Predefined defaults                       Override defaults
 </code></pre></p>
   </div></div>
 
 <h3 ref="our-library" >Our Library</h3><a class="anchor" id="our-library"></a>
-<p>Let&rsquo;s pretend we are building a library. Our library will have a constructor.</p>
+<p>Let&rsquo;s pretend we are building a library. Our library will have a constructor:</p>
 
 
 
@@ -530,7 +530,7 @@ different options
 </code></pre></div></p>
   </div></div>
 
-<p>Configuration will be stored in <code>libConf</code>
+<p>Configuration will be stored in <code>libConf</code>:
 
 
 
@@ -549,7 +549,7 @@ different options
   </div><div class="card-footer text-muted">There can also be a different kind of option that will look similar to this, but the idea is the same</div></div>
 </p>
 <h3 ref="what-is-it-about-then" >What is it about then?</h3><a class="anchor" id="what-is-it-about-then"></a>
-<p>The purpose of this pattern to &ldquo;introduce&rdquo; or &ldquo;unite&rdquo; between a library developer and the platform/infra developer as shown in the above chart.
+<p>The purpose of this pattern is to &ldquo;introduce&rdquo; or &ldquo;unite&rdquo; between a library developer and the platform/infra developer as shown in the above chart.
 We want to introduce predefined defaults that are specific to the organization/use case and are not just library specific.
 Let&rsquo;s examine our Library again, we have to set an <code>address</code> since our library needs to connect to some server.
 We can look at this problem from difference perspectives:</p>
@@ -557,8 +557,8 @@ We can look at this problem from difference perspectives:</p>
 
 
 <div class="card "><div class="card-header primary">Library Developer</div><div class="card-body">
-    <p class="card-text"><p>The library developer have no idea about your IP address right ? Hence the exposed <code>Option</code> to set the address.
-However to find that option or any others you will need to look at the source code, right ?</p>
+    <p class="card-text"><p>The library developer has no idea about your IP address, right? Hence the exposed <code>Option</code> to set the address.
+However, to find that option or any others you will need to look at the source code, right ?</p>
 </p>
   </div></div>
 
@@ -566,7 +566,7 @@ However to find that option or any others you will need to look at the source co
 
 
 <div class="card "><div class="card-header primary">Infrastructure/Platform developer within your organization</div><div class="card-body">
-    <p class="card-text"><p>Infrastructure/Platform developer already setup this server and now needs to tell every &ldquo;Integration developer&rdquo; what that address is</p>
+    <p class="card-text"><p>An Infrastructure/Platform developer has already setup this server and now needs to tell every &ldquo;Integration developer&rdquo; what that address is.</p>
 </p>
   </div></div>
 
@@ -574,8 +574,8 @@ However to find that option or any others you will need to look at the source co
 
 
 <div class="card "><div class="card-header primary">Integration Developer</div><div class="card-body">
-    <p class="card-text"><p>Either knows or not about this server IP that was introduced by the Platform/Infrastructure team but still needs to have a way to override it.
-Because this IP can change with time or there is a local server that is used during tests.</p>
+    <p class="card-text"><p>Either knows or not about this server IP that was introduced by the Platform/Infrastructure team but still needs to have a way to override it,
+because this IP can change with time or there is a local server that is used during tests.</p>
 </p>
   </div></div>
 </p>
@@ -592,9 +592,9 @@ Because this IP can change with time or there is a local server that is used dur
 </code></pre></div></p>
   </div></div>
 
-<p>So far nothing new, you can even look at it as a set of Options without the ability to extend and not breaking the API. And you right, however it&rsquo;s not intended as a drop in replacement for Functional Options.</p>
+<p>So far nothing new, you can even look at it as a set of options without the ability to extend and not break the API. And you&rsquo;re right, however it&rsquo;s not intended as a drop-in replacement for functional options.</p>
 <h2 ref="linked-list" >Linked list</h2><a class="anchor" id="linked-list"></a>
-<p>Builder implementation is based on a linked list
+<p>The Builder implementation is based on a linked list:
 
 
 
@@ -614,15 +614,15 @@ Because this IP can change with time or there is a local server that is used dur
 </code></pre></p>
   </div></div>
 </p>
-<p>Each <code>Option</code> is presented as a function on the the builder interface and added a to a list of previous options.
+<p>Each <code>Option</code> is presented as a function on the builder interface and added a to a list of previous options.
 
 
 <div class="notices primary">
-	<p>Each Builder function is an <em>alias</em> to Functional Option</p>
+	<p>Each Builder function is an <em>alias</em> to a functional option</p>
 </div>
 </p>
 <h3 ref="overriding-predefined-defaults" >Overriding predefined defaults</h3><a class="anchor" id="overriding-predefined-defaults"></a>
-<p>Since it&rsquo;s a list of Options we can add a <em>new option</em> to the end of a list that will actually <strong>override</strong> a previous one.
+<p>Since it&rsquo;s a list of options, we can add a <em>new option</em> to the end of a list that will actually <strong>override</strong> a previous one:
 
 
 
@@ -650,7 +650,7 @@ Because this IP can change with time or there is a local server that is used dur
   </div></div>
 </p>
 <h2 ref="implementation" >Implementation</h2><a class="anchor" id="implementation"></a>
-<p>Finally let&rsquo;s just build it
+<p>Finally, let&rsquo;s just build it:
 
 
 
@@ -699,14 +699,14 @@ Because this IP can change with time or there is a local server that is used dur
 </code></pre></div></p>
   </div></div>
 </p>
-<p>Once we have our builder we will use it as follows</p>
+<p>Once we have our builder, we will use it as follows:</p>
 
 
 
 <div class="card "><div class="card-body">
     <p class="card-text"><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">makeLibrary</span>(partialBuilder LibBuilder) Library {
-    <span style="color:#60a0b0;font-style:italic">// here we have passed previously defined builder, one that have some defaults already in it
-</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// Now we can either use it as is or override it
+    <span style="color:#60a0b0;font-style:italic">// Here we have passed previously defined builder, one that has some defaults already in it.
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// Now we can either use it as is or override it.
 </span><span style="color:#60a0b0;font-style:italic"></span>    builder <span style="color:#666">:=</span> partialBuilder.<span style="color:#06287e">Address</span>(<span style="color:#4070a0">&#34;5678&#34;</span>)
     <span style="color:#007020;font-weight:bold">return</span> builder.<span style="color:#06287e">Build</span>()
 }
@@ -719,7 +719,7 @@ Because this IP can change with time or there is a local server that is used dur
 </code></pre></div></p>
   </div></div>
 
-<p>Now if you <a href="https://play.golang.org/p/B_le8viHPKt">run it</a> the output will be
+<p>Now, if you <a href="https://play.golang.org/p/B_le8viHPKt">run it</a> the output will be:
 
 
 

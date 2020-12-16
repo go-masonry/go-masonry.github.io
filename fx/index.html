@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-13T20:55:54 IST">
+<meta name="revised" content="2020-12-16T19:44:09 IST">
 <meta name="description" content="">
 
 
@@ -432,21 +432,21 @@
 
 
 	<div class="content">
-	    <p>If you are unfamiliar with the concept please read about <a href="https://en.wikipedia.org/wiki/Inversion_of_control">it</a>.</p>
+	    <p>If you are unfamiliar with the concept, please <a href="https://en.wikipedia.org/wiki/Inversion_of_control">read</a> about it.</p>
 <p>Mortar is heavily based on this principle. There are different libraries to achieve that in Go.</p>
 
 
 <div class="notices success">
 	<p>Mortar uses <a href="https://github.com/uber-go/fx"><code>Uber-FX</code></a> and you&rsquo;re strongly encouraged to read all about it.</p>
-<p><strong>Well actually you kinda have to.</strong></p>
+<p><strong>Well, actually you kinda have to.</strong></p>
 
 </div>
 
-<p>To summarize, this is what you need to understand about IoC frameworks</p>
+<p>To summarize, this is what you need to understand about IoC frameworks:</p>
 <ul>
 <li>You are not the one creating the dependencies, <code>Uber-FX</code> does it for you. Just tell it how.</li>
-<li>Every dependency is a Singleton, hence that same instance reused everywhere.</li>
-<li>Once your dependencies defined as an Interface it&rsquo;s really easy to swap it. Especially during tests.</li>
+<li>Every dependency is a Singleton, hence that same instance is reused everywhere.</li>
+<li>Once your dependencies are defined as an interface, it&rsquo;s really easy to swap it. Especially during tests.</li>
 <li>There is no magic, only implicits.</li>
 </ul>
 
