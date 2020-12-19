@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-16T19:44:09 IST">
+<meta name="revised" content="2020-12-19T14:59:57 IST">
 <meta name="description" content="">
 
 
@@ -124,20 +124,6 @@
       
       <aside class="">
         
-<div class="search">
-	<div class="searchbox">
-	  <input data-search-input id="search-by" type="text" placeholder="Type to search...">
-	</div>
-	<script type="text/javascript" src="/vendor/lunr/lunr.min.js"></script>
-	<script type="text/javascript" src="/vendor/auto-complete/auto-complete.js"></script>
-	<link href="/vendor/auto-complete/auto-complete.css" rel="stylesheet">
-	<script type="text/javascript">
-	  
-	      var baseurl = "https:\/\/go-masonry.github.io\/";
-	  
-	</script>
-	<script type="text/javascript" src="/js/search.js"></script>
-</div>
 
 		
 	
@@ -487,11 +473,12 @@ Mortar already comes with some:</p>
 
 
 <div class="notices success">
-	<p>Mortar introduces a way to add interceptors to <code>http.Client</code>, <a href="https://github.com/go-masonry/mortar/blob/master/interfaces/http/client/interfaces.go#L21">here</a> you can see how it&rsquo;s defined.</p>
+	<p>Mortar introduces a way to add interceptors to <code>http.Client</code>, <a href="https://pkg.go.dev/github.com/go-masonry/mortar/interfaces/http/client#HTTPClientInterceptor">here</a> you can see how it&rsquo;s defined.</p>
 </div>
 
 <ul>
 <li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/trace/client.go#L44">Tracing</a> <code>HTTPClientInterceptor</code>, similar to the gRPC one, but for HTTP.</li>
+<li>Request/Response <a href="https://pkg.go.dev/github.com/go-masonry/mortar@v0.1.6/middleware/interceptors/client#DumpRESTClientInterceptor">dump interceptor</a>, for debugging purposes.</li>
 <li>In Workshop Demo there is a special <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/controllers/workshop_test.go#L164">TEST</a> Interceptor that returns a custom response.</li>
 </ul>
 </li>

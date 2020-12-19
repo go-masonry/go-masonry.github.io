@@ -9,7 +9,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-16T19:44:09 IST">
+<meta name="revised" content="2020-12-19T14:59:57 IST">
 <meta name="description" content="">
 
 
@@ -125,20 +125,6 @@
       
       <aside class="">
         
-<div class="search">
-	<div class="searchbox">
-	  <input data-search-input id="search-by" type="text" placeholder="Type to search...">
-	</div>
-	<script type="text/javascript" src="/vendor/lunr/lunr.min.js"></script>
-	<script type="text/javascript" src="/vendor/auto-complete/auto-complete.js"></script>
-	<link href="/vendor/auto-complete/auto-complete.css" rel="stylesheet">
-	<script type="text/javascript">
-	  
-	      var baseurl = "https:\/\/go-masonry.github.io\/";
-	  
-	</script>
-	<script type="text/javascript" src="/js/search.js"></script>
-</div>
 
 		
 	
@@ -424,9 +410,29 @@
 
 
 	<div class="content">
-	    <p>Welcome to Mortar Documentation.</p>
-<p>Mortar is a Go framework/library for building gRPC (and REST) web services.
+	    <p>Mortar is a Go framework/library for building gRPC (and REST) web services.
 It has out-of-the-box support for configuration, application metrics, logging, tracing, profiling, dependency injection and more.</p>
+<p>The key features are:</p>
+<ul>
+<li><a href="/fx">Dependency Injection</a> using <a href="https://github.com/uber-go/fx">Uber-FX</a>.
+<ul>
+<li>Everything is pluggable, however you can <a href="/mortar/bricks">replace everything</a>.</li>
+</ul>
+</li>
+<li><a href="/middleware">Middleware concept</a> is almost everywhere and very customizable.
+<ul>
+<li><a href="/middleware">Build-in</a> Server/Client Interceptors both for gRPC/HTTP, you can bring your own.</li>
+<li><a href="/middleware/telemetry">Telemetry</a> - Metrics, Tracing and Logging all connected.</li>
+</ul>
+</li>
+<li>Increases Developer Velocity</li>
+<li>DevOps friendly
+<ul>
+<li><a href="/mortar/builders">Builder pattern</a></li>
+<li>Profiling, Debug, Build Info, Configuration and <a href="https://github.com/go-masonry/mortar/tree/master/handlers">more</a>.</li>
+</ul>
+</li>
+</ul>
 <p>The simplest way to start is to clone the <a href="https://github.com/go-masonry/mortar-demo">Demo</a> repository.</p>
 
 		</div>
