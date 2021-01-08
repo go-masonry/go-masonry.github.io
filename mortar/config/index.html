@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2020-12-19T14:59:57 IST">
+<meta name="revised" content="2021-01-08T14:29:59 IST">
 <meta name="description" content="">
 
 
@@ -457,6 +457,7 @@
     </li>
     <li><a href="#mortar-keys">Mortar Keys</a></li>
     <li><a href="#config-format">Config format</a></li>
+    <li><a href="#mortar-expects-this-configyaml-template">Mortar expects this <code>config.yaml</code> template</a></li>
   </ul>
 </nav>
 	</div>
@@ -553,14 +554,114 @@ When you want to read the gRPC server port value in your code, you should use th
 
 
 <div class="notices warning">
-	<label>Will probably be Refactored</label><p>In <a href="https://github.com/go-masonry/mortar/blob/master/mortar/keys.go">this</a> file we try to show what the configuration map should look like and expose all the keys.</p>
+	<label>Will probably be Refactored</label><p>In <a href="https://pkg.go.dev/github.com/go-masonry/mortar@v0.2.1/interfaces/cfg/keys#section-documentation">this</a> documentation we try to show what the configuration map should look like and expose all the keys.</p>
 
 </div>
 
 <h2 ref="config-format" >Config format</h2><a class="anchor" id="config-format"></a>
 <p>While in this example we showed you <code>config.yml</code> in YAML format, you can choose whatever works for you, as long as the provided <code>Config</code> implementation knows how to read it and will abstract every key to be queried in this form:</p>
 <p><code>root.child.childOfChild</code></p>
-
+<h2 ref="mortar-expects-this-configyaml-template" >Mortar expects this <code>config.yaml</code> template</h2><a class="anchor" id="mortar-expects-this-configyaml-template"></a>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#60a0b0;font-style:italic"># Root key of everything related to mortar configuration</span><span style="color:#bbb">
+</span><span style="color:#bbb"></span><span style="color:#062873;font-weight:bold">mortar</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic"># Application/Project name</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic"># Type: string</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">name</span>:<span style="color:#bbb"> </span><span style="color:#4070a0">&#34;Application Name&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic"># Web server related configuration</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">server</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">grpc</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#60a0b0;font-style:italic"># gRPC API External port</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#60a0b0;font-style:italic"># Type: int</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#40a070">5380</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">rest</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#60a0b0;font-style:italic"># RESTful API External port</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#60a0b0;font-style:italic"># Type: int</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">external</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#062873;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#40a070">5381</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#60a0b0;font-style:italic"># RESTful API Internal port</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#60a0b0;font-style:italic"># Type: int</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">internal</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#062873;font-weight:bold">port</span>:<span style="color:#bbb"> </span><span style="color:#40a070">5382</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic"># Default Logger related configuration</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">logger</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># Set the default log level for mortar logger</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># Possible values:</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic">#		trace, debug, info, warn, error</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># Type: string</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">level</span>:<span style="color:#bbb"> </span>debug<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">static</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#60a0b0;font-style:italic"># enables/disables adding a git commit SHA in every log entry</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#60a0b0;font-style:italic"># Type: bool</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">git</span>:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#60a0b0;font-style:italic"># enables/disables adding a hostname in every log entry</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#60a0b0;font-style:italic"># Type: bool</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">host</span>:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">false</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#60a0b0;font-style:italic"># enables/disables adding an application/project name in every log entry</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#60a0b0;font-style:italic"># Type: bool</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">name</span>:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">false</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic"># Metrics/Monitoring related configuration</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">monitor</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># sets the namespace/prefix of every metric. Depends on the Metrics implementation</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># Type: string</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">prefix</span>:<span style="color:#bbb"> </span><span style="color:#4070a0">&#34;awesome&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># allows to include static labels/tags to every published metric</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># Type: map[string]string</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">tags</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">tag1</span>:<span style="color:#bbb"> </span>value1<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">tag2</span>:<span style="color:#bbb"> </span>value2<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">tag3</span>:<span style="color:#bbb"> </span>value3<span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic"># Bundled handlers configuration</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">handlers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">config</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#60a0b0;font-style:italic"># defines a list of keywords that once contained within the configuration key will obfuscate the value</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#60a0b0;font-style:italic"># Type: []string</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">obfuscate</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#4070a0">&#34;pass&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#4070a0">&#34;auth&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#4070a0">&#34;secret&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#4070a0">&#34;login&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#4070a0">&#34;user&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#60a0b0;font-style:italic"># Interceptors/Extractors configuration</span><span style="color:#bbb">
+</span><span style="color:#bbb">  </span><span style="color:#062873;font-weight:bold">middleware</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># set the default log level of all the bundled middleware that writes to log</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># Possible values:</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># 	trace, debug, info, warn, error</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># Type: string</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">logLevel</span>:<span style="color:#bbb"> </span><span style="color:#4070a0">&#34;trace&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># list of headers to be extracted from Incoming gRPC and added to every log entry</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#60a0b0;font-style:italic"># Type: []string</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">logHeaders</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#4070a0">&#34;x-forwarded-for&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span>- <span style="color:#4070a0">&#34;special-header&#34;</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">trace</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">http</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#062873;font-weight:bold">client</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#60a0b0;font-style:italic"># include HTTP client request to trace info ?</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#60a0b0;font-style:italic"># Type: bool</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#062873;font-weight:bold">request</span>:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#60a0b0;font-style:italic"># include HTTP client response to trace info ?</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#60a0b0;font-style:italic"># Type: bool</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#062873;font-weight:bold">response</span>:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">grpc</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#062873;font-weight:bold">client</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#60a0b0;font-style:italic"># include gRPC client request to trace info ?</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#60a0b0;font-style:italic"># Type: bool</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#062873;font-weight:bold">request</span>:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#60a0b0;font-style:italic"># include gRPC client response to trace info ?</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#60a0b0;font-style:italic"># Type: bool</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#062873;font-weight:bold">response</span>:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">        </span><span style="color:#062873;font-weight:bold">server</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#60a0b0;font-style:italic"># include incoming gRPC request to trace info ?</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#60a0b0;font-style:italic"># Type: bool</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#062873;font-weight:bold">request</span>:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#60a0b0;font-style:italic"># include a gRPC response of incoming request to trace info ?</span><span style="color:#bbb">
+</span><span style="color:#bbb">          </span><span style="color:#062873;font-weight:bold">response</span>:<span style="color:#bbb"> </span><span style="color:#007020;font-weight:bold">true</span><span style="color:#bbb">
+</span><span style="color:#bbb">    </span><span style="color:#062873;font-weight:bold">copy</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#60a0b0;font-style:italic"># list of header prefixes to copy/forward from Incoming gRPC context to outgoing Request context/headers</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#60a0b0;font-style:italic"># Type: []string</span><span style="color:#bbb">
+</span><span style="color:#bbb">      </span><span style="color:#062873;font-weight:bold">headers</span>:<span style="color:#bbb">
+</span><span style="color:#bbb">        </span>- <span style="color:#4070a0">&#34;authorization&#34;</span><span style="color:#bbb">
+</span></code></pre></div>
 		</div>
 
 
@@ -600,6 +701,7 @@ When you want to read the gRPC server port value in your code, you should use th
     </li>
     <li><a href="#mortar-keys">Mortar Keys</a></li>
     <li><a href="#config-format">Config format</a></li>
+    <li><a href="#mortar-expects-this-configyaml-template">Mortar expects this <code>config.yaml</code> template</a></li>
   </ul>
 </nav>
 </div>
