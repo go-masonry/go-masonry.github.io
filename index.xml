@@ -5,12 +5,11 @@
     <link>https://go-masonry.github.io/</link>
     <description>Recent content on Mortar Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 10 Dec 2020 13:08:23 +0200</lastBuildDate><atom:link href="https://go-masonry.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://go-masonry.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Bricks</title>
       <link>https://go-masonry.github.io/mortar/bricks/</link>
-      <pubDate>Thu, 10 Dec 2020 13:08:23 +0200</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://go-masonry.github.io/mortar/bricks/</guid>
       <description>When we build software, most of us always try to rely on something we or others have built before us. Since we don&amp;rsquo;t want to reinvent the wheel, again.
@@ -21,7 +20,7 @@ Let&amp;rsquo;s look at Logger libraries for example, there are:</description>
     <item>
       <title>Builder Pattern</title>
       <link>https://go-masonry.github.io/mortar/builders/</link>
-      <pubDate>Thu, 10 Dec 2020 13:08:23 +0200</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://go-masonry.github.io/mortar/builders/</guid>
       <description>You&amp;rsquo;re probably used to functional options pattern. However, we found Builder pattern to be very useful, here we will explain why.
@@ -31,7 +30,7 @@ Motivation  &amp;ldquo;See&amp;rdquo; all the options without searching for them
     <item>
       <title>Configuration Map</title>
       <link>https://go-masonry.github.io/mortar/config/</link>
-      <pubDate>Thu, 10 Dec 2020 13:08:23 +0200</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://go-masonry.github.io/mortar/config/</guid>
       <description>It is good practice to use constants in your code instead of magic numbers, and it&amp;rsquo;s even better to set them outside your code, either by providing a config file or reading from an environment variable. Mortar has a Config interface that is used everywhere to read external configurations. While Mortar can be configured explicitly, and that gives you total control over it, it is much comfortable to use its defaults.</description>
@@ -40,7 +39,7 @@ Motivation  &amp;ldquo;See&amp;rdquo; all the options without searching for them
     <item>
       <title>Listeners</title>
       <link>https://go-masonry.github.io/mortar/listeners/</link>
-      <pubDate>Thu, 10 Dec 2020 13:08:23 +0200</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://go-masonry.github.io/mortar/listeners/</guid>
       <description>We assume that you, like us, don&amp;rsquo;t expose your services to the world without setting up at least a Load Balancer before it/them. Historically, when we started building webservices, our infrastructure was expecting a single port to forward all the traffic to it from the LoadBalancer. When we wanted to use gRPC API, as well as REST, we still had to expose everything under one port. Fortunately, we weren&amp;rsquo;t the first, and we used this excellent cmux library to solve that problem.</description>

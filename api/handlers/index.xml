@@ -5,7 +5,6 @@
     <link>https://go-masonry.github.io/api/handlers/</link>
     <description>Recent content in HTTP Handler/Func on Mortar Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 09 Dec 2020 10:41:15 +0200</lastBuildDate><atom:link href="https://go-masonry.github.io/api/handlers/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://go-masonry.github.io/api/handlers/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

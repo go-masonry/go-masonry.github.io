@@ -4,92 +4,18 @@
   
   <url>
     <loc>https://go-masonry.github.io/api/</loc>
-    <lastmod>2020-12-09T10:41:15+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://go-masonry.github.io/fx/</loc>
-    <lastmod>2020-12-06T10:35:11+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://go-masonry.github.io/middleware/</loc>
-    <lastmod>2020-12-06T10:35:11+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://go-masonry.github.io/mortar/</loc>
-    <lastmod>2020-12-10T13:08:23+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/mortar/bricks/</loc>
-    <lastmod>2020-12-10T13:08:23+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/mortar/builders/</loc>
-    <lastmod>2020-12-10T13:08:23+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/mortar/config/</loc>
-    <lastmod>2020-12-10T13:08:23+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/mortar/listeners/</loc>
-    <lastmod>2020-12-10T13:08:23+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/</loc>
-    <lastmod>2020-12-10T13:08:23+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/api/grpc/</loc>
-    <lastmod>2020-12-09T10:41:15+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/api/grpc-gw/</loc>
-    <lastmod>2020-12-09T10:41:15+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/api/handlers/</loc>
-    <lastmod>2020-12-09T10:41:15+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/middleware/context/</loc>
-    <lastmod>2020-12-06T10:35:11+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/middleware/telemetry/logging/</loc>
-    <lastmod>2020-12-06T09:43:50+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/middleware/telemetry/</loc>
-    <lastmod>2020-12-06T09:43:50+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/fx/pattern/</loc>
-    <lastmod>2020-12-05T13:18:51+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/fx/groups/</loc>
-    <lastmod>2020-12-05T13:18:51+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/fx/tests/</loc>
-    <lastmod>2020-12-05T13:18:51+02:00</lastmod>
   </url>
   
   <url>
@@ -101,11 +27,67 @@
   </url>
   
   <url>
+    <loc>https://go-masonry.github.io/mortar/bricks/</loc>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/mortar/builders/</loc>
+  </url>
+  
+  <url>
     <loc>https://go-masonry.github.io/categories/</loc>
   </url>
   
   <url>
+    <loc>https://go-masonry.github.io/mortar/config/</loc>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/middleware/context/</loc>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/fx/pattern/</loc>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/fx/groups/</loc>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/api/grpc/</loc>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/api/grpc-gw/</loc>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/api/handlers/</loc>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/mortar/listeners/</loc>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/middleware/telemetry/logging/</loc>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/</loc>
+  </url>
+  
+  <url>
     <loc>https://go-masonry.github.io/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/middleware/telemetry/</loc>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/fx/tests/</loc>
   </url>
   
 </urlset>
