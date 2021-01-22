@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2021-01-08T14:39:00 IST">
+<meta name="revised" content="2021-01-22T19:46:29 IST">
 <meta name="description" content="">
 
 
@@ -201,6 +201,21 @@
     </li>
     
 
+    <li data-nav-id="https://go-masonry.github.io/clients/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+        
+      
+          <a href="/clients/">Clients</a>
+      
+    </li>
+    
+
     <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item haschildren
         item_level_$level
         ">
@@ -319,6 +334,36 @@
       
       
           <a href="/middleware/telemetry/logging/">Logging</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/monitoring/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/monitoring/">Monitoring</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/tracing/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/tracing/">Tracing</a>
       
         
       
@@ -581,6 +626,14 @@ Here you can see what are Mortar Logger&rsquo;s dependencies:</p>
 </p>
   </div></div>
 
+<p>Once everything is configured and provided you should see Tracing information in every log, regardless if it&rsquo;s sampled or not.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">6:48PM DBG app/services/workshop.go:48 &gt; accepting car <span style="color:#bb60d5">app</span><span style="color:#666">=</span>workshop <span style="color:#bb60d5">car</span><span style="color:#666">={</span><span style="color:#4070a0">&#34;body_style&#34;</span>:2,<span style="color:#4070a0">&#34;color&#34;</span>:<span style="color:#4070a0">&#34;blue&#34;</span>,<span style="color:#4070a0">&#34;number&#34;</span>:<span style="color:#4070a0">&#34;12345679&#34;</span>,<span style="color:#4070a0">&#34;owner&#34;</span>:<span style="color:#4070a0">&#34;me myself&#34;</span><span style="color:#666">}</span> <span style="color:#bb60d5">git</span><span style="color:#666">=</span>9f00a9c <span style="color:#bb60d5">host</span><span style="color:#666">=</span>Tals-Mac-mini.lan <span style="color:#bb60d5">parentSpanId</span><span style="color:#666">=</span><span style="color:#40a070">0</span> <span style="color:#bb60d5">sampled</span><span style="color:#666">=</span><span style="color:#007020">true</span> <span style="color:#bb60d5">spanId</span><span style="color:#666">=</span>4b71de0edc5b6d18 <span style="color:#bb60d5">traceId</span><span style="color:#666">=</span>4b71de0edc5b6d18 <span style="color:#bb60d5">version</span><span style="color:#666">=</span>v1.2.3
+
+6:48PM DBG app/controllers/workshop.go:50 &gt; car accepted <span style="color:#bb60d5">app</span><span style="color:#666">=</span>workshop <span style="color:#bb60d5">git</span><span style="color:#666">=</span>9f00a9c <span style="color:#bb60d5">host</span><span style="color:#666">=</span>Tals-Mac-mini.lan <span style="color:#bb60d5">parentSpanId</span><span style="color:#666">=</span><span style="color:#40a070">0</span> <span style="color:#bb60d5">sampled</span><span style="color:#666">=</span><span style="color:#007020">true</span> <span style="color:#bb60d5">spanId</span><span style="color:#666">=</span>4b71de0edc5b6d18 <span style="color:#bb60d5">traceId</span><span style="color:#666">=</span>4b71de0edc5b6d18 <span style="color:#bb60d5">version</span><span style="color:#666">=</span>v1.2.3
+</code></pre></div><p>As you see above there are <strong>2 logs</strong>, one is called from <code>app/services/...</code> the other from <code>app/controllers/...</code>.</p>
+<p>Both of these logs have the same <code>traceId=4b71de0edc5b6d18</code>.
+If you&rsquo;ll <a href="/middleware/telemetry/tracing/#clients">forward</a> this tracing information to another remote service you will see the same <code>traceId=4b71de0edc5b6d18</code> in that service logs as well.</p>
+<p>Now you can aggregate them in your Logging solution and you will see all the logs related to that <code>traceId</code> from different services.</p>
 
 		</div>
 
@@ -591,10 +644,10 @@ Here you can see what are Mortar Logger&rsquo;s dependencies:</p>
 
 	 
 	<div class="chevrons">
-		<a class="next" href="/mortar/" title="Mortar Design" style="margin-right: 0px;">
+		<a class="next" href="/middleware/telemetry/monitoring/" title="Monitoring" style="margin-right: 0px;">
             <div>
                 <p>Next page</p>
-                <label>Mortar Design</label>
+                <label>Monitoring</label>
             </div>
             <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
 	</div>

@@ -1,0 +1,720 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+	Tracing :: Mortar Documentation
+</title>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="revised" content="2021-01-22T19:46:29 IST">
+<meta name="description" content="">
+
+
+
+<title>Tracing :: Mortar Documentation</title>
+
+<link rel="shortcut icon" href='/images/favicon.png' type="image/x-icon" />
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css">
+
+<script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel="stylesheet">
+
+
+
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/layout.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/css/style.main.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/css/style.menu.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/notice.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/tabs.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/panel.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/columns.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/children.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/attachments.css'>
+<link rel="stylesheet" type="text/css" href='https://go-masonry.github.io/sass/shortcodes/alert.css'>
+<link rel="stylesheet" type="text/css" href='/css/docport.css'>
+
+<script src='/js/docport.js'></script>
+<script type="text/javascript">
+      var baseurl = "https:\/\/go-masonry.github.io\/";
+</script>
+
+
+
+
+    
+  </head>
+
+  <body data-url="/middleware/telemetry/tracing/"
+
+  class="">
+
+<style type="text/css">
+  #debug{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    line-height: 3.5rem;
+    margin-bottom: .35rem;
+    padding: 0 2rem;
+    position: fixed;
+    left: 0;      right: 0;     top: 0;
+   
+    top:0px;
+    
+    min-height: 150px;
+
+    background-color: white;
+    border: 3px solid red;
+    z-index: 10000 ;
+    word-wrap: all;
+    overflow: auto;
+  }
+</style>
+ 
+
+
+    
+    
+    <header style="">
+        <div>
+    
+    <div class="burger ">
+        <a href="javascript:void(0);" style="font-size:15px;" onclick="$('article > aside').toggleClass('responsive')">&#9776;</a>
+    </div>
+    
+
+    <div>
+
+		
+	
+			
+		
+	    	<a class='baselink' href='https://go-masonry.github.io/'>Mortar Documentation</a>
+	  	
+	</div>
+    <nav class="shortcuts">
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar-demo"  rel="noopener">
+                  Demo
+                </a>
+            </li>
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar"  rel="noopener">
+                  Github
+                </a>
+            </li>
+            <li class="" role="">
+                <a href="https://github.com/go-masonry/mortar/discussions"  rel="noopener">
+                  Discussions
+                </a>
+            </li>
+    </nav>
+
+</div>
+    </header>
+    
+
+    <article>
+      
+      <aside class="">
+        
+
+		
+	
+			
+		
+	    	
+	  	
+	<div id="close_menu">
+  <a href="javascript:void(0);" style="font-size:15px;" onclick="$('article > aside').toggleClass('responsive')">
+      <i class="fa fa-lg fa-times"></i>
+  </a>
+</div>
+
+<ul class="menu">
+
+    <li data-nav-id="https://go-masonry.github.io/api/" class="dd-item haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+          <a href="/api/">APIs</a>
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/grpc/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/grpc/">gRPC</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/grpc-gw/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/grpc-gw/">gRPC-Gateway</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/api/handlers/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/api/handlers/">HTTP Handler/Func</a>
+      
+        
+      
+    </li>
+        </ul>
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/clients/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+        
+      
+          <a href="/clients/">Clients</a>
+      
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+          <a href="/fx/">Dependency Injection</a>
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/pattern/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/fx/pattern/">Dependency Pattern</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/groups/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/fx/groups/">Groups</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/fx/tests/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/fx/tests/">Tests</a>
+      
+        
+      
+    </li>
+        </ul>
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/" class="dd-item parent haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <i class="fas fa-chevron-down ddexp"></i>
+        
+      
+          <a href="/middleware/">Middleware</a>
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/context/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/context/">Context</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/" class="dd-item parent haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/">Telemetry</a>
+      
+          <i class="fas fa-chevron-down ddexp"></i>
+        
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/logging/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/logging/">Logging</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/monitoring/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/monitoring/">Monitoring</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/tracing/" class="dd-item parent active
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/tracing/">Tracing</a>
+      
+        
+      
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    
+
+    <li data-nav-id="https://go-masonry.github.io/mortar/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+        
+      
+          <a href="/mortar/">Mortar Design</a>
+      
+    </li>
+    
+
+
+
+</ul>
+
+		
+	
+			
+		
+	    	
+	  	
+	
+      </aside>
+      
+
+      <section class="page ">
+      
+	
+		
+    
+    
+    <nav id="ariane" aria-label="breadcrumb">
+      <ol class="ariane">
+        
+  
+  	
+		
+  
+  	
+		
+  
+  	
+	<li >
+      <a class="text-link" href="https://go-masonry.github.io/">
+        Home
+      </a>
+    </li>
+	
+  
+    <li class="">
+      <a class="text-link" href="/middleware/">
+        Middleware
+      </a>
+    </li>
+	
+  	
+  
+    <li class="">
+      <a class="text-link" href="/middleware/telemetry/">
+        Telemetry
+      </a>
+    </li>
+	
+  	
+  
+    <li class="active">
+      
+        Tracing
+      
+    </li>
+
+      </ol>
+    </nav>
+    
+    
+
+    
+		
+        
+		
+		
+		
+		
+		
+		
+		
+
+		
+			<h1>Tracing</h1>
+        
+
+		
+										
+		
+
+		
+	
+
+	
+	
+	<div class="jump-to-section">
+		<span onclick="$h = $(this);$h.next('nav').slideToggle(100,function () {$h.children('i').attr('class',function () {return $h.next('nav').is(':visible') ? 'fas fa-chevron-down' : 'fas fa-chevron-right';});});">
+  			<span class="fas fa-align-right"></span>
+  			Jump to Section
+  			<i style=";" class="fas fa-chevron-right"></i>
+		</span>
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#predefined-interceptors">Predefined Interceptors</a>
+      <ul>
+        <li><a href="#server">Server</a></li>
+        <li><a href="#clients">Clients</a></li>
+      </ul>
+    </li>
+    <li><a href="#adding-dynamic-info-to-current-span">Adding dynamic info to current Span</a></li>
+  </ul>
+</nav>
+	</div>
+	
+	
+
+
+
+
+
+
+	<div class="content">
+	    <p><em><a href="https://opentracing.io/docs/overview/what-is-tracing/">Distributed tracing</a>, also called distributed request tracing, is a method used to profile and monitor applications, especially those built using a microservices architecture. Distributed tracing helps pinpoint where failures occur and what causes poor performance.</em></p>
+<script defer src="https://unpkg.com/mermaid@8.8.2/dist/mermaid.min.js">mermaid.initialize({startOnLoad:true});</script>
+<div class="mermaid" align="center" >
+graph LR
+    A(A)
+    B(B)
+    C(C)
+    D(D)
+    E(E)
+    F(F)
+    A -->|0.3ms| B
+    A --> C
+    B --> E
+    C -->|1s| D
+    C --> F
+    E -->|0.5s| D
+</div>
+<p>Mortar has you covered, but we haven&rsquo;t reinvented a wheel.
+Instead of defining a new Interface, you use a standard <code>opentracing.Tracer</code> Interface.
+It&rsquo;s defined <a href="github.com/opentracing/opentracing-go">here</a>.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">type</span> Tracer <span style="color:#007020;font-weight:bold">interface</span> {
+    <span style="color:#06287e">StartSpan</span>(operationName <span style="color:#902000">string</span>, opts <span style="color:#666">...</span>StartSpanOption) Span
+    <span style="color:#06287e">Inject</span>(sm SpanContext, format <span style="color:#007020;font-weight:bold">interface</span>{}, carrier <span style="color:#007020;font-weight:bold">interface</span>{}) <span style="color:#902000">error</span>
+    <span style="color:#06287e">Extract</span>(format <span style="color:#007020;font-weight:bold">interface</span>{}, carrier <span style="color:#007020;font-weight:bold">interface</span>{}) (SpanContext, <span style="color:#902000">error</span>)
+}
+</code></pre></div><h2 ref="usage" >Usage</h2><a class="anchor" id="usage"></a>
+<p>It&rsquo;s best to <code>StartSpan</code> in a most outer layer of your Application.
+Since you will probably build a gRPC web service, <strong>gRPC ServerInterceptor</strong> is that spot.</p>
+<p>Mortar have everything predefined <a href="#predefined-interceptors">already</a>.</p>
+<h2 ref="predefined-interceptors" >Predefined Interceptors</h2><a class="anchor" id="predefined-interceptors"></a>
+<p>Most likely you will not have to add anything, but use <a href="https://pkg.go.dev/github.com/go-masonry/mortar/middleware/interceptors/trace">these predefined Interceptors</a>.</p>
+<h3 ref="server" >Server</h3><a class="anchor" id="server"></a>
+<p>If you examine <a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/trace/server.go#L13">grpc.UnaryServerInterceptor</a>
+you can see that this Interceptor calls <code>opentracing.StartSpanFromContextWithTracer</code> which <em>starts and returns a span with <code>operationName</code> using a span found within the context as a ChildOfRef.
+If that doesn&rsquo;t exist it creates a root span.
+It also returns a context.Context object built around the returned span.</em></p>
+<p>That&rsquo;s great for <strong>gRPC communication</strong>, since everything will be found inside a <code>Context</code>.
+But what if your REST API is called ?
+Given that REST API is a reverse-proxy to your gRPC API, unless properly treated, the above code will create a new Server Span even if there is a Tracing Information (usually found within HTTP Headers).
+To fix that we need to <strong>inject</strong> any tracing information into our Context.</p>
+
+
+<div class="notices primary">
+	<p>Unless you really have to, it&rsquo;s best to handle everything on the gRPC layer.</p>
+</div>
+
+<p>If your REST API is implemented by gRPC-Gateway, you should use <a href="https://pkg.go.dev/github.com/go-masonry/mortar/providers#GRPCGatewayMetadataTraceCarrierFxOption">this</a> Metadata Trace Carrier.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">HttpServerFxOptions</span>() fx.Option {
+ <span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">Options</span>(
+  providers.<span style="color:#06287e">GRPCTracingUnaryServerInterceptorFxOption</span>(),
+  providers.<span style="color:#06287e">GRPCGatewayMetadataTraceCarrierFxOption</span>(), <span style="color:#60a0b0;font-style:italic">// read it&#39;s documentation to understand better
+</span><span style="color:#60a0b0;font-style:italic"></span> )
+}
+</code></pre></div>
+
+<div class="notices warning">
+	<p>Knowing what HTTP headers have this value depends on the Implementing Tracing library, Jaeger GO client knows how to do that :)</p>
+
+</div>
+
+
+
+<div class="notices primary">
+	<p>To better understand how <code>MetadataTraceCarrierOption</code> works <a href="https://pkg.go.dev/github.com/go-masonry/mortar/http/server#MetadataTraceCarrierOption">read this</a></p>
+
+</div>
+
+<p>You can a look at a working example <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/http.go#L17">here</a>.</p>
+<h3 ref="clients" >Clients</h3><a class="anchor" id="clients"></a>
+<p>You should get yourself familiar with <a href="/clients">Mortar Clients</a> first.</p>
+<p>When calling remote services you need to pass your current Tracing information forward.
+Basically you have 2 options</p>
+<ol>
+<li>Create a Client Span for every remote call and then pass it.</li>
+<li>Just pass the Tracing Information forward.</li>
+</ol>
+<p>Mortar supports the first (with Client Span) option out-of-the-box.</p>
+<ol>
+<li><a href="https://pkg.go.dev/github.com/go-masonry/mortar/middleware/interceptors/trace#TracerGRPCClientInterceptor">gRPC Client Interceptor</a></li>
+<li><a href="https://pkg.go.dev/github.com/go-masonry/mortar/middleware/interceptors/trace#TracerRESTClientInterceptor">HTTP Client Interceptor</a></li>
+</ol>
+<p>In order to use them, they must be provided to Uber-Fx first.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">HttpClientFxOptions</span>() fx.Option {
+ <span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">Options</span>(
+  providers.<span style="color:#06287e">HTTPClientBuildersFxOption</span>(), <span style="color:#60a0b0;font-style:italic">// client builders
+</span><span style="color:#60a0b0;font-style:italic"></span>  providers.<span style="color:#06287e">TracerGRPCClientInterceptorFxOption</span>(),
+  providers.<span style="color:#06287e">TracerRESTClientInterceptorFxOption</span>(),
+ )
+}
+</code></pre></div><p>Once provided you can use Mortar Clients as any other gRPC Clients.</p>
+<ul>
+<li>gRPC Client example can be found <a href="https://github.com/go-masonry/mortar-demo/blob/master/subworkshop/app/controllers/subworkshop.go#L21">here</a></li>
+<li>HTTP Client example can be found <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/controllers/workshop.go#L24">here</a></li>
+</ul>
+<h2 ref="adding-dynamic-info-to-current-span" >Adding dynamic info to current Span</h2><a class="anchor" id="adding-dynamic-info-to-current-span"></a>
+<p>Sometime you need to add a <code>Custom Tag</code> or a <code>Custom Log</code> to the current Span.</p>
+<p>It&rsquo;s really easy and it&rsquo;s not related to Mortar.</p>
+<ul>
+<li>
+<p>To add a custom Tag:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">if</span> span <span style="color:#666">:=</span> opentracing.<span style="color:#06287e">SpanFromContext</span>(ctx); span <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+    span.<span style="color:#06287e">SetTag</span>(<span style="color:#4070a0">&#34;custom&#34;</span>, <span style="color:#4070a0">&#34;tag&#34;</span>)
+}
+</code></pre></div></li>
+<li>
+<p>To add a custom Log:</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">if</span> span <span style="color:#666">:=</span> opentracing.<span style="color:#06287e">SpanFromContext</span>(ctx); span <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+    span.<span style="color:#06287e">LogFields</span>(spanLog.<span style="color:#06287e">String</span>(<span style="color:#4070a0">&#34;custom&#34;</span>, <span style="color:#4070a0">&#34;key&#34;</span>))
+}
+</code></pre></div></li>
+</ul>
+<p>Here is what it should look like in Jaeger.</p>
+<!-- raw HTML omitted -->
+
+<img src="https://go-masonry.github.io/images/tagslogs.png" alt="">
+
+		</div>
+
+
+
+
+
+
+	 
+	<div class="chevrons">
+		<a class="next" href="/mortar/" title="Mortar Design" style="margin-right: 0px;">
+            <div>
+                <p>Next page</p>
+                <label>Mortar Design</label>
+            </div>
+            <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
+	</div>
+	
+	
+
+      </section>
+
+      
+      
+      <section class="right-menu ">
+      
+	
+
+		
+	
+			
+		
+	    	
+	  	
+	<div class="TableOfContents">
+    <label><i class="fas fa-align-right"></i>&nbsp;&nbsp;What&#39;s on this page</label>
+    <nav>
+        <ul >
+            <li><a href="/middleware/telemetry/tracing/">Tracing</a></li>
+        </ul>
+    </nav>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#predefined-interceptors">Predefined Interceptors</a>
+      <ul>
+        <li><a href="#server">Server</a></li>
+        <li><a href="#clients">Clients</a></li>
+      </ul>
+    </li>
+    <li><a href="#adding-dynamic-info-to-current-span">Adding dynamic info to current Span</a></li>
+  </ul>
+</nav>
+</div>
+
+		
+	
+			
+		
+	    	
+	  	
+	<div class="Actions">
+	<nav>
+		<ul>
+				
+		    
+		    
+			
+		    
+
+    	</ul>
+	</nav>
+    
+</div>
+
+      </section>
+      
+    </article>
+    
+    
+    <footer>
+      
+
+		
+	
+			
+		
+	    	
+	    
+	
+    </footer>
+    
+
+
+
+  </body>
+</html>

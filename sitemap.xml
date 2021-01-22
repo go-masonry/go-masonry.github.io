@@ -7,6 +7,10 @@
   </url>
   
   <url>
+    <loc>https://go-masonry.github.io/clients/</loc>
+  </url>
+  
+  <url>
     <loc>https://go-masonry.github.io/fx/</loc>
   </url>
   
@@ -75,6 +79,10 @@
   </url>
   
   <url>
+    <loc>https://go-masonry.github.io/middleware/telemetry/monitoring/</loc>
+  </url>
+  
+  <url>
     <loc>https://go-masonry.github.io/</loc>
   </url>
   
@@ -88,6 +96,10 @@
   
   <url>
     <loc>https://go-masonry.github.io/fx/tests/</loc>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/middleware/telemetry/tracing/</loc>
   </url>
   
 </urlset>

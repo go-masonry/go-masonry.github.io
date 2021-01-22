@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2021-01-08T14:39:00 IST">
+<meta name="revised" content="2021-01-22T19:46:29 IST">
 <meta name="description" content="">
 
 
@@ -202,6 +202,21 @@
     </li>
     
 
+    <li data-nav-id="https://go-masonry.github.io/clients/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+        
+      
+          <a href="/clients/">Clients</a>
+      
+    </li>
+    
+
     <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item haschildren
         item_level_$level
         ">
@@ -322,6 +337,36 @@
         
       
     </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/monitoring/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/monitoring/">Monitoring</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/tracing/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/tracing/">Tracing</a>
+      
+        
+      
+    </li>
         </ul>
     </li>
         </ul>
@@ -434,6 +479,7 @@
         <li><a href="#register-grpc-gateway-handlers">Register <code>grpc-gateway</code> Handlers</a></li>
       </ul>
     </li>
+    <li><a href="#rest-enabled">REST Enabled</a></li>
   </ul>
 </nav>
 	</div>
@@ -489,14 +535,42 @@ Hence we need to <a href="https://github.com/go-masonry/mortar-demo/blob/master/
 
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// GRPC Gateway Generated Handlers registration
 </span><span style="color:#60a0b0;font-style:italic"></span>fx.<span style="color:#06287e">Provide</span>(fx.Annotated{
- Group:  groups.GRPCGatewayGeneratedHandlers <span style="color:#666">+</span> <span style="color:#4070a0">&#34;,flatten&#34;</span>, <span style="color:#60a0b0;font-style:italic">// &#34;flatten&#34; does this [][]serverInt.GRPCGatewayGeneratedHandlers -&gt; []serverInt.GRPCGatewayGeneratedHandlers
-</span><span style="color:#60a0b0;font-style:italic"></span> Target: workshopGRPCGatewayHandlers,
+ <span style="color:#60a0b0;font-style:italic">// &#34;flatten&#34; does this [][]serverInt.GRPCGatewayGeneratedHandlers -&gt; []serverInt.GRPCGatewayGeneratedHandlers
+</span><span style="color:#60a0b0;font-style:italic"></span> Group:  groups.GRPCGatewayGeneratedHandlers <span style="color:#666">+</span> <span style="color:#4070a0">&#34;,flatten&#34;</span>,
+ Target: workshopGRPCGatewayHandlers,
 })
 </code></pre></div></li>
 <li>
 <p>Finally, you need to add the above <code>fx.Option</code> to <code>Uber-FX</code> graph, as shown <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/main.go#L39">here</a>.</p>
 </li>
 </ol>
+<h2 ref="rest-enabled" >REST Enabled</h2><a class="anchor" id="rest-enabled"></a>
+<p>You now have an RESTful reverse-proxy that automatically translates REST API calls to their gRPC counterparts.
+Following this guide, your REST API will be exposed on <code>5381</code> port.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-http" data-lang="http"><span style="color:#06287e">POST</span> <span style="color:#0e84b5;font-weight:bold">/v1/workshop/cars</span> <span style="color:#007020;font-weight:bold">HTTP</span><span style="color:#666">/</span><span style="color:#40a070">1.1</span>
+Accept<span style="color:#666">:</span> application/json, */*;q=0.5
+Accept-Encoding<span style="color:#666">:</span> gzip, deflate
+Connection<span style="color:#666">:</span> keep-alive
+Content-Length<span style="color:#666">:</span> 88
+Content-Type<span style="color:#666">:</span> application/json
+Host<span style="color:#666">:</span> localhost:5381
+
+{
+    <span style="color:#062873;font-weight:bold">&#34;body_style&#34;</span>: <span style="color:#4070a0">&#34;HATCHBACK&#34;</span>,
+    <span style="color:#062873;font-weight:bold">&#34;color&#34;</span>: <span style="color:#4070a0">&#34;blue&#34;</span>,
+    <span style="color:#062873;font-weight:bold">&#34;number&#34;</span>: <span style="color:#4070a0">&#34;12345679&#34;</span>,
+    <span style="color:#062873;font-weight:bold">&#34;owner&#34;</span>: <span style="color:#4070a0">&#34;me myself&#34;</span>
+}
+
+
+<span style="">HTTP/</span><span style="color:#40a070">1.1</span> <span style="color:#40a070">200</span> <span style="">OK</span>
+<span style="">Content-Length:</span> <span style="color:#40a070">2</span>
+<span style="">Content-Type:</span> <span style="">application/json</span>
+<span style="">Date:</span> <span style="">Thu,</span> <span style="color:#40a070">21</span> <span style="">Jan</span> <span style="color:#40a070">2021</span> <span style="color:#40a070">11</span><span style="">:</span><span style="color:#40a070">54</span><span style="">:</span><span style="color:#40a070">47</span> <span style="">GMT</span>
+<span style="">Grpc-Metadata-Content-Type:</span> <span style="">application/grpc</span>
+
+{}
+</code></pre></div><p>As you can see above <strong>grpc-gateway</strong> did a great job.</p>
 
 		</div>
 
@@ -545,6 +619,7 @@ Hence we need to <a href="https://github.com/go-masonry/mortar-demo/blob/master/
         <li><a href="#register-grpc-gateway-handlers">Register <code>grpc-gateway</code> Handlers</a></li>
       </ul>
     </li>
+    <li><a href="#rest-enabled">REST Enabled</a></li>
   </ul>
 </nav>
 </div>

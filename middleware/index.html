@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2021-01-08T14:39:00 IST">
+<meta name="revised" content="2021-01-22T19:46:29 IST">
 <meta name="description" content="">
 
 
@@ -201,6 +201,21 @@
     </li>
     
 
+    <li data-nav-id="https://go-masonry.github.io/clients/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+        
+      
+          <a href="/clients/">Clients</a>
+      
+    </li>
+    
+
     <li data-nav-id="https://go-masonry.github.io/fx/" class="dd-item haschildren
         item_level_$level
         ">
@@ -322,6 +337,36 @@
         
       
     </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/monitoring/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/monitoring/">Monitoring</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/middleware/telemetry/tracing/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/middleware/telemetry/tracing/">Tracing</a>
+      
+        
+      
+    </li>
         </ul>
     </li>
         </ul>
@@ -439,7 +484,7 @@
 Some of them are bundled as part of the libraries Mortar uses, others defined by Mortar.</p>
 <ul>
 <li>
-<p>The gRPC package already has a way to register different interceptors
+<p>The <strong>gRPC</strong> package already has a way to register different interceptors
 for <a href="https://pkg.go.dev/google.golang.org/grpc#UnaryClientInterceptor">client</a>
 and <a href="https://pkg.go.dev/google.golang.org/grpc#UnaryServerInterceptor">server</a>.
 Mortar already comes with some:</p>
@@ -460,7 +505,7 @@ Mortar already comes with some:</p>
 </ul>
 </li>
 <li>
-<p>HTTP interceptors:</p>
+<p><strong>HTTP</strong> interceptors:</p>
 <ul>
 <li>Server HTTP middleware.
 
@@ -478,8 +523,8 @@ Mortar already comes with some:</p>
 
 <ul>
 <li><a href="https://github.com/go-masonry/mortar/blob/master/middleware/interceptors/trace/client.go#L44">Tracing</a> <code>HTTPClientInterceptor</code>, similar to the gRPC one, but for HTTP.</li>
-<li>Request/Response <a href="https://pkg.go.dev/github.com/go-masonry/mortar@v0.1.6/middleware/interceptors/client#DumpRESTClientInterceptor">dump interceptor</a>, for debugging purposes.</li>
-<li>In Workshop Demo there is a special <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/controllers/workshop_test.go#L164">TEST</a> Interceptor that returns a custom response.</li>
+<li>Request/Response <a href="https://pkg.go.dev/github.com/go-masonry/mortar/middleware/interceptors/client#DumpRESTClientInterceptor">dump interceptor</a>, for debugging purposes.</li>
+<li>**In Workshop Demo there is a special <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/controllers/workshop_test.go#L164">TEST</a> Interceptor that returns a custom response.</li>
 </ul>
 </li>
 </ul>

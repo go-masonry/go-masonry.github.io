@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Clients on Mortar Documentation</title>
+    <link>https://go-masonry.github.io/clients/</link>
+    <description>Recent content in Clients on Mortar Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://go-masonry.github.io/clients/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>
