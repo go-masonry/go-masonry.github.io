@@ -4,16 +4,16 @@
 <html>
   <head>
     <title>
-	_layouts :: Mortar
+	Interceptors :: Mortar
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2021-01-30T15:59:26 IST">
+<meta name="revised" content="2021-01-28T10:30:45 IST">
 <meta name="description" content="">
 
 
 
-<title>_layouts :: Mortar</title>
+<title>Interceptors :: Mortar</title>
 
 <link rel="shortcut icon" href='/images/favicon.png' type="image/x-icon" />
 
@@ -50,7 +50,7 @@
     
   </head>
 
-  <body data-url="/_layout/"
+  <body data-url="/clients/http/interceptors/"
 
   class="">
 
@@ -89,7 +89,9 @@
     </div>
     
 
-    <div>	
+    <div>
+
+		
 	
 			
 		
@@ -135,7 +137,9 @@
 	  
 	</script>
 	<script type="text/javascript" src="/js/search.js"></script>
-</div>	
+</div>
+
+		
 	
 			
 		
@@ -211,14 +215,15 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/clients/" class="dd-item haschildren
+    <li data-nav-id="https://go-masonry.github.io/clients/" class="dd-item parent haschildren
         item_level_$level
         ">
 
       
       
       
-      <i class="fas fa-chevron-right ddexp"></i>
+      
+          <i class="fas fa-chevron-down ddexp"></i>
         
       
           <a href="/clients/">Clients</a>
@@ -241,7 +246,7 @@
     </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/clients/http/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/clients/http/" class="dd-item parent haschildren
         item_level_$level
         ">
 
@@ -251,12 +256,13 @@
       
           <a href="/clients/http/">HTTP Client</a>
       
+          <i class="fas fa-chevron-down ddexp"></i>
         
       
-    </li>
+        <ul>
               
 
-    <li data-nav-id="https://go-masonry.github.io/clients/interceptors/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/clients/http/interceptors/" class="dd-item parent active
         item_level_$level
         ">
 
@@ -264,10 +270,12 @@
       
       
       
-          <a href="/clients/interceptors/">Interceptors</a>
+          <a href="/clients/http/interceptors/">Interceptors</a>
       
         
       
+    </li>
+        </ul>
     </li>
         </ul>
     </li>
@@ -446,7 +454,9 @@
 
 
 
-</ul>	
+</ul>
+
+		
 	
 			
 		
@@ -459,13 +469,15 @@
       <section class="page ">
       
 	
-	 
-	    
+		
     
     
     <nav id="ariane" aria-label="breadcrumb">
       <ol class="ariane">
         
+  
+  	
+		
   
   	
 		
@@ -479,8 +491,16 @@
 	
   
     <li class="">
-      <a class="text-link" href="/_layout/">
-        _layouts
+      <a class="text-link" href="/clients/">
+        Clients
+      </a>
+    </li>
+	
+  	
+  
+    <li class="">
+      <a class="text-link" href="/clients/http/">
+        HTTP Client
       </a>
     </li>
 	
@@ -488,7 +508,7 @@
   
     <li class="active">
       
-        A page without footer
+        Interceptors
       
     </li>
 
@@ -509,7 +529,7 @@
 		
 
 		
-			<h1>A page without footer</h1>
+			<h1>Interceptors</h1>
         
 
 		
@@ -537,7 +557,10 @@
 
 
 
-	<div class="content">No content</div>
+	<div class="content">
+	    <p>Mortar introduces a way to add Interceptors to a default <code>http.Client</code>.</p>
+
+		</div>
 
 
 
@@ -546,15 +569,14 @@
 
 	 
 	<div class="chevrons">
-		<a class="next" href="/api/" title="APIs" style="margin-right: 0px;">
+		<a class="next" href="/fx/" title="Dependency Injection" style="margin-right: 0px;">
             <div>
                 <p>Next page</p>
-                <label>APIs</label>
+                <label>Dependency Injection</label>
             </div>
             <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
 	</div>
 	
-	 
 	
 
       </section>
@@ -563,6 +585,8 @@
       
       <section class="right-menu ">
       
+	
+
 		
 	
 			
@@ -573,11 +597,13 @@
     <label><i class="fas fa-align-right"></i>&nbsp;&nbsp;What&#39;s on this page</label>
     <nav>
         <ul >
-            <li><a href="/_layout/">_layouts</a></li>
+            <li><a href="/clients/http/interceptors/">Interceptors</a></li>
         </ul>
     </nav>
-    
-</div>	
+    <nav id="TableOfContents"></nav>
+</div>
+
+		
 	
 			
 		
@@ -603,7 +629,9 @@
     
     
     <footer>
-      	
+      
+
+		
 	
 			
 		

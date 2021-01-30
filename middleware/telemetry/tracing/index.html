@@ -4,16 +4,16 @@
 <html>
   <head>
     <title>
-	Tracing :: Mortar Documentation
+	Tracing :: Mortar
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2021-01-22T19:46:29 IST">
+<meta name="revised" content="2021-01-30T15:59:26 IST">
 <meta name="description" content="">
 
 
 
-<title>Tracing :: Mortar Documentation</title>
+<title>Tracing :: Mortar</title>
 
 <link rel="shortcut icon" href='/images/favicon.png' type="image/x-icon" />
 
@@ -95,7 +95,7 @@
 	
 			
 		
-	    	<a class='baselink' href='https://go-masonry.github.io/'>Mortar Documentation</a>
+	    	<a class='baselink' href='https://go-masonry.github.io/'>Mortar</a>
 	  	
 	</div>
     <nav class="shortcuts">
@@ -124,6 +124,20 @@
       
       <aside class="">
         
+<div class="search">
+	<div class="searchbox">
+	  <input data-search-input id="search-by" type="text" placeholder="Type to search...">
+	</div>
+	<script type="text/javascript" src="/vendor/lunr/lunr.min.js"></script>
+	<script type="text/javascript" src="/vendor/auto-complete/auto-complete.js"></script>
+	<link href="/vendor/auto-complete/auto-complete.css" rel="stylesheet">
+	<script type="text/javascript">
+	  
+	      var baseurl = "https:\/\/go-masonry.github.io\/";
+	  
+	</script>
+	<script type="text/javascript" src="/js/search.js"></script>
+</div>
 
 		
 	
@@ -201,7 +215,22 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/clients/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/clients/" class="dd-item haschildren
+        item_level_$level
+        ">
+
+      
+      
+      
+      <i class="fas fa-chevron-right ddexp"></i>
+        
+      
+          <a href="/clients/">Clients</a>
+      
+        <ul>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/clients/grpc/" class="dd-item
         item_level_$level
         ">
 
@@ -209,10 +238,42 @@
       
       
       
+          <a href="/clients/grpc/">gRPC Client</a>
+      
         
       
-          <a href="/clients/">Clients</a>
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/clients/http/" class="dd-item
+        item_level_$level
+        ">
+
       
+      
+      
+      
+          <a href="/clients/http/">HTTP Client</a>
+      
+        
+      
+    </li>
+              
+
+    <li data-nav-id="https://go-masonry.github.io/clients/interceptors/" class="dd-item
+        item_level_$level
+        ">
+
+      
+      
+      
+      
+          <a href="/clients/interceptors/">Interceptors</a>
+      
+        
+      
+    </li>
+        </ul>
     </li>
     
 
@@ -573,7 +634,7 @@ To fix that we need to <strong>inject</strong> any tracing information into our 
 
 </div>
 
-<p>You can a look at a working example <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/http.go#L17">here</a>.</p>
+<p>You can look at a working example <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/http.go#L17">here</a>.</p>
 <h3 ref="clients" >Clients</h3><a class="anchor" id="clients"></a>
 <p>You should get yourself familiar with <a href="/clients">Mortar Clients</a> first.</p>
 <p>When calling remote services you need to pass your current Tracing information forward.

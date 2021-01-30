@@ -11,6 +11,18 @@
   </url>
   
   <url>
+    <loc>https://go-masonry.github.io/clients/grpc/</loc>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/clients/http/</loc>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/clients/interceptors/</loc>
+  </url>
+  
+  <url>
     <loc>https://go-masonry.github.io/fx/</loc>
   </url>
   
@@ -20,6 +32,10 @@
   
   <url>
     <loc>https://go-masonry.github.io/mortar/</loc>
+  </url>
+  
+  <url>
+    <loc>https://go-masonry.github.io/</loc>
   </url>
   
   <url>
@@ -36,10 +52,6 @@
   
   <url>
     <loc>https://go-masonry.github.io/mortar/builders/</loc>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/categories/</loc>
   </url>
   
   <url>
@@ -80,14 +92,6 @@
   
   <url>
     <loc>https://go-masonry.github.io/middleware/telemetry/monitoring/</loc>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/</loc>
-  </url>
-  
-  <url>
-    <loc>https://go-masonry.github.io/tags/</loc>
   </url>
   
   <url>

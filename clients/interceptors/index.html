@@ -4,7 +4,7 @@
 <html>
   <head>
     <title>
-	_layouts :: Mortar
+	Interceptors :: Mortar
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -13,7 +13,7 @@
 
 
 
-<title>_layouts :: Mortar</title>
+<title>Interceptors :: Mortar</title>
 
 <link rel="shortcut icon" href='/images/favicon.png' type="image/x-icon" />
 
@@ -50,7 +50,7 @@
     
   </head>
 
-  <body data-url="/_layout/"
+  <body data-url="/clients/interceptors/"
 
   class="">
 
@@ -89,7 +89,9 @@
     </div>
     
 
-    <div>	
+    <div>
+
+		
 	
 			
 		
@@ -135,7 +137,9 @@
 	  
 	</script>
 	<script type="text/javascript" src="/js/search.js"></script>
-</div>	
+</div>
+
+		
 	
 			
 		
@@ -211,14 +215,15 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/clients/" class="dd-item haschildren
+    <li data-nav-id="https://go-masonry.github.io/clients/" class="dd-item parent haschildren
         item_level_$level
         ">
 
       
       
       
-      <i class="fas fa-chevron-right ddexp"></i>
+      
+          <i class="fas fa-chevron-down ddexp"></i>
         
       
           <a href="/clients/">Clients</a>
@@ -256,7 +261,7 @@
     </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/clients/interceptors/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/clients/interceptors/" class="dd-item parent active
         item_level_$level
         ">
 
@@ -446,7 +451,9 @@
 
 
 
-</ul>	
+</ul>
+
+		
 	
 			
 		
@@ -459,8 +466,7 @@
       <section class="page ">
       
 	
-	 
-	    
+		
     
     
     <nav id="ariane" aria-label="breadcrumb">
@@ -479,8 +485,8 @@
 	
   
     <li class="">
-      <a class="text-link" href="/_layout/">
-        _layouts
+      <a class="text-link" href="/clients/">
+        Clients
       </a>
     </li>
 	
@@ -488,7 +494,7 @@
   
     <li class="active">
       
-        A page without footer
+        Interceptors
       
     </li>
 
@@ -509,7 +515,7 @@
 		
 
 		
-			<h1>A page without footer</h1>
+			<h1>Interceptors</h1>
         
 
 		
@@ -527,7 +533,17 @@
   			Jump to Section
   			<i style=";" class="fas fa-chevron-right"></i>
 		</span>
-		<nav id="TableOfContents"></nav>
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#http-client-interceptor">HTTP Client Interceptor</a>
+      <ul>
+        <li><a href="#dump">Dump</a></li>
+      </ul>
+    </li>
+    <li><a href="#grpc-client-interceptor">GRPC Client Interceptor</a></li>
+    <li><a href="#registering">Registering</a></li>
+  </ul>
+</nav>
 	</div>
 	
 	
@@ -537,7 +553,87 @@
 
 
 
-	<div class="content">No content</div>
+	<div class="content">
+	    <p>Interceptors are a powerful tool that enables you to log, monitor, mutate, redirect and sometimes even fail a request or response.
+The beauty of interceptors is, that to the user everything looks as a regular <strong>Client</strong>.</p>
+<p>With Client Interceptors you can:</p>
+<ul>
+<li>Dump request and/or response to a Log</li>
+<li>Alter your requests before they sent and/or responses before they returned.</li>
+<li>Add Tracing Information</li>
+<li>Collect metrics about your remote calls.</li>
+</ul>
+<p>Mortar comes with some useful client Interceptors both for gRPC and HTTP, they are mentioned <a href="/middleware">here</a>.</p>
+<h2 ref="http-client-interceptor" >HTTP Client Interceptor</h2><a class="anchor" id="http-client-interceptor"></a>
+<p>Mortar introduces a way to add Interceptors to a default <code>http.Client</code>.</p>
+<p>If we look at <code>http.Client</code> struct we will find a <code>RoundTripper</code> it is the Interface we exploit.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// Transport specifies the mechanism by which individual
+</span><span style="color:#60a0b0;font-style:italic">// HTTP requests are made.
+</span><span style="color:#60a0b0;font-style:italic">// If nil, DefaultTransport is used.
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> RoundTripper <span style="color:#007020;font-weight:bold">interface</span> {
+    <span style="color:#60a0b0;font-style:italic">// RoundTrip executes a single HTTP transaction, returning
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// a Response for the provided Request.
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#60a0b0;font-style:italic">// ...
+</span><span style="color:#60a0b0;font-style:italic"></span>    <span style="color:#06287e">RoundTrip</span>(<span style="color:#666">*</span>Request) (<span style="color:#666">*</span>Response, <span style="color:#902000">error</span>)
+}
+</code></pre></div><p>Mortar defines <code>HTTPHandler</code> and <code>HTTPClientInterceptor</code> type aliases in <a href="https://github.com/go-masonry/mortar/blob/master/interfaces/http/client/interfaces.go"><code>mortar/interfaces/http/client/interfaces.go</code></a>.</p>
+<p>They mimic their <a href="https://pkg.go.dev/google.golang.org/grpc#UnaryClientInterceptor">gRPC counterparts</a>.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// HTTPHandler is just an alias to http.RoundTriper.RoundTrip function
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> HTTPHandler <span style="color:#007020;font-weight:bold">func</span>(<span style="color:#666">*</span>http.Request) (<span style="color:#666">*</span>http.Response, <span style="color:#902000">error</span>)
+
+<span style="color:#60a0b0;font-style:italic">// HTTPClientInterceptor is a user defined function that can alter a request before it&#39;s sent
+</span><span style="color:#60a0b0;font-style:italic">// and/or alter a response before it&#39;s returned to the caller
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> HTTPClientInterceptor <span style="color:#007020;font-weight:bold">func</span>(<span style="color:#666">*</span>http.Request, HTTPHandler) (<span style="color:#666">*</span>http.Response, <span style="color:#902000">error</span>)
+</code></pre></div><p>That&rsquo;s everything we need to enable HTTP Client interceptors.</p>
+<h3 ref="dump" >Dump</h3><a class="anchor" id="dump"></a>
+<p>When we create an HTTP Request we use different Structs and Functions, but we don&rsquo;t set <code>Content-Length</code> Header for example.
+<a href="https://golang.org/pkg/net/http/httputil/#DumpRequest">Dumping Utilities</a> allows you to see what is actually sent and what is actually received.
+Mortar comes with HTTP Client Interceptor that dumps(logs) the actual <strong>request</strong> and <strong>response</strong>.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">DumpRESTClientInterceptor</span>(deps dumpHTTPDeps) client.HTTPClientInterceptor {
+ <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">func</span>(req <span style="color:#666">*</span>http.Request, handler client.HTTPHandler) (<span style="color:#666">*</span>http.Response, <span style="color:#902000">error</span>) {
+  reqBody, err <span style="color:#666">:=</span> httputil.<span style="color:#06287e">DumpRequestOut</span>(req, <span style="color:#007020;font-weight:bold">true</span>)
+  deps.Logger.<span style="color:#06287e">WithError</span>(err).<span style="color:#06287e">Debug</span>(req.<span style="color:#06287e">Context</span>(), <span style="color:#4070a0">&#34;Request:\n%s\n&#34;</span>, reqBody)
+  res, err <span style="color:#666">:=</span> <span style="color:#06287e">handler</span>(req)
+  <span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">==</span> <span style="color:#007020;font-weight:bold">nil</span> {
+   resBody, dumpErr <span style="color:#666">:=</span> httputil.<span style="color:#06287e">DumpResponse</span>(res, <span style="color:#007020;font-weight:bold">true</span>)
+   deps.Logger.<span style="color:#06287e">WithError</span>(dumpErr).<span style="color:#06287e">Debug</span>(req.<span style="color:#06287e">Context</span>(), <span style="color:#4070a0">&#34;Response:\n%s\n&#34;</span>, resBody)
+  }
+  <span style="color:#007020;font-weight:bold">return</span> res, err
+ }
+}
+</code></pre></div><h2 ref="grpc-client-interceptor" >GRPC Client Interceptor</h2><a class="anchor" id="grpc-client-interceptor"></a>
+<p>GRPC Interceptors are part of the <code>gRPC</code> <a href="https://pkg.go.dev/google.golang.org/grpc#UnaryClientInterceptor">package</a> already.
+Besides mentioning it Mortar have nothing to add.</p>
+<h2 ref="registering" >Registering</h2><a class="anchor" id="registering"></a>
+<p>Registering your Interceptors is very similar to everything else in Mortar, using Uber-Fx option.
+Once created you need to add them to their respectful group.</p>
+<ul>
+<li>
+<p>HTTP Client Interceptors group is called <strong>restClientInterceptors</strong> and referenced by <code>RESTClientInterceptors</code> defined <a href="https://pkg.go.dev/github.com/go-masonry/mortar/providers/groups">here</a>.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// TracerRESTClientInterceptorFxOption adds REST trace client interceptor to the graph
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">TracerRESTClientInterceptorFxOption</span>() fx.Option {
+    <span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">Provide</span>(
+        fx.Annotated{
+            Group:  groups.RESTClientInterceptors,
+            Target: trace.TracerRESTClientInterceptor,
+        })
+}
+</code></pre></div></li>
+<li>
+<p>GRPC Unary Client Interceptors group is called <strong>grpcUnaryClientInterceptors</strong> and referenced by <code>GRPCUnaryClientInterceptors</code> defined <a href="https://pkg.go.dev/github.com/go-masonry/mortar/providers/groups">here</a>.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// TracerGRPCClientInterceptorFxOption adds grpc trace client interceptor to the graph
+</span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">TracerGRPCClientInterceptorFxOption</span>() fx.Option {
+    <span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">Provide</span>(
+        fx.Annotated{
+            Group:  groups.GRPCUnaryClientInterceptors,
+            Target: trace.TracerGRPCClientInterceptor,
+        })
+}
+</code></pre></div></li>
+</ul>
+<p>You can look <a href="https://github.com/go-masonry/mortar-demo/blob/master/workshop/app/mortar/http.go#L8">here</a> to see how the above two are used.</p>
+
+		</div>
 
 
 
@@ -546,15 +642,14 @@
 
 	 
 	<div class="chevrons">
-		<a class="next" href="/api/" title="APIs" style="margin-right: 0px;">
+		<a class="next" href="/fx/" title="Dependency Injection" style="margin-right: 0px;">
             <div>
                 <p>Next page</p>
-                <label>APIs</label>
+                <label>Dependency Injection</label>
             </div>
             <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
 	</div>
 	
-	 
 	
 
       </section>
@@ -563,6 +658,8 @@
       
       <section class="right-menu ">
       
+	
+
 		
 	
 			
@@ -573,11 +670,23 @@
     <label><i class="fas fa-align-right"></i>&nbsp;&nbsp;What&#39;s on this page</label>
     <nav>
         <ul >
-            <li><a href="/_layout/">_layouts</a></li>
+            <li><a href="/clients/interceptors/">Interceptors</a></li>
         </ul>
     </nav>
-    
-</div>	
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#http-client-interceptor">HTTP Client Interceptor</a>
+      <ul>
+        <li><a href="#dump">Dump</a></li>
+      </ul>
+    </li>
+    <li><a href="#grpc-client-interceptor">GRPC Client Interceptor</a></li>
+    <li><a href="#registering">Registering</a></li>
+  </ul>
+</nav>
+</div>
+
+		
 	
 			
 		
@@ -603,7 +712,9 @@
     
     
     <footer>
-      	
+      
+
+		
 	
 			
 		
