@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2021-01-30T15:59:26 IST">
+<meta name="revised" content="2021-02-03T19:14:13 IST">
 <meta name="description" content="">
 
 
@@ -571,7 +571,7 @@ The connection itself is generic and this is where Mortar enters.</p>
 
 
 <div class="card "><div class="card-header info"><strong>GRPCClientConnectionWrapper</strong> explained</div><div class="card-body">
-    <p class="card-text"><p><code>GRPCClientConnectionWrapper.Dial</code> method is very similar to a one defined in <a href="https://pkg.go.dev/google.golang.org/grpc#DialContext">gRPC client</a>.</p>
+    <p class="card-text"><p><code>GRPCClientConnectionWrapper.Dial</code> method is very similar to one defined in <a href="https://pkg.go.dev/google.golang.org/grpc#DialContext">gRPC client</a>.</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">DialContext</span>(ctx context.Context, target <span style="color:#902000">string</span>, opts <span style="color:#666">...</span>DialOption) (conn <span style="color:#666">*</span>ClientConn, err <span style="color:#902000">error</span>)
 </code></pre></div><p>However, the return value from gRPC method is <code>*grpc.ClientConn</code> which is a struct.
 This makes it difficult to mock if needed.
@@ -581,7 +581,7 @@ Lately gRPC project added <code>grpc.ClientConnInterface</code> to help them in 
 
 <p>Mortar provides a Builder interface that allows you to add different Options before creating a connection.
 While you can create one yourself, Mortar comes with predefined <a href="https://pkg.go.dev/github.com/go-masonry/mortar/providers#HTTPClientBuildersFxOption">Client Builders</a>.
-You just need to make sure it&rsquo;s registered/provided in Uber-Fx.</p>
+You just need to make sure they&rsquo;re registered/provided in Uber-Fx.</p>
 
 
 <div class="notices primary">

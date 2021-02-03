@@ -8,7 +8,7 @@
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="revised" content="2021-01-30T15:59:26 IST">
+<meta name="revised" content="2021-02-03T19:14:13 IST">
 <meta name="description" content="">
 
 
@@ -566,7 +566,7 @@ The beauty of interceptors is, that to the user everything looks as a regular <s
 <p>Mortar comes with some useful client Interceptors both for gRPC and HTTP, they are mentioned <a href="/middleware">here</a>.</p>
 <h2 ref="http-client-interceptor" >HTTP Client Interceptor</h2><a class="anchor" id="http-client-interceptor"></a>
 <p>Mortar introduces a way to add Interceptors to a default <code>http.Client</code>.</p>
-<p>If we look at <code>http.Client</code> struct we will find a <code>RoundTripper</code> it is the Interface we exploit.</p>
+<p>If we look at <code>http.Client</code> struct we will find a <code>RoundTripper</code> there.</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#60a0b0;font-style:italic">// Transport specifies the mechanism by which individual
 </span><span style="color:#60a0b0;font-style:italic">// HTTP requests are made.
 </span><span style="color:#60a0b0;font-style:italic">// If nil, DefaultTransport is used.
@@ -584,11 +584,12 @@ The beauty of interceptors is, that to the user everything looks as a regular <s
 <span style="color:#60a0b0;font-style:italic">// HTTPClientInterceptor is a user defined function that can alter a request before it&#39;s sent
 </span><span style="color:#60a0b0;font-style:italic">// and/or alter a response before it&#39;s returned to the caller
 </span><span style="color:#60a0b0;font-style:italic"></span><span style="color:#007020;font-weight:bold">type</span> HTTPClientInterceptor <span style="color:#007020;font-weight:bold">func</span>(<span style="color:#666">*</span>http.Request, HTTPHandler) (<span style="color:#666">*</span>http.Response, <span style="color:#902000">error</span>)
-</code></pre></div><p>That&rsquo;s everything we need to enable HTTP Client interceptors.</p>
+</code></pre></div><p>You can see that <code>HTTPHandler</code> signature is very similar to <code>RoundTrip(*Request) (*Response, error)</code>&hellip;</p>
+<p>That&rsquo;s everything we need to enable HTTP Client interceptors.</p>
 <h3 ref="dump" >Dump</h3><a class="anchor" id="dump"></a>
 <p>When we create an HTTP Request we use different Structs and Functions, but we don&rsquo;t set <code>Content-Length</code> Header for example.
-<a href="https://golang.org/pkg/net/http/httputil/#DumpRequest">Dumping Utilities</a> allows you to see what is actually sent and what is actually received.
-Mortar comes with HTTP Client Interceptor that dumps(logs) the actual <strong>request</strong> and <strong>response</strong>.</p>
+<a href="https://golang.org/pkg/net/http/httputil/#DumpRequest">Dumping Utilities</a> allow you to see what is actually sent and what is actually received.
+Mortar comes with an HTTP Client Interceptor that dumps(logs) the actual <strong>request</strong> and <strong>response</strong>.</p>
 <div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">DumpRESTClientInterceptor</span>(deps dumpHTTPDeps) client.HTTPClientInterceptor {
  <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">func</span>(req <span style="color:#666">*</span>http.Request, handler client.HTTPHandler) (<span style="color:#666">*</span>http.Response, <span style="color:#902000">error</span>) {
   reqBody, err <span style="color:#666">:=</span> httputil.<span style="color:#06287e">DumpRequestOut</span>(req, <span style="color:#007020;font-weight:bold">true</span>)
@@ -603,7 +604,7 @@ Mortar comes with HTTP Client Interceptor that dumps(logs) the actual <strong>re
 }
 </code></pre></div><h2 ref="grpc-client-interceptor" >GRPC Client Interceptor</h2><a class="anchor" id="grpc-client-interceptor"></a>
 <p>GRPC Interceptors are part of the <code>gRPC</code> <a href="https://pkg.go.dev/google.golang.org/grpc#UnaryClientInterceptor">package</a> already.
-Besides mentioning it Mortar have nothing to add.</p>
+Besides mentioning it Mortar has nothing to add.</p>
 <h2 ref="registering" >Registering</h2><a class="anchor" id="registering"></a>
 <p>Registering your Interceptors is very similar to everything else in Mortar, using Uber-Fx option.
 Once created you need to add them to their respectful group.</p>
