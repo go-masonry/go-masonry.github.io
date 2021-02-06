@@ -4,7 +4,7 @@
 <html>
   <head>
     <title>
-	HTTP Handler/Func :: Mortar
+	JWT Authentication :: Mortar
 </title>
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -13,7 +13,7 @@
 
 
 
-<title>HTTP Handler/Func :: Mortar</title>
+<title>JWT Authentication :: Mortar</title>
 
 <link rel="shortcut icon" href='/images/favicon.png' type="image/x-icon" />
 
@@ -50,7 +50,7 @@
     
   </head>
 
-  <body data-url="/api/handlers/"
+  <body data-url="/auth/"
 
   class="">
 
@@ -158,15 +158,14 @@
 
 <ul class="menu">
 
-    <li data-nav-id="https://go-masonry.github.io/api/" class="dd-item parent haschildren
+    <li data-nav-id="https://go-masonry.github.io/api/" class="dd-item haschildren
         item_level_$level
         ">
 
       
       
       
-      
-          <i class="fas fa-chevron-down ddexp"></i>
+      <i class="fas fa-chevron-right ddexp"></i>
         
       
           <a href="/api/">APIs</a>
@@ -204,7 +203,7 @@
     </li>
               
 
-    <li data-nav-id="https://go-masonry.github.io/api/handlers/" class="dd-item parent active
+    <li data-nav-id="https://go-masonry.github.io/api/handlers/" class="dd-item
         item_level_$level
         ">
 
@@ -439,7 +438,7 @@
     </li>
     
 
-    <li data-nav-id="https://go-masonry.github.io/auth/" class="dd-item
+    <li data-nav-id="https://go-masonry.github.io/auth/" class="dd-item parent active
         item_level_$level
         ">
 
@@ -494,9 +493,6 @@
         
   
   	
-		
-  
-  	
 	<li >
       <a class="text-link" href="https://go-masonry.github.io/">
         Home
@@ -504,17 +500,9 @@
     </li>
 	
   
-    <li class="">
-      <a class="text-link" href="/api/">
-        APIs
-      </a>
-    </li>
-	
-  	
-  
     <li class="active">
       
-        HTTP Handler/Func
+        JWT Authentication
       
     </li>
 
@@ -535,7 +523,7 @@
 		
 
 		
-			<h1>HTTP Handler/Func</h1>
+			<h1>JWT Authentication</h1>
         
 
 		
@@ -555,12 +543,8 @@
 		</span>
 		<nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#registering-httphandler">Registering <code>http.Handler</code></a></li>
-        <li><a href="#registering-httphandlerfunc">Registering <code>http.HandlerFunc</code></a></li>
-      </ul>
-    </li>
+    <li><a href="#mortar-and-grpc-gateway">Mortar and gRPC-Gateway</a></li>
+    <li><a href="#example">Example</a></li>
   </ul>
 </nav>
 	</div>
@@ -573,102 +557,56 @@
 
 
 	<div class="content">
-	    <p>Although it&rsquo;s very convenient to use gRPC + gRPC-Gateway to serve RESTful APIs, you sometime want to use prebuilt HTTP Handler/HandlerFunc(s) or similar.</p>
-<p>Mortar provides 2 <code>fx.Group</code>(s) for that: <a href="https://github.com/go-masonry/mortar/blob/master/providers/groups/alias.go#L26">ExternalHTTPHandlers</a> and <a href="https://github.com/go-masonry/mortar/blob/master/providers/groups/alias.go#L29">ExternalHTTPHandlerFunctions</a>, one for <code>http.Handler</code> and the other for <code>http.HandlerFunc</code>.</p>
-
-
-<div class="notices info">
-	<p>To better understand Mortar groups, read <a href="/fx/groups">here</a></p>
-</div>
-
-<h3 ref="registering-httphandler" >Registering <code>http.Handler</code></h3><a class="anchor" id="registering-httphandler"></a>
-<p>To register a new <code>http.Handler</code>, you need to define how it&rsquo;s going to be served == <strong>Pattern</strong>:</p>
-<ol>
-<li>
-<p>Create a <a href="https://pkg.go.dev/github.com/go-masonry/mortar/providers/types#HTTPHandlerPatternPair">HTTPHandlerPatternPair</a>:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">var</span> customHandler http.Handler <span style="color:#666">...</span>
-
-<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">createHandlerPair</span>() types.HTTPHandlerPatternPair {
- <span style="color:#007020;font-weight:bold">return</span> types.HTTPHandlerPatternPair{
-     Pattern:<span style="color:#4070a0">&#34;/your/pattern&#34;</span>,
-     Handler: customHandler,
- }
+	    <p>In case you decide to use <a href="https://jwt.io">JWT</a> as your Auth* of choice, Mortar have a simple <a href="https://pkg.go.dev/github.com/go-masonry/mortar/interfaces/auth/jwt#TokenExtractor">Token Extractor</a>.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">type</span> TokenExtractor <span style="color:#007020;font-weight:bold">interface</span> {
+	<span style="color:#60a0b0;font-style:italic">// FromContext should try to extract a token from the Context using `ContextExtractor`
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#06287e">FromContext</span>(ctx context.Context) (Token, <span style="color:#902000">error</span>)
+	<span style="color:#60a0b0;font-style:italic">// FromString accepts a JWT token in form of a string
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#60a0b0;font-style:italic">//	xxxxx.yyyyy.zzzzz
+</span><span style="color:#60a0b0;font-style:italic"></span>	<span style="color:#06287e">FromString</span>(str <span style="color:#902000">string</span>) (Token, <span style="color:#902000">error</span>)
 }
-</code></pre></div></li>
-<li>
-<p>Add this pair to the <code>ExternalHTTPHandlers</code> group:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">var</span> customHandlerOption = fx.<span style="color:#06287e">Provide</span>(
-    fx.Annotated{
-        Group: groups.ExternalHTTPHandlers,
-        Target: createHandlerPair, <span style="color:#60a0b0;font-style:italic">// function pointer, will be called by Uber-FX
-</span><span style="color:#60a0b0;font-style:italic"></span>    }
+</code></pre></div><h2 ref="mortar-and-grpc-gateway" >Mortar and gRPC-Gateway</h2><a class="anchor" id="mortar-and-grpc-gateway"></a>
+<p>Usually you pass the JWT Token via the <code>Authorization</code> header</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-http" data-lang="http"><span style="">Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+</span></code></pre></div><p>Now, you are encouraged to use <a href="https://github.com/grpc-ecosystem/grpc-gateway">gRPC-Gateway</a>, but in this case you don&rsquo;t really have an access to HTTP Request Headers.
+Fear not, gRPC-Gateway and Mortar have your covered.</p>
+<ul>
+<li>By default gRPC-Gateway will transform this special <code>Authorization</code> header into <code>grpcgateway-authorization</code> and put it in the Context.</li>
+<li>Mortar have a <a href="https://pkg.go.dev/github.com/go-masonry/mortar/constructors#DefaultJWTTokenExtractor"><code>DefaultJWTTokenExtractor</code></a> that takes care of that.</li>
+</ul>
+<h2 ref="example" >Example</h2><a class="anchor" id="example"></a>
+<p>You only need to register <a href="https://pkg.go.dev/github.com/go-masonry/mortar/interfaces/auth/jwt#TokenExtractor">Token Extractor</a> by providing <a href="https://pkg.go.dev/github.com/go-masonry/mortar/constructors#DefaultJWTTokenExtractor"><code>DefaultJWTTokenExtractor</code></a> constructor to Uber-Fx.</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">import</span> (
+ <span style="color:#4070a0">&#34;github.com/go-masonry/mortar/constructors&#34;</span>
+ <span style="color:#4070a0">&#34;go.uber.org/fx&#34;</span>
 )
-</code></pre></div></li>
-<li>
-<p>All that&rsquo;s left is to register it into the <code>Uber-FX</code> graph:</p>
-<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">New</span>(
- <span style="color:#666">...</span>
- customHandlerOption,
- <span style="color:#666">...</span>
-)
-</code></pre></div></li>
-</ol>
-<h3 ref="registering-httphandlerfunc" >Registering <code>http.HandlerFunc</code></h3><a class="anchor" id="registering-httphandlerfunc"></a>
-<p>Registering <code>http.HandlerFunc</code> is very much similar to <a href="#registering-httphandler">registering <code>http.Handler</code></a>.</p>
-<p>Actually, you need to follow the exact same guide and replace <strong>Handler</strong> with <strong>HandlerFunc</strong>:</p>
+<span style="color:#666">...</span>
+fx.<span style="color:#06287e">Provide</span>(constructors.DefaultJWTTokenExtractor)
+<span style="color:#666">...</span>
+</code></pre></div><p>Once provided, you can inject <code>TokenExtractor</code> and use it</p>
+<div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">type</span> authDeps <span style="color:#007020;font-weight:bold">struct</span> {
+ fx.In
 
+ TokenExtractor jwt.TokenExtractor
+}
+<span style="color:#666">...</span>
 
-
-
-
-
-<div class="tabs"><input type="radio" name="tabs-1" id="tabs-1-0" checked="checked" />
-  <label for="tabs-1-0">Handler</label>
-  <div class="tab"><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">var</span> customHandler http.Handler <span style="color:#666">...</span>
-
-<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">createHandlerPair</span>() types.HTTPHandlerPatternPair {
- <span style="color:#007020;font-weight:bold">return</span> types.HTTPHandlerPatternPair{
-     Pattern:<span style="color:#4070a0">&#34;/your/pattern&#34;</span>,
-     Handler: customHandler,
+<span style="color:#007020;font-weight:bold">func</span> (impl <span style="color:#666">*</span>authImpl) <span style="color:#06287e">CheckJWT</span>(ctx context.Context) <span style="color:#902000">error</span> {
+ <span style="color:#60a0b0;font-style:italic">// we only log for error here
+</span><span style="color:#60a0b0;font-style:italic"></span> token, err <span style="color:#666">:=</span> impl.deps.TokenExtractor.<span style="color:#06287e">FromContext</span>(ctx)
+ <span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+     <span style="color:#007020;font-weight:bold">return</span> fmt.<span style="color:#06287e">Errorf</span>(<span style="color:#4070a0">&#34;no jwt token found, %w&#34;</span>,err)
  }
+ m, err = token.<span style="color:#06287e">Map</span>()
+ <span style="color:#007020;font-weight:bold">if</span> err <span style="color:#666">!=</span> <span style="color:#007020;font-weight:bold">nil</span> {
+   <span style="color:#007020;font-weight:bold">return</span> fmt.<span style="color:#06287e">Errorf</span>(<span style="color:#4070a0">&#34;failed to produce a map from authorization header, %w&#34;</span>, err)
+ }
+ <span style="color:#666">...</span>
+ <span style="color:#666">...</span>
+ <span style="color:#007020;font-weight:bold">return</span> <span style="color:#007020;font-weight:bold">nil</span>
 }
 
-<span style="color:#007020;font-weight:bold">var</span> customHandlerOption = fx.<span style="color:#06287e">Provide</span>(
-    fx.Annotated{
-        Group: groups.ExternalHTTPHandlers,
-        Target: createHandlerPair, <span style="color:#60a0b0;font-style:italic">// function pointer, will be called by Uber-FX
-</span><span style="color:#60a0b0;font-style:italic"></span>    }
-) 
-<span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">New</span>(
- <span style="color:#666">...</span>
- customHandlerOption,
- <span style="color:#666">...</span>
-)
-</code></pre></div></div><input type="radio" name="tabs-1" id="tabs-1-1"  />
-  <label for="tabs-1-1">HandlerFunc</label>
-  <div class="tab"><div class="highlight"><pre style="background-color:#f0f0f0;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-golang" data-lang="golang"><span style="color:#007020;font-weight:bold">var</span> customHandlerFunc http.HandlerFunc <span style="color:#666">...</span>
-
-<span style="color:#007020;font-weight:bold">func</span> <span style="color:#06287e">createHandlerFuncPair</span>() types.HTTPHandlerFuncPatternPair {
- <span style="color:#007020;font-weight:bold">return</span> types.HTTPHandlerFuncPatternPair{
-     Pattern:<span style="color:#4070a0">&#34;/your/pattern&#34;</span>,
-     Handler: customHandlerFunc,
- }
-}
-
-<span style="color:#007020;font-weight:bold">var</span> customHandlerFuncOption = fx.<span style="color:#06287e">Provide</span>(
-    fx.Annotated{
-        Group: groups.ExternalHTTPHandlerFunctions,
-        Target: createHandlerFuncPair, <span style="color:#60a0b0;font-style:italic">// function pointer, will be called by Uber-FX
-</span><span style="color:#60a0b0;font-style:italic"></span>    }
-) 
-<span style="color:#007020;font-weight:bold">return</span> fx.<span style="color:#06287e">New</span>(
- <span style="color:#666">...</span>
- customHandlerFuncOption,
- <span style="color:#666">...</span>
-)
-</code></pre></div></div></div>
-
-
+</code></pre></div><p>Mortar <a href="https://github.com/go-masonry/mortar-template">service template</a> have a simple working example. Look at <a href="https://github.com/go-masonry/mortar-template/blob/master/app/validations/auth.go">app/validations/auth.go</a>.</p>
 
 		</div>
 
@@ -679,10 +617,10 @@
 
 	 
 	<div class="chevrons">
-		<a class="next" href="/clients/" title="Clients" style="margin-right: 0px;">
+		<a class="next" href="/mortar/" title="Mortar Design" style="margin-right: 0px;">
             <div>
                 <p>Next page</p>
-                <label>Clients</label>
+                <label>Mortar Design</label>
             </div>
             <i class="fas fa-arrow-right" style="font-size: 1.7em"></i></a>
 	</div>
@@ -707,17 +645,13 @@
     <label><i class="fas fa-align-right"></i>&nbsp;&nbsp;What&#39;s on this page</label>
     <nav>
         <ul >
-            <li><a href="/api/handlers/">HTTP Handler/Func</a></li>
+            <li><a href="/auth/">JWT Authentication</a></li>
         </ul>
     </nav>
     <nav id="TableOfContents">
   <ul>
-    <li>
-      <ul>
-        <li><a href="#registering-httphandler">Registering <code>http.Handler</code></a></li>
-        <li><a href="#registering-httphandlerfunc">Registering <code>http.HandlerFunc</code></a></li>
-      </ul>
-    </li>
+    <li><a href="#mortar-and-grpc-gateway">Mortar and gRPC-Gateway</a></li>
+    <li><a href="#example">Example</a></li>
   </ul>
 </nav>
 </div>
