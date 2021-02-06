@@ -60,7 +60,7 @@
 	"title": "",
 	"tags": [],
 	"description": "",
-	"content": "Mortar is a Go framework/library for building gRPC (and REST) web services. It has out-of-the-box support for configuration, application metrics, logging, tracing, profiling, dependency injection and more.\nThe key features are:\n Dependency Injection using Uber-FX.  Out-of-the-box defaults that work, however you can replace everything.   Middleware concept is almost everywhere.  Build-in Server/Client Interceptors both for gRPC/HTTP, you can bring your own. Telemetry - Metrics, Tracing and Logging all connected.   Pimped gRPC and HTTP clients. Increases Developer Velocity DevOps friendly and Production ready.  Builder pattern Profiling, Debug, Build Info, Configuration and more.    The simplest way to start is to clone the Demo repository.\n"
+	"content": "Mortar is a Go framework/library for building gRPC (and REST) web services.\nIt has out-of-the-box support for configuration, application metrics, logging, tracing, profiling, dependency injection and more.\nThe key features are:\n Dependency Injection using Uber-FX.  Out-of-the-box defaults that work, however you can replace everything.   Middleware concept is almost everywhere.  Build-in Server/Client Interceptors both for gRPC/HTTP, you can bring your own. Telemetry - Metrics, Tracing and Logging all connected.   Pimped gRPC and HTTP clients. Increases Developer Velocity DevOps friendly and Production ready.  Builder pattern Profiling, Debug, Build Info, Configuration and more. Create a production ready service in 15min using this service template.    If you want to better understand Mortar features, clone the Demo repository and follow the README there.\n "
 },
 {
 	"uri": "https://go-masonry.github.io/mortar/bricks/",
